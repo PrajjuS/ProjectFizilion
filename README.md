@@ -54,7 +54,7 @@ Thanks:
 * [Mkaraniya](https://github.com/mkaraniya) & [Dev73](https://github.com/Devp73) - OpenUserBot
 * [MoveAngel](https://github.com/MoveAngel) - One4U
 
-and many more people who aren't mentioned here, but may be found in [Contributors](https://github.com/MoveAngel/One4uBot/graphs/contributors).
+and many more people who aren't mentioned here, but may be found in [Contributors](https://github.com/ElytrA8/ProjectFizilion/graphs/contributors).
 
 ## License
 
