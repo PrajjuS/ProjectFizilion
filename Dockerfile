@@ -1,4 +1,4 @@
-FROM null
+FROM elytra8/projectfizilion:latest
 
 RUN mkdir /Fizilion && chmod 777 /Fizilion
 ENV PATH="/Fizilion/bin:$PATH"
