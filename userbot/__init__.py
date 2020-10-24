@@ -91,8 +91,8 @@ GITHUB_ACCESS_TOKEN = os.environ.get("GITHUB_ACCESS_TOKEN") or None
 
 # Custom (forked) repo URL and BRANCH for updater.
 UPSTREAM_REPO_URL = (os.environ.get("UPSTREAM_REPO_URL")
-                     or "https://github.com/MoveAngel/One4uBot.git")
-UPSTREAM_REPO_BRANCH = os.environ.get("UPSTREAM_REPO_BRANCH") or "sql-extended"
+                     or "https://github.com/ElytrA8/ProjectFizilion.git")
+UPSTREAM_REPO_BRANCH = os.environ.get("UPSTREAM_REPO_BRANCH") or "dragon"
 
 # Console verbose logging
 CONSOLE_LOGGER_VERBOSE = sb(os.environ.get(
@@ -140,10 +140,10 @@ TZ_NUMBER = int(os.environ.get("TZ_NUMBER") or 1)
 USERBOT_VERSION = os.environ.get("USERBOT_VERSION") or "3.7"
 
 # User Terminal alias
-USER_TERM_ALIAS = os.environ.get("USER_TERM_ALIAS") or "One4uBot"
+USER_TERM_ALIAS = os.environ.get("USER_TERM_ALIAS") or "drag0n"
 
 # Updater alias
-UPDATER_ALIAS = os.environ.get("UPDATER_ALIAS") or "One4uBot"
+UPDATER_ALIAS = os.environ.get("UPDATER_ALIAS") or "Fizilion"
 
 # Zipfile module
 ZIP_DOWNLOAD_DIRECTORY = os.environ.get("ZIP_DOWNLOAD_DIRECTORY") or "./zips"
