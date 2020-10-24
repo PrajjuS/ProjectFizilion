@@ -1,10 +1,10 @@
-FROM movecrew/one4ubot:alpine-latest
+FROM null
 
-RUN mkdir /One4uBot && chmod 777 /One4uBot
-ENV PATH="/One4uBot/bin:$PATH"
-WORKDIR /One4uBot
+RUN mkdir /Fizilion && chmod 777 /Fizilion
+ENV PATH="/Fizilion/bin:$PATH"
+WORKDIR /Fizilion
 
-RUN git clone https://github.com/MoveAngel/One4uBot -b sql-extended /One4uBot
+RUN git clone https://github.com/ElytrA8/ProjectFizilion -b dragon /Fizilion
 
 #
 # Copies session and config(if it exists)
