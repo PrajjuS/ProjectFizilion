@@ -1,7 +1,7 @@
 {
-  "name": "Telegram One 4u Bot",
-  "description": "[One4uBot] A modular Telegram userbot running on Python 3.8+ with an sqlalchemy database.",
-  "logo": "https://i.ibb.co/CzXcJ0S/photo-2020-01-28-23-32-03.jpg",
+  "name": "Project Fizilion",
+  "description": "A modular Telegram userbot running on Python 3.8+ with an sqlalchemy database.",
+  "logo": "https://github.com/ElytrA8/ProjectFizilion/raw/dragon/resources/Fizilion.png",
   "keywords": [
     "telegram",
     "userbot",
@@ -9,9 +9,9 @@
     "modular",
     "productivity"
   ],
-  "repository": "https://github.com/MoveAngel/One4uBot",
-  "website": "https://telegra.ph/How-to-host-a-Telegram-Userbot-11-02",
-  "success_url": "https://t.me/userbotindo",
+  "repository": "https://github.com/ElytrA8/ProjectFizilion",
+  "website": "https://t.me/ElytrA8",
+  "success_url": "https://t.me/ProjectFizilion",
   "stack": "container",
   "env": {
     "API_KEY": {
