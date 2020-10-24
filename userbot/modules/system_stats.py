@@ -227,7 +227,6 @@ async def pipcheck(pip):
 @register(outgoing=True, pattern=r"^.(alive|on)$")
 async def amireallyalive(alive):
     """ For .alive command, check if the bot is running.  """
-    uptime = await get_readable_time((time.time() - StartTime))
     output = ("`My Fizilion details `\n"
               f"`Hi, {DEFAULTUSER} `\n"
               "==================== \n"
@@ -238,20 +237,12 @@ async def amireallyalive(alive):
               "==================== \n"
               f"`Running on Branch ==> {UPSTREAM_REPO_BRANCH} `\n"
               f"Tip:- Type `.help` to know about Modules Information \n")
-
     if ALIVE_LOGO:
-        try:
-            logo = ALIVE_LOGO
-            await bot.send_file(alive.chat_id, logo, caption=output)
-            await alive.delete()
-        except BaseException:
-            await alive.edit(
-                output + "\n\n *`The provided logo is invalid."
-                "\nMake sure the link is directed to the logo picture`"
-            )
+        logo = ALIVE_LOGO
+        await bot.send_file(alive.chat_id, logo, caption=output)
+        await alive.delete()
     else:
         await alive.edit(output)
-
 
 @register(outgoing=True, pattern="^.aliveu")
 async def amireallyaliveuser(username):
