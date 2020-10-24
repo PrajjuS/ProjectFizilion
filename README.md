@@ -1,19 +1,6 @@
-# One4uBot userbot project
+# Project Fizilion
 
-<p align="center">
-    <a href="https://github.com/MoveAngel/One4uBot/actions?query=workflow%3AFailedChecker" > <img src="https://img.shields.io/github/workflow/status/MoveAngel/One4uBot/FailedChecker/sql-extended?label=Build&style=flat-square&logo=github-actions&logoColor=white&color=98CE00" alt="FailedChecker" /></a>
-    <a href="https://www.codacy.com/manual/MoveAngel/One4uBot?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=MoveAngel/One4uBot&amp;utm_campaign=Badge_Grade"><img src="https://img.shields.io/codacy/grade/e758192aef1c4178be8777694409b248?style=flat-square&logo=codacy&color=17BEBB" alt="codacy badge"/></a>
-    <a href="https://github.com/MoveAngel/One4uBot/actions?query=workflow%3APyLint"> <img src="https://img.shields.io/github/workflow/status/MoveAngel/One4uBot/PyLint/sql-extended?label=PyLint&style=flat-square&logo=github-actions&logoColor=white&color=98CE00" alt="Pylint" /></a><br>
-    <a href="https://github.com/MoveAngel/One4uBot/commits/sql-extended"><img src="https://img.shields.io/github/last-commit/MoveAngel/One4uBot/sql-extended?label=Last%20Commit&style=flat-square&logo=github&color=8C86AA" alt="Commit" /></a>
-    <a href="https://github.com/MoveAngel/One4uBot/graphs/contributors"><img src="https://img.shields.io/github/contributors-anon/MoveAngel/One4uBot?label=Contributors&style=flat-square&logo=github&color=FF4D80" alt="Contributors" /></a>
-    <a href="https://github.com/MoveAngel/One4uBot/watchers"><img src="https://img.shields.io/github/watchers/MoveAngel/One4uBot?label=Watch&style=flat-square&logo=github&color=FF70A6" alt="Watch" /></a>
-    <a href="https://github.com/MoveAngel/One4uBot/stargazers"><img src="https://img.shields.io/github/stars/MoveAngel/One4uBot?label=Stars&style=flat-square&logo=github&color=F87575" alt="Stars" /></a>
-    <a href="https://github.com/MoveAngel/One4uBot/network/members"><img src="https://img.shields.io/github/forks/MoveAngel/One4uBot?label=Fork&style=flat-square&logo=github&color=E0777D" alt="Fork" /></a>
-    <a href="https://hub.docker.com/r/movecrew/one4ubot"> <img src="https://img.shields.io/docker/image-size/movecrew/one4ubot/alpine-latest?label=Docker%20Size&style=flat-square&logo=docker&logoColor=white&color=1B98E0" alt="Docker Image" /></a><br>
-    <a href="https://t.me/userbotindo"> <img src="https://img.shields.io/badge/telegram-Support_Group-blue?style=social&logo=telegram" alt="Support" /></a>
-</p>
-
-![logo](https://i.ibb.co/02QVkHC/headersmina.jpg)
+![logo](https://github.com/ElytrA8/ProjectFizilion/raw/dragon/resources/Fizilion.png)
 
 ```
 #include <std/disclaimer.h>
@@ -35,11 +22,11 @@
 Easy way to get STRING_SESSION. 
 
 ### Run on repl.it
-[![Run repl.it](https://img.shields.io/badge/run-string__session.py-blue?style=flat-square&logo=repl.it)](https://userbotsession.moveangel.repl.run)
+[![Run repl.it](https://img.shields.io/badge/run-string__session.py-blue?style=flat-square&logo=repl.it)](https://session.uraniumcore.repl.run)
 
 ### or Run on your terminal
 ```
-wget https://raw.githubusercontent.com/MoveAngel/One4uBot/sql-extended/terminal_getstring.sh && bash terminal_getstring.sh
+wget https://raw.githubusercontent.com/ElytrA8/ProjectFizilion/dragon/terminal_getstring.sh && bash terminal_getstring.sh
 ```
 
 ## How To Host?
