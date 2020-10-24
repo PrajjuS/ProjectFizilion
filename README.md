@@ -1,6 +1,6 @@
 # Project Fizilion
 
-![logo](https://github.com/ElytrA8/ProjectFizilion/raw/dragon/resources/Fizilion.png)
+![logo](https://github.com/ElytrA8/ProjectFizilion/raw/dragon/resources/curved.png)
 
 ```
 #include <std/disclaimer.h>
