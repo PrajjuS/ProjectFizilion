@@ -228,15 +228,17 @@ async def pipcheck(pip):
 async def amireallyalive(alive):
     """ For .alive command, check if the bot is running.  """
     uptime = await get_readable_time((time.time() - StartTime))
-    output = ("`My Fizilion details `\n"
-              f"`Hi, {DEFAULTUSER} `\n"
-              "==================== \n"
-              f"`Telethon : v{version.__version__} `\n"
-              f"`Python : v{python_version()} `\n"
-              f"`Fizilion : {USERBOT_VERSION} `\n"
-              "==================== \n"
-              f"`Running on Branch ==> {UPSTREAM_REPO_BRANCH} `\n"
-              f"Tip:- Type `.help` to know about Modules Information \n")
+    output = (
+        "`Fizilion is Up`\n"
+        f"•`Telethon       : v{version.__version__} `\n"
+        f"•`Python         : v{python_version()} `\n"
+        f"•`User           :`  {DEFAULTUSER} \n"
+        "`-------------------------------`\n"
+        f"•`Running on     : {repo.active_branch.name} `\n"
+        f"•`Loaded modules : {len(modules)} `\n"
+        f"•`Fizilion       : v{USERBOT_VERSION} `\n"
+        f"•`Bot Uptime     : {uptime} `\n"
+    )
     if ALIVE_LOGO:
         try:
             logo = ALIVE_LOGO
