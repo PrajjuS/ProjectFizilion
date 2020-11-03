@@ -17,7 +17,9 @@
     I will be rolling on the floor laughing at you.
 /**
 ```
-
+[![Build](https://github.com/ElytrA8/ProjectFizilion/workflows/FailedChecker/badge.svg?branch=dragon)](https://github.com/ElytrA8/ProjectFizilion/actions "build")
+![Spec](https://img.shields.io/badge/Made%20with-%E2%99%A5%EF%B8%8F-white)
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 ## Generate String Session
 Easy way to get STRING_SESSION. 
 
