@@ -241,9 +241,15 @@ async def amireallyalive(alive):
               f"Tip:- Type `.help` to know about Modules Information \n"
     )
     if ALIVE_LOGO:
-        logo = ALIVE_LOGO
-        await bot.send_file(alive.chat_id, logo, caption=output)
-        await alive.delete()
+        try:
+            logo = ALIVE_LOGO
+            await bot.send_file(alive.chat_id, logo, caption=output)
+            await alive.delete()
+        except BaseException:
+            await alive.edit(
+                output + "\n\n *`The provided logo is invalid."
+                "\nMake sure the link is directed to the logo picture`"
+            )
     else:
         await alive.edit(output)
 
