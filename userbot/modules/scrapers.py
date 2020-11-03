@@ -509,31 +509,41 @@ async def lang(value):
         )
 
 
-@register(outgoing=True, pattern=r"^\.yt (\d*) *(.*)")
-async def yt_search(video_q):
-    """For .yt command, do a YouTube search from Telegram."""
-    if video_q.pattern_match.group(1) != "":
-        counter = int(video_q.pattern_match.group(1))
+@register(outgoing=True, pattern=r"^\.yt(?: |$)(\d*)? ?(.*)")
+async def yt_search(event):
+    """ For .yt command, do a YouTube search from Telegram. """
+
+    if event.is_reply and not event.pattern_match.group(2):
+        query = await event.get_reply_message()
+        query = str(query.message)
+    else:
+        query = str(event.pattern_match.group(2))
+
+    if not query:
+        return await event.edit("`Reply to a message or pass a query to search!`")
+
+    await event.edit("`Processing...`")
+
+    if event.pattern_match.group(1) != "":
+        counter = int(event.pattern_match.group(1))
         if counter > 10:
             counter = int(10)
         if counter <= 0:
             counter = int(1)
     else:
-        counter = int(5)
-
-    query = video_q.pattern_match.group(2)
-    if not query:
-        await video_q.edit("`Enter query to search`")
-    await video_q.edit("`Processing...`")
+        counter = int(3)
 
     try:
-        results = json.loads(YoutubeSearch(query, max_results=counter).to_json())
+        results = json.loads(
+            YoutubeSearch(
+                query,
+                max_results=counter).to_json())
     except KeyError:
-        return await video_q.edit(
+        return await event.edit(
             "`Youtube Search gone retard.\nCan't search this query!`"
         )
 
-    output = f"**Search Query:**\n`{query}`\n\n**Results:**\n\n"
+    output = f"**Search Query:**\n`{query}`\n\n**Results:**\n"
 
     for i in results["videos"]:
         try:
@@ -546,7 +556,7 @@ async def yt_search(video_q):
         except IndexError:
             break
 
-    await video_q.edit(output, link_preview=False)
+    await event.edit(output, link_preview=False)
 
 
 @register(outgoing=True, pattern=r".rip(audio|video) (.*)")
