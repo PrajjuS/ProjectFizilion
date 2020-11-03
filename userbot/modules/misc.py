@@ -73,7 +73,7 @@ async def reedme(event):
     await event.edit(
         "Here's something for you to read:\n"
         "\n[Fizilions README.md file](https://github.com/ElytrA8/ProjectFizilion/blob/dragon/README.md)"
-
+)
 
 # Copyright (c) Gegham Zakaryan | 2019
 @register(outgoing=True, pattern="^.repeat (.*)")
