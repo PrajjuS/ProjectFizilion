@@ -227,7 +227,9 @@ async def pipcheck(pip):
 @register(outgoing=True, pattern=r"^.(alive|on)$")
 async def amireallyalive(alive):
     """ For .alive command, check if the bot is running.  """
-    output = ("`My Fizilion details `\n"
+    uptime = await get_readable_time((time.time() - StartTime))
+    output = (
+              "`My Fizilion details `\n"
               f"`Hi, {DEFAULTUSER} `\n"
               "==================== \n"
               f"`Telethon : v{version.__version__} `\n"
@@ -235,8 +237,9 @@ async def amireallyalive(alive):
               f"`Running Since : {uptime} `\n"
               f"`Resurrected Modules :  {len(modules)} `\n"
               "==================== \n"
-              f"`Running on Branch ==> {UPSTREAM_REPO_BRANCH} `\n"
-              f"Tip:- Type `.help` to know about Modules Information \n")
+              f"`Running on Branch = {UPSTREAM_REPO_BRANCH} `\n"
+              f"Tip:- Type `.help` to know about Modules Information \n"
+    )
     if ALIVE_LOGO:
         logo = ALIVE_LOGO
         await bot.send_file(alive.chat_id, logo, caption=output)
