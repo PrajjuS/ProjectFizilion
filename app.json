@@ -166,7 +166,7 @@
     },
     "DEFAULT_BIO": {
       "description": "Default profile bio.",
-      "value": "[PM = Report Spam] I ❤ ️One4uBot",
+      "value": "[PM = Report Spam] I ❤ ️Fizilion",
       "required": false
     },
     "ALIVE_NAME": {
