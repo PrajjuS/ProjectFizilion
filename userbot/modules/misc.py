@@ -36,7 +36,7 @@ async def randomise(items):
 async def sleepybot(time):
     """ For .sleep command, let the userbot snooze for a few second. """
     counter = int(time.pattern_match.group(1))
-    await time.edit("`I am sulking and snoozing...`")
+    await time.edit("`Going For Sleep`")
     if BOTLOG:
         str_counter = time_formatter(counter)
         await time.client.send_message(
@@ -50,7 +50,7 @@ async def sleepybot(time):
 @register(outgoing=True, pattern="^.shutdown$")
 async def killbot(shut):
     """For .shutdown command, shut the bot down."""
-    await shut.edit("`Goodbye *Windows XP shutdown sound*....`")
+    await shut.edit("`Shutting The Power Off`")
     if BOTLOG:
         await shut.client.send_message(BOTLOG_CHATID, "#SHUTDOWN \n" "Bot shut down")
     await bot.disconnect()
@@ -58,7 +58,7 @@ async def killbot(shut):
 
 @register(outgoing=True, pattern="^.restart$")
 async def killdabot(reboot):
-    await reboot.edit("`*i would be back in a moment*`")
+    await reboot.edit("`Restarting`")
     if BOTLOG:
         await reboot.client.send_message(BOTLOG_CHATID, "#RESTART \n" "Bot Restarted")
     await bot.disconnect()
