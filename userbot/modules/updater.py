@@ -31,14 +31,11 @@ requirements_path = path.join(
     path.dirname(path.dirname(path.dirname(__file__))), "requirements.txt"
 )
 
-
 async def gen_chlog(repo, diff):
-    ch_log = ""
+    ch_log = ''
     d_form = "%d/%m/%y"
     for c in repo.iter_commits(diff):
-        ch_log += (
-            f"•[{c.committed_datetime.strftime(d_form)}]: {c.summary} <{c.author}>\n"
-        )
+        ch_log += f'{c.summary} \nby {c.author} \non [{c.committed_datetime.strftime(d_form)}]\n'
     return ch_log
 
 
