@@ -25,7 +25,6 @@ async def on_snip(event):
         msg_o = await event.client.get_messages(
             entity=BOTLOG_CHATID, ids=int(snip.f_mesg_id)
         )
-            await event.delete()
             await event.client.send_message(
             event.chat_id, msg_o.message, reply_to=message_id_to_reply, file=msg_o.media
         )
