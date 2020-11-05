@@ -21,7 +21,8 @@ async def help(event):
     else:
         string = ""
         for i in CMD_HELP:
-            string += "Welcome To Help Centre \n•`" + str(i)
+            string += "`Welcome To Help Centre`\n"
+            string += "•`" + str(i)
             string += "`\n"
         await event.edit(
             f"{string}"
