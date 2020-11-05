@@ -22,7 +22,7 @@ async def help(event):
         string = ""
         for i in CMD_HELP:
             string += "`" + str(i)
-            string += "`/n"
+            string += "`\n"
         await event.edit(
             f"{string}"
             "\n\nSpecify which module do you want help for !!\
