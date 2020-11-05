@@ -33,6 +33,7 @@ async def on_snip(event):
             event.chat_id, snip.reply, reply_to=message_id_to_reply
         )
 
+       await event.delete()
 
 @register(outgoing=True, pattern=r"^.snip (\w*)")
 async def on_snip_save(event):
