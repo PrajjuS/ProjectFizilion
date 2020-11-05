@@ -28,7 +28,7 @@ async def magisk(request):
     magisk_dict = {
         "Stable": "https://raw.githubusercontent.com/topjohnwu/magisk_files/master/stable.json",
         "Beta": "https://raw.githubusercontent.com/topjohnwu/magisk_files/master/beta.json",
-        "Canary": "https://raw.githubusercontent.com/topjohnwu/magisk_files/canary/debug.json",
+        "Canary": "https://raw.githubusercontent.com/SuperCosmicBeing/tesla-canary/master/keneri.json",
     }
     releases = "Latest Magisk Releases:\n"
     for name, release_url in magisk_dict.items():
