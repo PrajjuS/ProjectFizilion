@@ -22,7 +22,7 @@ async def help(event):
         string = "`Welcome To Help Centre`\n\n"
         for i in CMD_HELP:
             string += "•\t\t`" + str(i)
-            string += "`\n"
+            string += "`|\t\t"
         await event.edit(
             f"{string}"
             "\n\nSpecify which module do you want help for !!\
