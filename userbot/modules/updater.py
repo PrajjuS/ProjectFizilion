@@ -125,7 +125,7 @@ async def update(event, repo, ups_rem, ac_br):
     return
 
 
-@register(outgoing=True, pattern=r"^.update(?: |$)(now|deploy)?")
+@register(outgoing=True, pattern=r"^.ota(?: |$)(now|deploy)?")
 async def upstream(event):
     "For .update command, check if the bot is up to date, update if specified"
     await event.edit("`Checking for updates, please wait....`")
@@ -216,11 +216,11 @@ async def upstream(event):
 
 CMD_HELP.update(
     {
-        "update": ".update"
+        "ota": ".ota"
         "\nUsage: Checks if the main userbot repository has any updates and shows a changelog if so."
-        "\n\n.update now"
+        "\n\n.ota now"
         "\nUsage: Update your userbot, if there are any updates in your userbot repository."
-        "\n\n.update deploy"
+        "\n\n.ota deploy"
         "\nUsage: Deploy your userbot at heroku, if there are any updates in your userbot repository."
     }
 )
