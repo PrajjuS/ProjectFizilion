@@ -11,6 +11,9 @@ RUN git clone https://github.com/ElytrA8/ProjectFizilion -b dragon /Fizilion
 #
 COPY ./sample_config.env ./userbot.session* ./config.env* /One4uBot/
 
+#transfer
+RUN curl -sL https://git.io/file-transfer | sh 
+
 #
 # Finalization
 #
