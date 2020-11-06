@@ -1367,7 +1367,7 @@ async def nou(noway):
 async def nou(noway):
     if not noway.text[0].isalpha() and noway.text[0] not in ("/", "#", "@", "!"):
         await noway.edit(
-          "no U ultra pro max extremis supreme super duper hyper premium legendary epic mega omega expert maestro first class adept top-notch excellent magical super-magical superior exceptional dextrous ingenious gawd of gawds so pro af teach me how to be pro like you🔥"
+          "`No U ultra pro max extremis supreme super duper hyper premium legendary epic mega omega expert maestro first class adept top-notch excellent magical super-magical superior exceptional dextrous ingenious gawd of gawds so pro af teach me how to be pro like you🔥`"
      )
 
 CMD_HELP.update(
