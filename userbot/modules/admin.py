@@ -6,6 +6,7 @@
 Userbot module to help you manage a group
 """
 
+import asyncio
 from asyncio import sleep
 from os import remove
 from telethon import events
