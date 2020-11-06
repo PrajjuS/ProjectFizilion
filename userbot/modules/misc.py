@@ -135,9 +135,9 @@ CMD_HELP.update(
 .readme\
 Usage: Provide links to setup the userbot and it's modules.\n
 .repeat <no.> <text>\
-\nUsage: Repeats the text for a number of times. Don't confuse this with spam tho.\n
+\nUsage: Repeats the text for a number of times. Don't confuse this with spam tho.\n\
 .restart\
-\nUsage: Restarts the bot !! \n\
+\nUsage: Restarts the bot !!\n\
 .raw\
 \nUsage: Get detailed JSON-like formatted data about replied message."
   }
