@@ -1363,6 +1363,12 @@ async def nou(noway):
             "`\n┗━━┻━┛`"
         )
 
+@register(outgoing=True, pattern="^.pro$")
+async def nou(noway):
+    if not noway.text[0].isalpha() and noway.text[0] not in ("/", "#", "@", "!"):
+        await noway.edit(
+          "no U ultra pro max extremis supreme super duper hyper premium legendary epic mega omega expert maestro first class adept top-notch excellent magical super-magical superior exceptional dextrous ingenious gawd of gawds so pro af teach me how to be pro like you🔥"
+     )
 
 CMD_HELP.update(
     {
@@ -1416,6 +1422,8 @@ CMD_HELP.update(
 \nUsage: Pay Respects.\
 \n\n.bt\
 \nUsage: Believe me, you will find this useful.\
+\n\n.pro\
+\nUsage: For peru people.\
 \n\n.type\
 \nUsage: Just a small command to make your keyboard become a typewriter!\
 \n\n.lfy <query>\
@@ -1428,6 +1436,5 @@ CMD_HELP.update(
 \n\nAnd many more\
 \n.nou ; .bot ; .gey ; .gey ; .tf ; .paw ; .taco ; .nih ;\
 \n.fag ; .gtfo ; .stfu ; .lol ; .lool ; .fail ; .earth ; .iwi\
-\n\n\nThanks to 🅱️ottom🅱️ext🅱️ot (@NotAMemeBot) for some of these."
-    }
+\n\n\nThanks to 🅱️ottom🅱️ext🅱️ot (@NotAMemeBot) for some of these."}
 )
