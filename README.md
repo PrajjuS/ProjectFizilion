@@ -17,7 +17,7 @@
     I will be rolling on the floor laughing at you.
 /**
 ```
-[![Build](https://github.com/ElytrA8/ProjectFizilion/workflows/FailedChecker/badge.svg?branch=dragon)](https://github.com/ElytrA8/ProjectFizilion/actions "build")
+[![Build](https://img.shields.io/github/workflow/status/ElytrA8/ProjectFizilion/FailedChecker?style=for-the-badge)](https://github.com/ElytrA8/ProjectFizilion/actions "build")
 
 ![Docker](https://img.shields.io/docker/cloud/build/elytra8/projectfizilion?style=for-the-badge)
 
