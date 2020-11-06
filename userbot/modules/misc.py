@@ -125,20 +125,20 @@ async def raw(rawtext):
 CMD_HELP.update(
     {
         "misc": ".random <item1> <item2> ... <itemN>\
-\nUsage: Get a random item from the list of items.\n
+\nUsage: Get a random item from the list of items.\n\
 .sleep <seconds>\
-\nUsage: hibernate your userbot.\n
+\nUsage: hibernate your userbot.\n\
 .shutdown\
-\nUsage: Shutdowns Your Bot\n
+\nUsage: Shutdowns Your Bot.\n\
 .repo\
-\nUsage: If you are curious what makes the userbot work, this is what you need.\n
+\nUsage: If you are curious what makes the userbot work, this is what you need.\n\
 .readme\
 Usage: Provide links to setup the userbot and it's modules.\n
 .repeat <no.> <text>\
 \nUsage: Repeats the text for a number of times. Don't confuse this with spam tho.\n
 .restart\
-\nUsage: Restarts the bot !! \n
+\nUsage: Restarts the bot !! \n\
 .raw\
-\nUsage: Get detailed JSON-like formatted data about replied message.\n"
+\nUsage: Get detailed JSON-like formatted data about replied message."
   }
-  )
+)
