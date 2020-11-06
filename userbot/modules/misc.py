@@ -133,7 +133,7 @@ CMD_HELP.update(
 ".repo"
 "\nUsage: If you are curious what makes the userbot work, this is what you need.\n\n"
 ".readme"
-"Usage: Provide links to setup the userbot and it's modules.\n\n"
+"\nUsage: Provide links to setup the userbot and it's modules.\n\n"
 ".repeat <no.> <text>"
 "\nUsage: Repeats the text for a number of times. Don't confuse this with spam tho.\n\n"
 ".restart"
