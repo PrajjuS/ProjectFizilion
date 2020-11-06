@@ -639,16 +639,15 @@ async def rm_deletedacc(show):
 
 
 @register(outgoing=True, pattern="^.all$")
-async def tagaso(event):
-    """ For .all command, mention all of the member in the group chat"""
+async def _(event):
     if event.fwd_from:
         return
-    await event.delete()
-    mentions = "@all"
+    mentions = "Tagging You All Plox"
     chat = await event.get_input_chat()
-    async for user in bot.iter_participants(chat, 500):
-        mentions += f"[\u2063](tg://user?id={user.id})"
-    await bot.send_message(chat, mentions, reply_to=event.message.reply_to_msg_id)
+    async for x in borg.iter_participants(chat, 100):
+        mentions += f" \n [{x.first_name}](tg://user?id={x.id})"
+    await event.reply(mentions)
+    await event.delete()
 
 
 @register(outgoing=True, pattern="^.admins(?: |$)(.*)")
