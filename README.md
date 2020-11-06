@@ -19,16 +19,15 @@
 ```
 [![Build](https://github.com/ElytrA8/ProjectFizilion/workflows/FailedChecker/badge.svg?branch=dragon)](https://github.com/ElytrA8/ProjectFizilion/actions "build")
 
-![Spec](https://img.shields.io/badge/Made%20with-%E2%99%A5%EF%B8%8F-white)
-
-[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
-
 ![Docker](https://img.shields.io/docker/cloud/build/elytra8/projectfizilion?style=for-the-badge)
 
 ![Docker_Size](https://img.shields.io/docker/image-size/elytra8/projectfizilion?style=for-the-badge)
 
 ![Docker_Pulls](https://img.shields.io/docker/pulls/elytra8/projectfizilion?style=for-the-badge)
 
+![Spec](https://img.shields.io/badge/Made%20with-%E2%99%A5%EF%B8%8F-white?style=for-the-badge)
+
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
 ## Generate String Session
 Easy way to get STRING_SESSION. 
