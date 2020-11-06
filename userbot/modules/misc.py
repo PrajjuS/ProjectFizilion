@@ -124,57 +124,21 @@ async def raw(rawtext):
 
 CMD_HELP.update(
     {
-        "random": ".random <item1> <item2> ... <itemN>\
-\nUsage: Get a random item from the list of items."
-    }
-)
-
-CMD_HELP.update(
-    {
-        "sleep": ".sleep <seconds>\
-\nUsage: Userbots get tired too. Let yours snooze for a few seconds."
-    }
-)
-
-CMD_HELP.update(
-    {
-        "shutdown": ".shutdown\
-\nUsage: Sometimes you need to shut down your bot. Sometimes you just hope to\
-hear Windows XP shutdown sound... but you don't."
-    }
-)
-
-CMD_HELP.update(
-    {
-        "repo": ".repo\
-\nUsage: If you are curious what makes the userbot work, this is what you need."
-    }
-)
-
-CMD_HELP.update(
-    {
-        "readme": ".readme\
-\nUsage: Provide links to setup the userbot and it's modules."
-    }
-)
-
-CMD_HELP.update(
-    {
-        "repeat": ".repeat <no.> <text>\
-\nUsage: Repeats the text for a number of times. Don't confuse this with spam tho."
-    }
-)
-
-CMD_HELP.update(
-    {
-        "restart": ".restart\
-\nUsage: Restarts the bot !!"
-    }
-)
-
-CMD_HELP.update(
-    {
-        "raw": ".raw\
-\nUsage: Get detailed JSON-like formatted data about replied message."
-    }
-)
+        "misc": ".random <item1> <item2> ... <itemN>\
+\nUsage: Get a random item from the list of items.\n
+.sleep <seconds>\
+\nUsage: hibernate your userbot.\n
+.shutdown\
+\nUsage: Shutdowns Your Bot\n
+.repo\
+\nUsage: If you are curious what makes the userbot work, this is what you need.\n
+.readme\
+Usage: Provide links to setup the userbot and it's modules.\n
+.repeat <no.> <text>\
+\nUsage: Repeats the text for a number of times. Don't confuse this with spam tho.\n
+.restart\
+\nUsage: Restarts the bot !! \n
+.raw\
+\nUsage: Get detailed JSON-like formatted data about replied message."\n
+  }
+  )
