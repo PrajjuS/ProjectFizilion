@@ -139,6 +139,6 @@ Usage: Provide links to setup the userbot and it's modules.\n
 .restart\
 \nUsage: Restarts the bot !!\n\
 .raw\
-\nUsage: Get detailed JSON-like formatted data about replied message."
+\nUsage: Get detailed JSON-like formatted data about replied message.\"
   }
 )
