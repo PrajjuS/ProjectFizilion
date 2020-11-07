@@ -10,8 +10,9 @@ from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.functions.account import UpdateNotifySettingsRequest
 from userbot.events import register
+from userbot import CMD_HELP
 
-@register(outgoing=True, pattern="^.promote(?: |$)(.*)")
+@register(outgoing=True, pattern="^.scan(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return 
