@@ -23,10 +23,10 @@ from userbot.events import register
 
 # ========================= CONSTANTS ============================
 DEF_UNAPPROVED_MSG = (
-    "`Hey!, I am Fizilion`\n"
-    "`Please wait for my master to look in`\n"
-    "`Until then, please don't spam PM..`\n"
-    "`Thank you for being patient.`\n\n"
+    "`Hey there :)`\n"
+    "`I am Fizilion, my Master's assistant.`\n"
+    "`Please wait for my Master to read your PMs.`\n"
+    "`Have patience, otherwise spamming my Master's pm will result in a block.`\n\n"
     "`*This PM is Powered by Fizilion Ai`")
 # =================================================================
 
