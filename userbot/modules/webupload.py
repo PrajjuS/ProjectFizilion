@@ -4,7 +4,7 @@ from userbot import CMD_HELP
 from userbot.events import register
 
 
-@register(pattern="^.webupload ?(.+?|) (?:--)(anonfiles|transfer|filebin|anonymousfiles|megaupload|bayfiles|openload|file.io|vshare)")
+@register(pattern="^.webupload ?(.+?|) (?:)(anonfiles|transfer|filebin|anonymousfiles|megaupload|bayfiles|openload|file.io|vshare)")
 async def _(event):
     if event.fwd_from:
         return
@@ -39,4 +39,4 @@ async def _(event):
     stdout, stderr = await process.communicate()
     await event.edit(f"{stdout.decode()}")
 CMD_HELP.update({"webupload":
-                 "`.webupload` (filename) `--anonfiles` | `transfer` | `anonymousfiles` | `megaupload` | `bayfiles` | `openload` | `file.io` | `vshare` "})
+                 "`.webupload` (filename) `anonfiles` | `transfer` | `anonymousfiles` | `megaupload` | `bayfiles` | `openload` | `file.io` | `vshare` "})
