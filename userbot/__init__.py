@@ -11,7 +11,7 @@ import time
 from sys import version_info
 from logging import basicConfig, getLogger, INFO, DEBUG
 from distutils.util import strtobool as sb
-
+from .storage import Storage
 from pylast import LastFMNetwork, md5
 from pySmartDL import SmartDL
 from dotenv import load_dotenv
@@ -20,6 +20,8 @@ from telethon import TelegramClient
 from telethon.sessions import StringSession
 
 load_dotenv("config.env")
+
+STORAGE = (lambda n: Storage(Path("data") / n))
 
 StartTime = time.time()
 
