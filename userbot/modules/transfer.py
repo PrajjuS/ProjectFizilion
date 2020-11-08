@@ -10,7 +10,7 @@ from userbot import CMD_HELP
 from userbot.events import register
 
 
-@register(pattern="^.transfer ?(.+?|) (?:--)(arp|bit|cat|cow|gof|tmp|vim|wss|wet|flk|trs|lzs)")
+@register(pattern="^.transfer ?(.+?|) (?:)(arp|bit|cat|cow|gof|tmp|vim|wss|wet|flk|trs|lzs)")
 async def _(event):
     if event.fwd_from:
         return
@@ -49,4 +49,4 @@ async def _(event):
     stdout, stderr = await process.communicate()
     await event.edit(f"{stdout.decode()}")
 CMD_HELP.update({"transfer":
-                 "`.transfer` (filepath) --arp|bit|cat|cow|gof|tmp|vim|wss|wet|flk|trs|lzs and for information use guide"})
+                 "`.transfer` (filepath) `arp`|`bit`|`cat`|`cow`|`gof`|`tmp`|`vim`|`wss`|`wet`|`flk`|`trs`|`lzs` and for information use guide"})
