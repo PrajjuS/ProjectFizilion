@@ -46,7 +46,6 @@ redis
 requests
 search-engine-parser
 speedtest-cli
-https://github.com/spotDL/spotify-downloader/archive/master.zip
 sqlalchemy
 TgCrypto
 telethon
