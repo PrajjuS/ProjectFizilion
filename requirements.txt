@@ -46,6 +46,7 @@ redis
 requests
 search-engine-parser
 speedtest-cli
+spotify_dl
 sqlalchemy
 TgCrypto
 telethon
