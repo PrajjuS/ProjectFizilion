@@ -39,7 +39,7 @@ pylast
 pySmartDL
 python-barcode
 python-dotenv
-https://github.com/l1ving/youtube-dl/archive/master.zip
+git+https://github.com/l1ving/youtube-dl
 pytz
 qrcode
 redis
