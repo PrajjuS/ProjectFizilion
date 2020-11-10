@@ -1,6 +1,6 @@
 import asyncio
 
-from userge import userge
+
 
 
 @register.on_cmd("hack$", about={'header': "kensar hacking animation"})
