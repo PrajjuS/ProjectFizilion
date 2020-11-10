@@ -236,7 +236,7 @@ async def amireallyalive(alive):
         f"•`Python         : v{python_version()} `\n"
         f"` -----------------------------`\n"
         f"•`User           : {DEFAULTUSER} `\n"
-        f"' ----------------------------- \n"
+        f"' ----------------------------- '\n"
         f"•`Running on     : {repo.active_branch.name} `\n"
         f"•`Loaded modules : {len(modules)} `\n"
         f"•`Fizilion       : {USERBOT_VERSION} `\n"
