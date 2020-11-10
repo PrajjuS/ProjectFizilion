@@ -2,10 +2,15 @@ import asyncio
 from userbot.events import register
 from userbot import CMD_HELP
 
-@register(outgoing=True, pattern="^.hack(.*)")
-async def hack_func(message):
-    user = await message.client.get_user_dict(message.from_user.id)
-    heckerman = user['mention']
+@register(outgoing=True, pattern="^.hack$")
+async def _(event):
+    if event.fwd_from:
+    return
+    animation_interval = 3
+    animation_ttl = range(0, 12)
+    input_str = event.pattern_match.group(1)
+    if input_str == "hack":
+    await event.edit(input_str)
     animation_chars = [
         "```Connecting To Private Server \\```",
         "```Connecting To Private Server |```",
@@ -38,11 +43,13 @@ async def hack_func(message):
         "```Uploaded Data to Server... 100%\n███████████████████████```",
         "**User Data Upload Completed:** Target's User Data Stored "
         "at `downloads/victim/telegram-authuser.data.sql`",
+        "**Targeted Account Hacked**\n\n```Pay 69$ To```This User``` /n ```To Remove This Hack```"
     ]
-    hecked = (f"**Targeted Account Hacked**\n\n```Pay 69$ To``` {heckerman}``` "
-              "To Remove This Hack```")
-    max_ani = len(animation_chars)
-    for i in range(max_ani):
-        await asyncio.sleep(2)
-        await message.edit(animation_chars[i % max_ani])
-    await message.edit(hecked)
+            for i in animation_ttl:
+            await asyncio.sleep(animation_interval)
+            await event.edit(animation_chars[i % 12])
+
+CMD_HELP.update({
+    "hack":
+    ".hack :- hacking Animation"
+})
