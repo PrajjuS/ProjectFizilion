@@ -1,6 +1,8 @@
 import asyncio
+from userbot.events import register
+from userbot import CMD_HELP
 
-
+@register(outgoing=True, pattern="^.hack(.*)")
 async def hack_func(message):
     user = await message.client.get_user_dict(message.from_user.id)
     heckerman = user['mention']
