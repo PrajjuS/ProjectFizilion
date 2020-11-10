@@ -39,8 +39,8 @@ async def _(event):
         await edit_or_reply(event, "No User is Defined\n Can't hack account")
 
 
-@bot.on(admin_cmd(pattern=f"thack$", outgoing=True))
-@bot.on(sudo_cmd(pattern=r"thack$", allow_sudo=True))
+@register.on(admin_cmd(pattern=f"thack$", outgoing=True))
+@register.on(sudo_cmd(pattern=r"thack$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -65,8 +65,8 @@ async def _(event):
         await event.edit(animation_chars[i % 11])
 
 
-@bot.on(admin_cmd(pattern=f"wahack$", outgoing=True))
-@bot.on(sudo_cmd(pattern=r"wahack$", allow_sudo=True))
+@register.on(admin_cmd(pattern=f"wahack$", outgoing=True))
+@register.on(sudo_cmd(pattern=r"wahack$", allow_sudo=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -95,15 +95,7 @@ async def _(event):
         await event.edit(animation_chars[i % 15])
 
 
-CMD_HELP.update(
-    {
-        "hack": "**Plugin : **`hack`\
-        \n\n**Syntax : **`.hack reply to a person`\
-        \n**Function : **__shows an animation of hacking progess bar__\
-        \n\n**Syntax : **`.thack reply to a person`\
-        \n**Function : **__shows an animation of Telegram account hacking to a replied person__\
-        \n\n**Syntax : **`.wahack reply to a person`\
-        \n**Function : **__shows an animation of whatsapp account hacking to a replied person__\
-    "
-    }
-)
+CMD_HELP.update({
+    "hack":
+    ".hack :- hacking Animation"
+}) 
