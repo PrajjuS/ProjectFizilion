@@ -2,7 +2,6 @@ import asyncio
 from userbot.events import register
 from userbot import CMD_HELP
 
-@register("kill$", about={'header': "Kill anybody With Full Power ;-)"})
 async def kill_func(message):
     animation_chars = [
         "killing...",
