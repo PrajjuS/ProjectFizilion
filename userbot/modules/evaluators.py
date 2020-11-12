@@ -9,7 +9,7 @@ import asyncio
 from os import remove
 from sys import executable
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, TERM_ALIAS
+from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, USER_TERM_ALIAS
 from userbot.events import register
 
 
@@ -139,7 +139,7 @@ async def run(run_q):
 @register(outgoing=True, pattern=r"^\.term(?: |$|\n)(.*)")
 async def terminal_runner(term):
     """ For .term command, runs bash commands and scripts on your server. """
-    curruser = TERM_ALIAS
+    curruser = USER_TERM_ALIAS
     command = term.pattern_match.group(1)
     try:
         from os import geteuid
