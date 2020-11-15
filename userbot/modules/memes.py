@@ -1370,28 +1370,28 @@ async def nou(noway):
           "`No U ultra pro max extremis supreme super duper hyper premium legendary epic mega omega expert maestro first class adept top-notch excellent magical super-magical superior exceptional dextrous ingenious gawd of gawds so pro af teach me how to be pro like you🔥`"
      )
 
-@register(outgoing=True, pattern="^.gm$")
+@register(outgoing=True, pattern="^Gm$")
 async def nou(noway):
     if not noway.text[0].isalpha() and noway.text[0] not in ("/", "#", "@", "!"):
         await noway.edit(
           "Good Morning"
      )
 
-@register(outgoing=True, pattern="^.ga$")
+@register(outgoing=True, pattern="^Ga$")
 async def nou(noway):
     if not noway.text[0].isalpha() and noway.text[0] not in ("/", "#", "@", "!"):
         await noway.edit(
           "Good Afternoon"
      )
 
-@register(outgoing=True, pattern="^.ge$")
+@register(outgoing=True, pattern="^Ge$")
 async def nou(noway):
     if not noway.text[0].isalpha() and noway.text[0] not in ("/", "#", "@", "!"):
         await noway.edit(
           "Good Evening"
      )
 
-@register(outgoing=True, pattern="^.gn$")
+@register(outgoing=True, pattern="^Gn$")
 async def nou(noway):
     if not noway.text[0].isalpha() and noway.text[0] not in ("/", "#", "@", "!"):
         await noway.edit(
