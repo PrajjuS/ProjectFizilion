@@ -1007,6 +1007,14 @@ async def Oof(woof):
         await woof.edit(t)
 
 
+@register(outgoing=True, pattern="^Proo$")
+async def Pro(proo):
+    t = "Proo"
+    for j in range(15):
+        t = t[:-1] + "oo"
+        await proo.edit(t)
+                      
+                      
 @register(outgoing=True, pattern="^.moon$")
 async def moon(moone):
     deq = deque(list("🌗🌘🌑🌒🌓🌔🌕🌖"))
