@@ -1010,7 +1010,7 @@ async def Oof(woof):
 @register(outgoing=True, pattern="^Proo$")
 async def Pro(proo):
     t = "Proo"
-    for j in range(15):
+    for j in range(20):
         t = t[:-1] + "oo"
         await proo.edit(t)
                       
