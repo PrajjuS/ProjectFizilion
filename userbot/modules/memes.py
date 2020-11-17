@@ -1398,6 +1398,13 @@ async def nou(noway):
           "Good Night"
      )
 
+        @register(outgoing=True, pattern="^.pero$")
+async def nou(noway):
+    if not noway.text[0].isalpha() and noway.text[0] not in ("/", "#", "@", "!"):
+        await noway.edit(
+          "`U Pro AF ultra pro max extremis supreme super duper hyper premium legendary epic mega omega expert maestro first class adept top-notch excellent magical super-magical superior exceptional dextrous ingenious gawd of gawds`"
+     )
+
 CMD_HELP.update(
     {
         "memes": ".cowsay\
