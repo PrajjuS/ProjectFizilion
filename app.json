@@ -164,6 +164,10 @@
       "description": "Prefix for Last.FM Module Bio.",
       "required": false
     },
+     "MONGO_DB_URI": {
+      "description": "Your MongoDB Atlas URL.",
+      "required": true 
+    },
     "DEFAULT_BIO": {
       "description": "Default profile bio.",
       "value": "[PM = Report Spam] I ❤ ️Fizilion",
