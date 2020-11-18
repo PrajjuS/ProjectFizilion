@@ -42,6 +42,7 @@ python-barcode
 python-dotenv
 git+https://gitlab.com/royalturd/yt-dl.git
 pytz
+pymongo[srv]
 qrcode
 redis
 requests
