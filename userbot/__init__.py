@@ -14,6 +14,8 @@ from distutils.util import strtobool as sb
 from .storage import Storage
 from pylast import LastFMNetwork, md5
 from pySmartDL import SmartDL
+from pymongo import MongoClient
+from redis import StrictRedis
 from dotenv import load_dotenv
 from requests import get
 from telethon import TelegramClient
