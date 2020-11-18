@@ -999,9 +999,9 @@ async def pressf(f):
         await f.edit("`" + out + "`")
 
 
-@register(outgoing=True, pattern="^oof$")
-async def oof(woof):
-    t = "oof"
+@register(outgoing=True, pattern="^Oof$")
+async def Oof(woof):
+    t = "Oof"
     for j in range(25):
         t = t[:-1] + "of"
         await woof.edit(t)
