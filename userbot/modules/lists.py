@@ -7,8 +7,8 @@
 
 import re
 
-from userbot import (BOTLOG, BOTLOG_CHATID, CMD_HELP,
-                     )
+from userbot import (BOTLOG, BOTLOG_CHATID, CMD_HELP, is_mongo_alive,
+                     is_redis_alive)
 from userbot.events import register, grp_exclude
 from userbot.modules.dbhelper import (add_list, delete_list, get_list,
                                       get_lists, set_list)
