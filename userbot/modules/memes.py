@@ -1377,7 +1377,7 @@ async def nou(noway):
         await noway.edit(
             "`\n┈╭╮╭╮\n┈┃┃┃┃\n╭┻┗┻┗╮`"
             "`\n┃┈▋┈▋┃\n┃┈╭▋━╮━╮\n┃┈┈╭╰╯╰╯╮`"
-            "`\n┫┈┈  Pro\n┃┈╰╰━━━━╯`"
+            "`\n┫┈┈  Prooooooooooo\n┃┈╰╰━━━━╯`"
             "`\n┗━━┻━┛`"
         )
 
