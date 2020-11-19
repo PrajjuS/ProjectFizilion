@@ -1371,6 +1371,16 @@ async def nou(noway):
             "`\n┗━━┻━┛`"
         )
 
+@register(outgoing=True, pattern="^.proo$")
+async def nou(noway):
+    if not noway.text[0].isalpha() and noway.text[0] not in ("/", "#", "@", "!"):
+        await noway.edit(
+            "`\n┈╭╮╭╮\n┈┃┃┃┃\n╭┻┗┻┗╮`"
+            "`\n┃┈▋┈▋┃\n┃┈╭▋━╮━╮\n┃┈┈╭╰╯╰╯╮`"
+            "`\n┫┈┈  Pro\n┃┈╰╰━━━━╯`"
+            "`\n┗━━┻━┛`"
+        )
+
 @register(outgoing=True, pattern="^.pro$")
 async def nou(noway):
     if not noway.text[0].isalpha() and noway.text[0] not in ("/", "#", "@", "!"):
