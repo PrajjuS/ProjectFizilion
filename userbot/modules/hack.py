@@ -5,7 +5,7 @@ from userbot import CMD_HELP
 @register(outgoing=True, pattern="^.hack$")
 async def hack_func(message):
     user = await message.client.get_user_dict(message.from_user.id)
-    hack = user['mention']
+    heckerman = user['mention']
     animation_chars = [
         "```Connecting To Private Server \\```",
         "```Connecting To Private Server |```",
