@@ -1019,7 +1019,7 @@ async def Pro(proo):
 async def hmm(hmmm):
     t = "hmm"
     for j in range(10):
-        t = t[:-1] + "of"
+        t = t[:-1] + "mm"
         await hmmm.edit(t)
                       
                       
@@ -1027,7 +1027,7 @@ async def hmm(hmmm):
 async def Noo(nooo):
     t = "Noo"
     for j in range(25):
-        t = t[:-1] + "of"
+        t = t[:-1] + "oo"
         await nooo.edit(t)
                       
                       
