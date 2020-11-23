@@ -999,9 +999,9 @@ async def pressf(f):
         await f.edit("`" + out + "`")
 
 
-@register(outgoing=True, pattern="^Oof$")
-async def Oof(woof):
-    t = "Oof"
+@register(outgoing=True, pattern="^oof$")
+async def oof(woof):
+    t = "oof"
     for j in range(25):
         t = t[:-1] + "of"
         await woof.edit(t)
@@ -1013,6 +1013,22 @@ async def Pro(proo):
     for j in range(20):
         t = t[:-1] + "oo"
         await proo.edit(t)
+                      
+                      
+@register(outgoing=True, pattern="^hmm$")
+async def hmm(hmmm):
+    t = "hmm"
+    for j in range(10):
+        t = t[:-1] + "of"
+        await hmmm.edit(t)
+                      
+                      
+@register(outgoing=True, pattern="^Noo$")
+async def Noo(nooo):
+    t = "Noo"
+    for j in range(25):
+        t = t[:-1] + "of"
+        await nooo.edit(t)
                       
                       
 @register(outgoing=True, pattern="^.moon$")
