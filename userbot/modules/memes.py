@@ -1275,6 +1275,7 @@ async def gun(gan):
                 "░░█▓▓▓▓▓▌░░░░░░░░░░\n"
                 "░▐█▓▓▓▓▓░░░░░░░░░░░\n"
                 "░▐██████▌░░░░░░░░░░\n"
+        )
             
 @register(outgoing=True, pattern="^.lool$")
 async def lool(lul):
