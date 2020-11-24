@@ -1430,7 +1430,7 @@ async def nou(noway):
 async def nou(noway):
     if not noway.text[0].isalpha() and noway.text[0] not in ("/", "#", "@", "!"):
         await noway.edit(
-          "`Pero Gwad Max Plus arrived Noob like me leave`"
+          "Pero Gwad Max Plus arrived Noob like me leave"
      )
         
 @register(outgoing=True, pattern="^.gm$")
