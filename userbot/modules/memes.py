@@ -1262,7 +1262,20 @@ async def pig(poog):
                 "\n┈┈┈┈┈┗┻┛┗┻┛┈┈┈┈"
         )
 
-              
+
+@register(outgoing=True, pattern="^gun$")
+async def gun(gan):
+    if not gan.text[0].isalpha() and gan.text[0] not in ("/", "#", "@", "!"):
+        await gan.edit(
+                "░▐█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█▄\n"
+                "░███████████████████████ \n"
+                "░▓▓▓▓▓▓▓▓▓▓▓▓██▓▓▓▓▓▓▓▓◤ \n"
+                "░▀░▐▓▓▓▓▓▓▌▀█░░░█▀░\n"
+                "░░░▓▓▓▓▓▓█▄▄▄▄▄█▀░░\n"
+                "░░█▓▓▓▓▓▌░░░░░░░░░░\n"
+                "░▐█▓▓▓▓▓░░░░░░░░░░░\n"
+                "░▐██████▌░░░░░░░░░░\n"
+            
 @register(outgoing=True, pattern="^.lool$")
 async def lool(lul):
     if not lul.text[0].isalpha() and lul.text[0] not in ("/", "#", "@", "!"):
