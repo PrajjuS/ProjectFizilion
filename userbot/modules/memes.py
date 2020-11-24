@@ -783,6 +783,18 @@ async def insult(rude):
     await rude.edit(choice(INSULT_STRINGS))
 
 
+@register(outgoing=True, pattern="^.killer(?: |$)(.*)")
+async def kakashi(killer):
+    name = killer.pattern_match.group(1)
+    await edit_or_reply(
+        killer,
+        f"__**Commando **__{DEF}          \n\n"
+        "_/﹋\_\n"
+        "(҂`_´)\n"
+        f"<,︻╦╤─ ҉ - - - {name}\n"
+        "_/﹋\_\n",
+    )
+           
 @register(outgoing=True, pattern="^.cp(?: |$)(.*)")
 async def copypasta(cp_e):
     """ Copypasta the famous meme """
