@@ -1263,7 +1263,7 @@ async def pig(poog):
         )
 
 
-@register(outgoing=True, pattern="^gun$")
+@register(outgoing=True, pattern="^.gun$")
 async def gun(gan):
     if not gan.text[0].isalpha() and gan.text[0] not in ("/", "#", "@", "!"):
         await gan.edit(
