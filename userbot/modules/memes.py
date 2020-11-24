@@ -785,7 +785,6 @@ async def insult(rude):
 
 @register(outgoing=True, pattern="^.killer$(.*)")
 async def killer(koller):
-    name = koller.pattern_match.group(1)
     await koller.edit(
         f"__**Commando **__{DEF}          \n\n"
         "_/﹋\_\n"
