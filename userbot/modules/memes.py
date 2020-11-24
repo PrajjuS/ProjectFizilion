@@ -784,9 +784,9 @@ async def insult(rude):
 
 
 @register(outgoing=True, pattern="^.killer(?: |$)(.*)")
-async def kakashi(killer):
-    name = killer.pattern_match.group(1)
-    await edit_or_reply(
+async def killer(koller):
+    name = koller.pattern_match.group(1)
+    await koller.edit(
         killer,
         f"__**Commando **__{DEF}          \n\n"
         "_/﹋\_\n"
