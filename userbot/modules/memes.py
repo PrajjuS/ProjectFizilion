@@ -1246,8 +1246,23 @@ async def lol(lel):
             "`\n╱┃┗━━┓┃╰━╯┃┃┗━━┓╱ `"
             "`\n╱┗━━━┛╰━━━╯┗━━━┛╱ `"
         )
+       
 
+@register(outgoing=True, pattern="^.pig$")
+async def pig(poog):
+    if not poog.text[0].isalpha() and poog.text[0] not in ("/", "#", "@", "!"):
+        await poog.edit(
+                "\n┈┈┏━╮╭━┓┈╭━━━━╮"
+                "\n┈┈┃┏┗┛┓┃╭┫ⓞⓘⓝⓚ┃"
+                "\n┈┈╰┓▋▋┏╯╯╰━━━━╯"
+                "\n┈╭━┻╮╲┗━━━━╮╭╮┈"
+                "\n┈┃▎▎┃╲╲╲╲╲╲┣━╯┈"
+                "\n┈╰━┳┻▅╯╲╲╲╲┃┈┈┈"
+                "\n┈┈┈╰━┳┓┏┳┓┏╯┈┈┈"
+                "\n┈┈┈┈┈┗┻┛┗┻┛┈┈┈┈"
+        )
 
+              
 @register(outgoing=True, pattern="^.lool$")
 async def lool(lul):
     if not lul.text[0].isalpha() and lul.text[0] not in ("/", "#", "@", "!"):
