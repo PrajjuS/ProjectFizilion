@@ -1077,8 +1077,8 @@ async def boxes(event):
         return                     
 
 
-@register(outgoing=True, pattern="^.🤔$")
-async def 🤔(event):
+@register(outgoing=True, pattern="^.hmm$")
+async def hmm(event):
     deq = deque(list("🤔🧐🤔🧐🤔🧐"))
     try:
         for x in range(32):
@@ -1089,8 +1089,8 @@ async def 🤔(event):
         return
 
 
-@register(outgoing=True, pattern="^.🤣$")
-async def 🤣(event):
+@register(outgoing=True, pattern="^.haha$")
+async def haha(event):
     deq = deque(list("😂🤣😂🤣😂🤣"))
     try:
         for x in range(32):
