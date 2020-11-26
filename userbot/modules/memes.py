@@ -1647,6 +1647,12 @@ async def nou(noway):
           "Good Night"
      )
 
+@register(outgoing=True, pattern="^.hi$")
+async def nou(noway):
+    if not noway.text[0].isalpha() and noway.text[0] not in ("/", "#", "@", "!"):
+        await noway.edit(
+          "Hemlo"
+     )
 
 
 CMD_HELP.update(
