@@ -1022,7 +1022,7 @@ async def yeee(plus):
     t = "yeee"
     for j in range(25):
         t = t[:-1] + "++"
-        await plus.edit(t
+        await plus.edit(t)
 
 
 @register(outgoing=True, pattern="^Proo$")
