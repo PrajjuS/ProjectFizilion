@@ -1017,9 +1017,9 @@ async def oof(woof):
         await woof.edit(t)
 
 
-@register(outgoing=True, pattern="^++$")
-async def ++(plus):
-    t = "++"
+@register(outgoing=True, pattern="^yeee$")
+async def yeee(plus):
+    t = "yeee"
     for j in range(25):
         t = t[:-1] + "++"
         await plus.edit(t
