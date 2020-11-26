@@ -1017,6 +1017,14 @@ async def oof(woof):
         await woof.edit(t)
 
 
+@register(outgoing=True, pattern="^++$")
+async def ++(plus):
+    t = "++"
+    for j in range(25):
+        t = t[:-1] + "++"
+        await plus.edit(t
+
+
 @register(outgoing=True, pattern="^Proo$")
 async def Pro(proo):
     t = "Proo"
@@ -1124,7 +1132,18 @@ async def clock(event):
     except BaseException:
         return
 
+@register(outgoing=True, pattern="^.operations$")
+async def operations(event):
+    deq = deque(list("!@#$%^&*()_+="))
+    try:
+        for x in range(32):
+            await sleep(0.1)
+            await event.edit("".join(deq))
+            deq.rotate(1)
+    except BaseException:
+        return
 
+                      
 @register(outgoing=True, pattern="^.mock(?: |$)(.*)")
 async def spongemocktext(mock):
     """ Do it and find the real fun. """
