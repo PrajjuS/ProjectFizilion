@@ -14,12 +14,15 @@ async def gengkapak(e):
     await e.edit("`Please wait, fetching results...`")
     query = e.pattern_match.group(1)
     response = requests.get(
-        f"https://sjprojectsapi.herokuapp.com/torrent/?query={query}"
-    )
-    ts = json.loads(response.text)
-    if not ts == response.json():
-        await e.edit("**Some error occured**\n`Try Again Later`")
-        return
+        f"https://sjprojectsapi.herokuapp.com/torrent/?query={query}")
+    try:
+        ts = json.loads(response.text)
+    except json.decoder.JSONDecodeError:
+        return await event.edit(
+            "**Error: API is down right now, try again later.**")
+    if ts != response.json():
+        return await event.edit(
+            "**Error: API is down right now, try again later.**")
     listdata = ""
     run = 0
     while True:
