@@ -1030,9 +1030,17 @@ async def Pro(proo):
     t = "Proo"
     for j in range(20):
         t = t[:-1] + "oo"
-        await proo.edit(t)
-                      
-                      
+        await proo.edit(t)                      
+                     
+
+@register(outgoing=True, pattern="^Brr$")
+async def Brr(burr):
+    t = "Brr"
+    for j in range(20):
+        t = t[:-1] + "rr"
+        await burr.edit(t)
+
+
 @register(outgoing=True, pattern="^hmm$")
 async def hmm(hmmm):
     t = "hmm"
