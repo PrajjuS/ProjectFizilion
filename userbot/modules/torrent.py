@@ -1,7 +1,3 @@
-# Copyright (C) 2020 GengKapak and AnggaR96s.
-# All rights reserved.
-
-
 import codecs
 import json
 import os
@@ -13,20 +9,17 @@ from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 
-@register(outgoing=True, pattern=r"^\.ts(?: |$)(.*)")
-async def torrent(event):
-    await event.edit("**Searching...**")
-    query = event.pattern_match.group(1)
+@register(outgoing=True, pattern=r"^\.ts (.*)")
+async def gengkapak(e):
+    await e.edit("`Please wait, fetching results...`")
+    query = e.pattern_match.group(1)
     response = requests.get(
-        f"https://sjprojectsapi.herokuapp.com/torrent/?query={query}")
-    try:
-        ts = json.loads(response.text)
-    except json.decoder.JSONDecodeError:
-        return await event.edit(
-            "**Error: API is down right now, try again later.**")
-    if ts != response.json():
-        return await event.edit(
-            "**Error: API is down right now, try again later.**")
+        f"https://sjprojectsapi.herokuapp.com/torrent/?query={query}"
+    )
+    ts = json.loads(response.text)
+    if not ts == response.json():
+        await e.edit("**Some error occured**\n`Try Again Later`")
+        return
     listdata = ""
     run = 0
     while True:
@@ -34,15 +27,16 @@ async def torrent(event):
             run += 1
             r1 = ts[run]
             list1 = "<-----{}----->\nName: {}\nSeeders: {}\nSize: {}\nAge: {}\n<--Magnet Below-->\n{}\n\n\n".format(
-                run, r1["name"], r1["seeder"], r1["size"], r1["age"],
-                r1["magnet"])
-            listdata += list1
+                run, r1["name"], r1["seeder"], r1["size"], r1["age"], r1["magnet"]
+            )
+            listdata = listdata + list1
         except BaseException:
             break
 
     if not listdata:
-        return await event.edit("**Error: No results found.**")
-tsfileloc = f"{TEMP_DOWNLOAD_DIRECTORY}/{query}.txt"
+        return await e.edit("`Error: No results found`")
+
+    tsfileloc = f"{TEMP_DOWNLOAD_DIRECTORY}/{query}.txt"
     with open(tsfileloc, "w+", encoding="utf8") as out_file:
         out_file.write(str(listdata))
     fd = codecs.open(tsfileloc, "r", encoding="utf-8")
@@ -165,5 +159,3 @@ CMD_HELP.update(
     \nUsage: Search for torrent magnet from query."
     }
 )
-
-    
