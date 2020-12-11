@@ -58,4 +58,4 @@ wikipedia
 PyGithub
 python-dateutil
 youtube_search
-googletrans
+google_trans_new
