@@ -278,8 +278,6 @@ async def quotess(qotli):
     if not reply_message.text:
         return await qotli.edit("```Reply to text message```")
     chat = "@QuotLyBot"
-    if reply_message.sender.bot:
-        return await qotli.edit("```Reply to actual users message.```")
     await qotli.edit("```Making a Quote```")
     try:
         async with bot.conversation(chat) as conv:
