@@ -410,6 +410,12 @@ RUNS_STR = [
     "Running a marathon...there's an app for that.",
 ]
 
+PRO_STR = [
+    "No U ultra pro max extremis supreme super duper hyper premium legendary epic mega omega expert maestro first class adept top-notch excellent magical super-magical superior exceptional dextrous ingenious gawd of gawds pro af teach me how to be pro like you🔥"
+    "Pero Gwad Max Plus arrived Noob like me leave"
+    "U Pro AF ultra pro max extremis supreme super duper hyper premium legendary epic mega omega expert maestro first class adept top-notch excellent magical super-magical superior exceptional dextrous ingenious gawd of gawds"
+]
+
 CHASE_STR = [
     "Where do you think you're going?",
     "Huh? what? did they get away?",
@@ -978,8 +984,13 @@ async def police(chase):
 async def runner_lol(run):
     """ Run, run, RUNNN! """
     await run.edit(choice(RUNS_STR))
+                     
+                      
+@register(outgoing=True, pattern="^.pro$")
+async def pro(peru):
+    await peru.edit(choice(PRO_STR))
 
-
+                      
 @register(outgoing=True, pattern="^.metoo$")
 async def metoo(hahayes):
     """ Haha yes """
@@ -1624,27 +1635,6 @@ async def nou(noway):
             "`\n┫┈┈  Prooooooooooo\n┃┈╰╰━━━━╯`"
             "`\n┗━━┻━┛`"
         )
-
-@register(outgoing=True, pattern="^.pro$")
-async def nou(noway):
-    if not noway.text[0].isalpha() and noway.text[0] not in ("/", "#", "@", "!"):
-        await noway.edit(
-          "No U ultra pro max extremis supreme super duper hyper premium legendary epic mega omega expert maestro first class adept top-notch excellent magical super-magical superior exceptional dextrous ingenious gawd of gawds pro af teach me how to be pro like you🔥"
-     )
-       
-@register(outgoing=True, pattern="^.pero$")
-async def nou(noway):
-    if not noway.text[0].isalpha() and noway.text[0] not in ("/", "#", "@", "!"):
-        await noway.edit(
-          "U Pro AF ultra pro max extremis supreme super duper hyper premium legendary epic mega omega expert maestro first class adept top-notch excellent magical super-magical superior exceptional dextrous ingenious gawd of gawds"
-     )
-        
-@register(outgoing=True, pattern="^.noob$")
-async def nou(noway):
-    if not noway.text[0].isalpha() and noway.text[0] not in ("/", "#", "@", "!"):
-        await noway.edit(
-          "Pero Gwad Max Plus arrived Noob like me leave"
-     )
         
 @register(outgoing=True, pattern="^.gm$")
 async def nou(noway):
