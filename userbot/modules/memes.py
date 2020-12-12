@@ -988,6 +988,7 @@ async def runner_lol(run):
                       
 @register(outgoing=True, pattern="^.pro$")
 async def pro(peru):
+    """ Right Back To Pros """                 
     await peru.edit(choice(PRO_STR))
 
                       
