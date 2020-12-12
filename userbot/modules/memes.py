@@ -411,9 +411,9 @@ RUNS_STR = [
 ]
 
 PRO_STR = [
-    "No U ultra pro max extremis supreme super duper hyper premium legendary epic mega omega expert maestro first class adept top-notch excellent magical super-magical superior exceptional dextrous ingenious gawd of gawds pro af teach me how to be pro like you🔥"
-    "Pero Gwad Max Plus arrived Noob like me leave"
-    "U Pro AF ultra pro max extremis supreme super duper hyper premium legendary epic mega omega expert maestro first class adept top-notch excellent magical super-magical superior exceptional dextrous ingenious gawd of gawds"
+    "No U ultra pro max extremis supreme super duper hyper premium legendary epic mega omega expert maestro first class adept top-notch excellent magical super-magical superior exceptional dextrous ingenious gawd of gawds pro af teach me how to be pro like you🔥",
+    "Pero Gwad Max Plus arrived Noob like me leave",
+    "U Pro AF ultra pro max extremis supreme super duper hyper premium legendary epic mega omega expert maestro first class adept top-notch excellent magical super-magical superior exceptional dextrous ingenious gawd of gawds",
 ]
 
 CHASE_STR = [
