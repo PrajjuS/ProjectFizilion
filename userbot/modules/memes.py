@@ -415,7 +415,9 @@ PRO_STR = [
     "Pero Gwad Max Plus arrived Noob like me leave",
     "U Pro AF ultra pro max extremis supreme super duper hyper premium legendary epic mega omega expert maestro first class adept top-notch excellent magical super-magical superior exceptional dextrous ingenious gawd of gawds",
     "You you Pro Gwad",
-    "You iz Pro Gwad Max Plus, me iz Noob Gwad Max Plus",
+    "You iz Pro Gwad Max Plus, Me iz Noob Gwad Max Plus",
+    "You Super Duper Mega Oemega Marvelous Pro Gwad",
+    "You you Berry berry Supreme Pro Gwad",
 ]
 
 CHASE_STR = [
