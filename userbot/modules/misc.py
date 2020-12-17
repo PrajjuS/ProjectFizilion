@@ -96,6 +96,10 @@ async def repo_is_here(wannasee):
     await wannasee.edit(
         "[Click here](https://github.com/FrosT2k5/ProjectFizilion) to open Fizilion's GitHub Repo."
     )
+
+@register(outgoing=True, pattern="^.support$")
+async def grup(sapot):
+    await sapot.edit("Support Group: @ProjectFizilion")
     
 @register(outgoing=True, pattern="^.raw$")
 async def raw(rawtext):
@@ -119,12 +123,7 @@ async def raw(rawtext):
             reply_to=reply_to_id,
             caption="`Here's the decoded message data !!`",
         )
-        
-@register(outgoing=True, pattern="^.support$")
-async def grup(sapot):
-    await sapot.edit("Support Group: @ProjectFizilion")
-    )
-    
+
 
 CMD_HELP.update(
     {
@@ -137,7 +136,7 @@ CMD_HELP.update(
 ".repo"
 "\nUsage: If you are curious what makes the userbot work, this is what you need.\n\n"
 ".readme"
-"\nUsage: Provide links to setup the userbot and it's modules.\n\n"
+"\nUsage: Provide links to setup the userbot and it's modules\nAnd .support for support group\n\n"
 ".repeat <no.> <text>"
 "\nUsage: Repeats the text for a number of times. Don't confuse this with spam tho.\n\n"
 ".restart"
