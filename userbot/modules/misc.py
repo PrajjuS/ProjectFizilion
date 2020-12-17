@@ -97,17 +97,6 @@ async def repo_is_here(wannasee):
         "[Click here](https://github.com/FrosT2k5/ProjectFizilion) to open Fizilion's GitHub Repo."
     )
     
-@register(outgoing=True, pattern="^.bruh$")
-async def bruh(tard):
-    bruhdir = "https://github.com/FrosT2k5/ProjectFizilion/resources/bruh.mp3"
-    message_id = tard.reply_to_msg_id if tard.reply_to_msg_id else None
-    await tard.delete()
-    await tard.client.send_file(
-        tard.chat_id, 
-        bruhdir,
-        reply_to=message_id
-    )
-
 @register(outgoing=True, pattern="^.raw$")
 async def raw(rawtext):
     the_real_message = None
