@@ -12,6 +12,7 @@ from random import choice, getrandbits, randint
 from re import sub
 
 import requests
+import random
 from cowpy import cow
 
 from userbot import CMD_HELP, LOGS
