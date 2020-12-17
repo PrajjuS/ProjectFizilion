@@ -802,6 +802,17 @@ async def killer(koller):
         f"<,︻╦╤─ ҉ - - - {name}\n"
         "_/﹋\_\n",
     )
+                      
+@register(outgoing=True, pattern="^.bruh$")
+async def bruh(tard):
+    bruhdir = "Fizilion/resources/bruh.mp3"
+    message_id = tard.reply_to_msg_id if tard.reply_to_msg_id else None
+    await tard.delete()
+    await tard.client.send_file(
+        tard.chat_id, 
+        bruhdir,
+        reply_to=message_id
+    )
            
 @register(outgoing=True, pattern="^.cp(?: |$)(.*)")
 async def copypasta(cp_e):
