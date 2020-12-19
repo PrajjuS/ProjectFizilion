@@ -1027,7 +1027,7 @@ async def pro(peru):
     await peru.edit(choice(PRO_STR))
                       
 @register(outgoing=True, pattern="^.m$")
-async def m(morni)
+async def m(morni):
     """ Good Morning Greetings """
     await morni.edit(choice(GM_STR))
                       
