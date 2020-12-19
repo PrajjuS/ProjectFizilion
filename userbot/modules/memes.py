@@ -1389,7 +1389,15 @@ async def lol(lel):
             "`\n╱┗━━━┛╰━━━╯┗━━━┛╱ `"
         )
        
-
+@register(outgoing=True, pattern="^.lmao$")
+async def lmao(lmfao):
+    if not lmfao.text[0].isalpha() and lmfao.text[0] not in ("/", "#", "@", "!"):
+        await lmfao.edit(
+            "`\n░█─── ░█▀▄▀█ ─█▀▀█ ░█▀▀▀█`"
+            "`\n░█─── ░█░█░█ ░█▄▄█ ░█──░█`"
+            "`\n░█▄▄█ ░█──░█ ░█─░█ ░█▄▄▄█`"
+        )
+        
 @register(outgoing=True, pattern="^.pig$")
 async def pig(poog):
     if not poog.text[0].isalpha() and poog.text[0] not in ("/", "#", "@", "!"):
