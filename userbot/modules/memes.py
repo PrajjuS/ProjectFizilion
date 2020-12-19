@@ -646,8 +646,27 @@ HIT = [
     "bashes",
 ]
 
+
 WHERE = ["in the chest", "on the head", "on the butt", "on the crotch"]
 
+
+GM_STR = [
+    "Wishing you a day full of sunny smiles and happy thoughts\n\n~~Good Morning!",
+    "Every Morning we are born again, what we do today is what matters the most\n\n~~Good Morning!",
+    "A new day\nA new Blessing\nA new hope\n\n~~Good Morning!",
+    "Sometimes the best thing you can do is \nNot think, Not stress\nNot wonder, Not obsess\nJust breathe and have faith,\nEverything will work out...\nJust Live\n\n~~Good Morning!",
+    "Get up everyday with a positive mission...\n Because you deserve to live an Amazing life! \n\n~~Good Morning!",
+    "Never think\n I have nothing... \n\n Never think\n I have everything...\n\n But always think\n I have something\n and I can achieve everything!\n\n~~Good Morning!",
+    "Road has speed limit,\nbank has money limit,\nExams have time limit,\n BUT\nYour thinking has no limit,\nSo think big, \n and Achieve Big,\n\n~~Good Morning!",
+    "God didn't create us to be sad,\nHe created us to have joy\n\n~~Good Morning!",
+    "You are a rare gem,an exclusive, a limitd edition.\n There is only one of you! Have an amazing day!\n\n~~Good Morning!",
+    "Stay Hopeful\nYou never know\nWhat this day can bring.\n\n~~Good Morning!",
+    "Between\nYesterday's mistake &\nTomorrow's Hope,\nthere is a \nfantastic opportunity called\n**Today**,\nLive it! Love it!\nThis day is yours!\n\n~~Good Morning!",
+    "Living is very simple,\nLoving is also simple\nLaughing is too simple,\nWinning is also simple,\nThen what is difficult?\nBeing simple is very difficult\n\nGood Morning!"
+]
+
+
+    
 # ===========================================
 
 
@@ -1006,7 +1025,11 @@ async def runner_lol(run):
 async def pro(peru):
     """ Right Back To Pros """                 
     await peru.edit(choice(PRO_STR))
-
+                      
+@register(outgoing=True, pattern="^.m$")
+async def m(morni)
+    """ Good Morning Greetings """
+    await morni.edit(choice(GM_STR))
                       
 @register(outgoing=True, pattern="^.metoo$")
 async def metoo(hahayes):
@@ -1084,6 +1107,12 @@ async def Noo(nooo):
         t = t[:-1] + "oo"
         await nooo.edit(t)
                       
+@register(outgoing=True, pattern="^Eww$")
+async def Eww(Ewe):
+    t = "Eww"
+    for j in range(20):
+        t = t[:-1] + "ww"
+        await Ewe.edit(t)                      
                       
 @register(outgoing=True, pattern="^.moon$")
 async def moon(moone):
