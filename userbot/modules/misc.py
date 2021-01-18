@@ -75,6 +75,16 @@ async def reedme(event):
         "\n[Fizilions README.md file](https://github.com/FrosT2k5/ProjectFizilion/blob/dragon/README.md)"
 )
 
+
+@register(outgoing=True, pattern="^.guide$")
+async def guidee(event):
+    await event.edit(
+        "*Guide on Deploying Fizilion*\n"
+        "•[Reading Guide](https://elytra8.github.io/ProjectFizilion)\n"
+        "•[Yt Guide](https://youtu.be/tJzmrTq09tA)\n"
+)
+
+
 # Copyright (c) Gegham Zakaryan | 2019
 @register(outgoing=True, pattern="^.repeat (.*)")
 async def repeat(rep):
@@ -137,6 +147,8 @@ CMD_HELP.update(
 "\nUsage: If you are curious what makes the userbot work, this is what you need.\n\n"
 ".readme"
 "\nUsage: Provide links to setup the userbot and it's modules\nAnd .support for support group\n\n"
+".guide"
+"\nUsage: Provides Full guide to setup Fizilion Userbot.\n\n"
 ".repeat <no.> <text>"
 "\nUsage: Repeats the text for a number of times. Don't confuse this with spam tho.\n\n"
 ".restart"
