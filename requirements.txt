@@ -4,6 +4,7 @@ asyncurban
 async_generator
 bs4
 cowpy
+lottie
 cffi
 coffeehouse
 covid
