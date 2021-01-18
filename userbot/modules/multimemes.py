@@ -683,9 +683,6 @@ CMD_HELP.update(
     {
         "memify": ".mmf texttop ; textbottom\
             \nUsage: Reply a sticker and send with cmd."
-                  ".mmf2 <top text>;<bottom text>`"
-            "\nUsage: Reply to an image/sticker/gif/video to add text to it."
-            "\nIf it's a video, text will be added to the first frame."
     }
 )
 
