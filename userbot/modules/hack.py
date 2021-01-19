@@ -3,8 +3,8 @@ from userbot.events import register
 from userbot import CMD_HELP
 
 @register(outgoing=True, pattern="^.hack$")
-async def hack_func(message):
-    user = await message.client.get_user_dict(message.from_user.id)
+async def hack_func(event):
+    user = await event.client.get_user_dict(event.from_user.id)
     heckerman = user['mention']
     animation_chars = [
         "```Connecting To Private Server \\```",
@@ -44,5 +44,5 @@ async def hack_func(message):
     max_ani = len(animation_chars)
     for i in range(max_ani):
         await asyncio.sleep(2)
-        await message.edit(animation_chars[i % max_ani])
-    await message.edit(hecked)
+        await event.edit(animation_chars[i % max_ani])
+    await event.edit(hecked)
