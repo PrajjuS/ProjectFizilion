@@ -1,4 +1,4 @@
-FROM prajjus/projectfizilion:latest
+FROM prajwals3/projectfizilion:latest
 
 RUN mkdir /Fizilion && chmod 777 /Fizilion
 ENV PATH="/Fizilion/bin:$PATH"
