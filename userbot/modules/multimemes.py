@@ -142,8 +142,6 @@ async def mim(event):
             await event.edit("Unsupported Files...")
             return
 
-        await asyncio.sleep(5)
-        await event.edit("Adding Test.....")
         text = event.pattern_match.group(1)
         if event.reply_to_msg_id:
             file_name = "meme.jpg"
@@ -162,7 +160,9 @@ async def mim(event):
         os.remove(webp_file)
         os.remove(dls_loc)
 
-          
+        await asyncio.sleep(1)
+        await event.edit("Adding text....")
+        
 async def draw_meme_text(image_path, text):
     img = Image.open(image_path)
     os.remove(image_path)
@@ -265,7 +265,8 @@ async def draw_meme_text(image_path, text):
                 fill=(255, 255, 255),
             )
             current_h += u_height + pad
-
+ 
+    await asyncio.sleep(1)
     await event.edit("Finalising........")
             
     image_name = "memify.webp"
