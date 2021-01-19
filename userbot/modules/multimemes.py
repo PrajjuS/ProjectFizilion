@@ -151,6 +151,8 @@ async def mim(event):
                 reply_message,
                 downloaded_file_name,
             )
+            await event.edit("Adding text....")
+            try:
             dls_loc = downloaded_file_name
         webp_file = await draw_meme_text(dls_loc, text)
         await event.client.send_file(
@@ -262,8 +264,10 @@ async def draw_meme_text(image_path, text):
                 fill=(255, 255, 255),
             )
             current_h += u_height + pad
-
             
+            await event.edit("Finalising.....")
+            
+            try:
     image_name = "memify.webp"
     webp_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY, image_name)
     img.save(webp_file, "WebP")
