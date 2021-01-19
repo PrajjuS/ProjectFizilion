@@ -127,8 +127,8 @@ async def mim(event):
         return
     
     await event.edit(
-        "Processing.....\n
-         Wait Plox"
+        "Processing.....\n"
+         "Wait Plox"
     )
 
     reply_message = await event.get_reply_message()
