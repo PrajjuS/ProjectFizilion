@@ -122,23 +122,23 @@ async def glitch(event):
 async def mim(event):
     if not event.reply_to_msg_id:
         await event.edit(
-            "`Syntax: reply to an image with .mmf` 'text on top' ; 'text on bottom' "
+            "Syntax: reply to an image with .mmf 'text on top' ; 'text on bottom' "
         )
         return
 
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        await event.edit("```reply to a image/sticker/gif```")
+        await event.edit("reply to a image/sticker/gif")
         return
     await bot.download_file(reply_message.media)
     if event.is_reply:
         data = await check_media(reply_message)
         if isinstance(data, bool):
-            await event.edit("`Unsupported Files...`")
+            await event.edit("Unsupported Files...")
             return
 
         await event.edit(
-            "```Transfiguration Time! Mwahaha Memifying this image! (」ﾟﾛﾟ)｣ ```"
+            "Adding Text...."
         )
         await asyncio.sleep(5)
         text = event.pattern_match.group(1)
@@ -165,7 +165,7 @@ async def draw_meme_text(image_path, text):
     os.remove(image_path)
     i_width, i_height = img.size
     m_font = ImageFont.truetype(
-        "resources/MutantAcademyStyle.ttf", int((70 / 640) * i_width)
+        "resources/orbitron-medium.otf", int((70 / 640) * i_width)
     )
     if ";" in text:
         upper_text, lower_text = text.split(";")
