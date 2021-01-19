@@ -128,6 +128,7 @@ async def mim(event):
     
     await event.edit(
         "Processing....."
+        "Wait Plox"
     )
 
     reply_message = await event.get_reply_message()
@@ -214,6 +215,10 @@ async def draw_meme_text(image_path, text):
                 fill=(255, 255, 255),
             )
             current_h += u_height + pad
+            
+            await event.edit(
+                "............
+            )
     if lower_text:
         for l_text in textwrap.wrap(lower_text, width=15):
             u_width, u_height = draw.textsize(l_text, font=m_font)
@@ -265,6 +270,10 @@ async def draw_meme_text(image_path, text):
                 fill=(255, 255, 255),
             )
             current_h += u_height + pad
+            
+            await event.edit(
+                "Finalising......"
+            )
 
     image_name = "memify.webp"
     webp_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY, image_name)
