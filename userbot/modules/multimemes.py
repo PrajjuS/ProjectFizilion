@@ -265,7 +265,6 @@ async def draw_meme_text(image_path, text):
             
             await event.edit("Finalising.....")
             
-            try:
     image_name = "memify.webp"
     webp_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY, image_name)
     img.save(webp_file, "WebP")
