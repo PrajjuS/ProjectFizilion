@@ -13,46 +13,55 @@ from userbot import CMD_HELP, LOGS, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 
-@register(outgoing=True, pattern=r"^\.mmf2(?: |$)(.*)")
-async def mim(event):
-    if not event.reply_to_msg_id:
-        await event.edit(
-            "`Syntax: reply to an image with .mmf` 'text on top' ; 'text on bottom' "
-        )
-        return
+@register(outgoing=True, pattern=r"^\.mmf2 (.*)")
+async def memify(event):
+    reply_msg = await event.get_reply_message()
+    input_str = event.pattern_match.group(1)
+    await event.edit("**Processing...**")
 
-    reply_message = await event.get_reply_message()
-    if not reply_message.media:
-        await event.edit("```reply to a image/sticker/gif```")
-        return
-    await bot.download_file(reply_message.media)
-    if event.is_reply:
-        data = await check_media(reply_message)
-        if isinstance(data, bool):
-            await event.edit("`Unsupported Files...`")
-            return
+    if not reply_msg:
+        return await event.edit("**Reply to a message containing media!**")
 
-        await event.edit(
-            "```Transfiguration Time! Mwahaha Memifying this image! (」ﾟﾛﾟ)｣ ```"
-        )
-        await asyncio.sleep(5)
-        text = event.pattern_match.group(1)
-        if event.reply_to_msg_id:
-            file_name = "meme.jpg"
-            to_download_directory = TEMP_DOWNLOAD_DIRECTORY
-            downloaded_file_name = os.path.join(to_download_directory, file_name)
-            downloaded_file_name = await bot.download_media(
-                reply_message,
-                downloaded_file_name,
-            )
-            dls_loc = downloaded_file_name
-        webp_file = await draw_meme_text(dls_loc, text)
-        await event.client.send_file(
-            event.chat_id, webp_file, reply_to=event.reply_to_msg_id
-        )
-        await event.delete()
-        os.remove(webp_file)
-        os.remove(dls_loc)
+    if not reply_msg.media:
+        return await event.edit("**Reply to an image/sticker/gif/video!**")
+
+    if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
+        os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
+
+    dls = await event.client.download_media(reply_msg, TEMP_DOWNLOAD_DIRECTORY)
+    dls_path = os.path.join(TEMP_DOWNLOAD_DIRECTORY, os.path.basename(dls))
+
+    if dls_path.endswith(".tgs"):
+        await event.edit("**Extracting first frame..**")
+        png_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY, "meme.png")
+        cmd = f"lottie_convert.py --frame 0 -if lottie -of png {dls_path} {png_file}"
+        stdout, stderr = (await runcmd(cmd))[:2]
+        os.remove(dls_path)
+        if not os.path.lexists(png_file):
+            return await event.edit("**Couldn't parse this image.**")
+        dls_path = png_file
+
+    elif dls_path.endswith(".mp4"):
+        await event.edit("**Extracting first frame..**")
+        jpg_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY, "meme.jpg")
+        await take_screen_shot(dls_path, 0, jpg_file)
+        os.remove(dls_path)
+        if not os.path.lexists(jpg_file):
+            return await event.edit("**Couldn't parse this video.**")
+        dls_path = jpg_file
+
+    await event.edit("**Adding text...**")
+    try:
+        webp_file = await draw_meme_text(dls_path, input_str)
+    except Exception as e:
+        return await event.edit(f"**An error occurred:**\n`{e}`")
+    await event.client.send_file(entity=event.chat_id,
+                                 file=webp_file,
+                                 force_document=False,
+                                 reply_to=reply_msg)
+    await event.delete()
+    os.remove(webp_file)
+
 
 async def draw_meme_text(image_path, text):
     img = Image.open(image_path).convert("RGB")
