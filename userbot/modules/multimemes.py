@@ -217,7 +217,7 @@ async def draw_meme_text(image_path, text):
             current_h += u_height + pad
             
             await event.edit(
-                "............
+                "............"
             )
     if lower_text:
         for l_text in textwrap.wrap(lower_text, width=15):
