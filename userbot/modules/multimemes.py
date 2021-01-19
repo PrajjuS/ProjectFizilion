@@ -125,6 +125,11 @@ async def mim(event):
             "Syntax: reply to an image with .mmf 'text on top' ; 'text on bottom' "
         )
         return
+    
+    await event.edit(
+        "Processing.....\n
+         Wait Plox"
+    )
 
     reply_message = await event.get_reply_message()
     if not reply_message.media:
