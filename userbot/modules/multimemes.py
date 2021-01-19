@@ -151,8 +151,6 @@ async def mim(event):
                 reply_message,
                 downloaded_file_name,
             )
-            await event.edit("Adding text....")
-            try:
             dls_loc = downloaded_file_name
         webp_file = await draw_meme_text(dls_loc, text)
         await event.client.send_file(
