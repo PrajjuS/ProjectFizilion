@@ -1,10 +1,10 @@
-FROM frost2k5/projectfizilion:latest
+FROM prajjus/projectfizilion:latest
 
 RUN mkdir /Fizilion && chmod 777 /Fizilion
 ENV PATH="/Fizilion/bin:$PATH"
 WORKDIR /Fizilion
 
-RUN git clone https://github.com/PrajwalS3/ProjectFizilion -b Experiment /Fizilion
+RUN git clone https://github.com/PrajjuS/ProjectFizilion -b Experiment /Fizilion
 
 #
 # Copies session and config(if it exists)
