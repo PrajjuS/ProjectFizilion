@@ -142,9 +142,6 @@ async def mim(event):
             await event.edit("Unsupported Files...")
             return
 
-        await event.edit(
-            "Adding Text...."
-        )
         await asyncio.sleep(5)
         text = event.pattern_match.group(1)
         if event.reply_to_msg_id:
@@ -165,6 +162,11 @@ async def mim(event):
         os.remove(dls_loc)
 
 
+        await event.edit(
+            "Adding Text...."
+        )
+        
+        
 async def draw_meme_text(image_path, text):
     img = Image.open(image_path)
     os.remove(image_path)
@@ -216,9 +218,6 @@ async def draw_meme_text(image_path, text):
             )
             current_h += u_height + pad
             
-            await event.edit(
-                "............"
-            )
     if lower_text:
         for l_text in textwrap.wrap(lower_text, width=15):
             u_width, u_height = draw.textsize(l_text, font=m_font)
