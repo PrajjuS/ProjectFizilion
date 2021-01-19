@@ -160,13 +160,9 @@ async def mim(event):
         await event.delete()
         os.remove(webp_file)
         os.remove(dls_loc)
-
-
-        await event.edit(
-            "Adding Text...."
-        )
         
-        
+        await event.edit("Adding Test.....")
+          
 async def draw_meme_text(image_path, text):
     img = Image.open(image_path)
     os.remove(image_path)
@@ -269,11 +265,9 @@ async def draw_meme_text(image_path, text):
                 fill=(255, 255, 255),
             )
             current_h += u_height + pad
-            
-            await event.edit(
-                "Finalising......"
-            )
 
+            await event.edit("Finalising........")
+            
     image_name = "memify.webp"
     webp_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY, image_name)
     img.save(webp_file, "WebP")
