@@ -825,7 +825,7 @@ async def killer(koller):
                       
 @register(outgoing=True, pattern="^.bruh$")
 async def bruh(tard):
-    bruhdir = "/Fizilion/resources/bruh.mp3"
+    bruhdir = "resources/bruh.mp3"
     message_id = tard.reply_to_msg_id if tard.reply_to_msg_id else None
     await tard.delete()
     await tard.client.send_file(
