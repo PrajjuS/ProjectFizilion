@@ -833,7 +833,19 @@ async def bruh(tard):
         bruhdir,
         reply_to=message_id
     )
-           
+                      
+@register(outgoing=True, pattern="^.pero$")
+async def pero(pru)
+    pro = "resources/pro.ogg"
+    message.id = pru.reply.message.id if pru.repy_to_msd_id else None
+    await pru.delete()
+    await pru.client.send_file(
+        pru.chat,id,
+        pro,
+        reply_to=message_id
+    )
+                      
+                      
 @register(outgoing=True, pattern="^.cp(?: |$)(.*)")
 async def copypasta(cp_e):
     """ Copypasta the famous meme """
