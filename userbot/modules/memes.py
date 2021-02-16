@@ -1743,25 +1743,15 @@ async def hackerman(event):
     if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
         {
     await event.edit("Connecting to server\\.....")
-    await sleep(0.1)
     await event.edit("Connecting to server|.....")
-    await sleep(0.1)
     await event.edit("Connecting to server/.....")
-    await sleep(0.1)
     await event.edit("Connection Established")
-    await sleep(0.1)
     await event.edit("Target Selected")
-    await sleep(0.1)
     await event.edit("Backdoor found, trying to hack.....")
-    await sleep(0.1)
     await event.edit("`Hacking... 0%\n▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
-    await sleep(0.1)
     await event.edit("`Hacking... 4%\n█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
-    await sleep(0.1)
     await event.edit("Hacking... 8%\n██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
-    await sleep(0.1)
     await event.edit("`Hacking... 20%\n█████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
-    await sleep(0.1)
     await event.edit("Hacked")
         }
     
