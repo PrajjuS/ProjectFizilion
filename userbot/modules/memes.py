@@ -1738,24 +1738,6 @@ async def nou(noway):
      )
         
         
-@register(outgoing=True, pattern="^.h$")
-async def hackerman(event):
-    if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
-        {
-    await event.edit("Connecting to server\\.....")
-    await event.edit("Connecting to server|.....")
-    await event.edit("Connecting to server/.....")
-    await event.edit("Connection Established")
-    await event.edit("Target Selected")
-    await event.edit("Backdoor found, trying to hack.....")
-    await event.edit("`Hacking... 0%\n▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
-    await event.edit("`Hacking... 4%\n█▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
-    await event.edit("Hacking... 8%\n██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
-    await event.edit("`Hacking... 20%\n█████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
-    await event.edit("Hacked")
-        }
-    
-
 CMD_HELP.update(
     {
         "memes": ".cowsay\
