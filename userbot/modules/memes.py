@@ -1741,6 +1741,7 @@ async def nou(noway):
 @register(outgoing=True, pattern="^.h$")
 async def hackerman(event):
     user = await event.client.get_user_dict(event.from_user.id)
+    if not event.text[0].isalpha() and event.text[0] not in ("/", "#", "@", "!"):
     await event.edit("Connecting to server\\.....")
     await sleep(0.1)
     await event.edit("Connecting to server|.....")
