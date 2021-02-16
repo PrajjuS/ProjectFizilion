@@ -6,6 +6,7 @@ from userbot.modules.admin import get_user_from_event
 
 @register(outgoing=True, pattern="^.hack$")
 async def hack_func(event):
+    replied_user = await get_user_from_event(event)
     user_id = replied_user.id
     first_name = replied_user.first_name
     username = replied_user.username
