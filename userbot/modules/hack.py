@@ -46,3 +46,11 @@ async def hack_func(event):
         await event.sleep(2)
         await event.edit(animation_chars[i % max_ani])
     await event.edit(hecked)
+
+    
+CMD_HELP.update({
+    "hack":
+    "'.hack'"
+    "\nUsage: Hackerman Meme"
+    )}
+    
