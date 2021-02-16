@@ -4,8 +4,6 @@ from userbot import CMD_HELP
 
 @register(outgoing=True, pattern="^.hack$")
 async def hack_func(event):
-    user = await event.client.get_user_dict(event.from_user.id)
-    heckerman = user['mention']
     animation_chars = [
         "```Connecting To Private Server \\```",
         "```Connecting To Private Server |```",
@@ -39,7 +37,7 @@ async def hack_func(event):
         "**User Data Upload Completed:** Target's User Data Stored "
         "at `downloads/victim/telegram-authuser.data.sql`",
     ]
-    hecked = (f"**Targeted Account Hacked**\n\n```Pay 69$ To``` {heckerman}``` "
+    hecked = (f"**Targeted Account Hacked**\n\n```Pay 69$ To Hacker``` "
               "To Remove This Hack```")
     max_ani = len(animation_chars)
     for i in range(max_ani):
