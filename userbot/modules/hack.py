@@ -1,6 +1,7 @@
-import asyncio
 from userbot.events import register
 from userbot import CMD_HELP
+import time
+from asyncio import sleep
 
 @register(outgoing=True, pattern="^.hack$")
 async def hack_func(event):
