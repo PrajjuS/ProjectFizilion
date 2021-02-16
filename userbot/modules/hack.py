@@ -43,6 +43,6 @@ async def hack_func(event):
               "To Remove This Hack```")
     max_ani = len(animation_chars)
     for i in range(max_ani):
-        await asyncio.sleep(2)
+        await event.sleep(2)
         await event.edit(animation_chars[i % max_ani])
     await event.edit(hecked)
