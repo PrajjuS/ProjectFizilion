@@ -2,9 +2,12 @@ from userbot.events import register
 from userbot import CMD_HELP
 import time
 from asyncio import sleep
+from userbot.modules.admin import get_user_from_event
 
 @register(outgoing=True, pattern="^.hack$")
 async def hack_func(event):
+    username = replied_user.username
+    hackerman = user['mention']
     animation_chars = [
         "```Connecting To Private Server \\```",
         "```Connecting To Private Server |```",
@@ -38,7 +41,7 @@ async def hack_func(event):
         "**User Data Upload Completed:** Target's User Data Stored "
         "at `downloads/victim/telegram-authuser.data.sql`",
     ]
-    hecked = (f"**Targeted Account Hacked**\n\n```Pay 69$ To Hacker``` "
+    hecked = (f"**Targeted Account Hacked**\n\n```Pay 69$ To {hackerman}``` "
               "'''To Remove This Hack'''")
     max_ani = len(animation_chars)
     for i in range(max_ani):
