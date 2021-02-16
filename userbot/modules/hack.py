@@ -39,8 +39,7 @@ async def hack_func(event):
         "**User Data Upload Completed:** Target's User Data Stored "
         "at `downloads/victim/telegram-authuser.data.sql`",
     ]
-    hecked = (f"**Targeted Account Hacked**\n\n```Pay 69$ To Hackerman``` "
-              "```To Remove This Hack```")
+    hecked = (f"**Targeted Account Hacked**\n\n```Pay 69$ To Hackerman```\n```To Remove This Hack```")
     max_ani = len(animation_chars)
     for i in range(max_ani):
         await sleep(2)
