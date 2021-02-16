@@ -1762,7 +1762,7 @@ async def hackerman(event):
     await event.edit("`Hacking... 20%\n█████▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒")
     await sleep(0.1)
     await event.edit("Hacked")
-    )
+    
     
 
 CMD_HELP.update(
