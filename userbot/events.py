@@ -15,7 +15,7 @@ from traceback import format_exc
 
 from telethon import events
 
-from userbot import LOGSPAMMER, bot
+from userbot import LOGSPAMMER, BOTLOG, BOTLOG_CHATID, bot
 
 
 def register(**args):
@@ -23,7 +23,7 @@ def register(**args):
     pattern = args.get('pattern', None)
     disable_edited = args.get('disable_edited', False)
     ignore_unsafe = args.get('ignore_unsafe', False)
-    unsafe_pattern = r'^[^/!#@\$&*+,A-Za-z]'
+    unsafe_pattern = r'^[^/!#@\$A-Za-z]'
     groups_only = args.get('groups_only', False)
     trigger_on_fwd = args.get('trigger_on_fwd', False)
     disable_errors = args.get('disable_errors', False)
@@ -139,15 +139,15 @@ def register(**args):
                     file.write(ftext)
                     file.close()
 
-                     if LOGSPAMMER:
+                    if LOGSPAMMER:
                        await check.respond(
-                            "`Sorry, my userbot has crashed.\
-                        \nThe error logs are stored in the userbot's log chat.`"
-                        )
+                           "`Sorry, my userbot has crashed.\
+                       \nThe error logs are stored in the userbot's log chat.`"
+                       )
 
-                     await check.client.send_file(send_to,
+                    await check.client.send_file(BOTLOG_CHATID,
                                                  "error.log",
-                                                caption=text)
+                                                 caption=text)
                     remove("error.log")
             else:
                 pass
