@@ -52,5 +52,5 @@ CMD_HELP.update({
     "hack":
     "'.hack'"
     "\nUsage: Hackerman Meme"
-    )}
+    })
     
