@@ -2,7 +2,7 @@ from userbot.events import register
 from userbot import CMD_HELP
 import time
 from asyncio import sleep 
-from telethon import events
+from telethon import events , client
 from userbot.modules.admin import get_user_from_event
 
 @register(outgoing=True, pattern="^.hack$")
