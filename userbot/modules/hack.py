@@ -1,7 +1,8 @@
 from userbot.events import register
 from userbot import CMD_HELP
 import time
-from asyncio import sleep , client , message
+from asyncio import sleep 
+from telegram import client , message
 from userbot.modules.admin import get_user_from_event
 
 @register(outgoing=True, pattern="^.hack$")
