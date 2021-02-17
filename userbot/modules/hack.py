@@ -6,7 +6,7 @@ from userbot.modules.admin import get_user_from_event
 
 @register(outgoing=True, pattern="^.hack$")
 async def hack_func(event):
-    user = await message.client.get_user_dict(message.from_user.id)
+    user = await client.get_user_dict(message.from_user.id)
     hackerman = user['mention']
     animation_chars = [
         "```Connecting To Private Server \\```",
