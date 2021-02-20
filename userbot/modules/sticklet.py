@@ -30,7 +30,7 @@ async def sticklet(event):
 
     # delete the userbot command,
     # i don't know why this is required
-    await event.delete()
+    await event.edit("Processing.....")
 
     # https://docs.python.org/3/library/textwrap.html#textwrap.wrap
     sticktext = textwrap.wrap(sticktext, width=10)
