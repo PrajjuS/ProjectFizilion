@@ -98,9 +98,9 @@ def register(**args):
                     date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
                     text = "**USERBOT ERROR REPORT**\n"
-                    link = "[Userbot Indo Support](https://t.me/userbotindo)"
+                    link = "[Userbot Support]()"
                     text += "If you want to, you can report it"
-                    text += f". Head and forward this message to {link}.\n"
+                    text += f". Head and forward this message to Support Group.\n"
                     text += "Nothing is logged except the fact of error and date\n"
 
                     ftext = "========== DISCLAIMER =========="
@@ -135,14 +135,14 @@ def register(**args):
 
                     ftext += result
 
-                    file = open("error.log", "w+")
+                    file = open("Erroooor.log", "w+")
                     file.write(ftext)
                     file.close()
 
                     if LOGSPAMMER:
                        await check.respond(
-                           "`Sorry, my userbot has crashed.\
-                       \nThe error logs are stored in the userbot's log chat.`"
+                           "**Sed, userbot has crashed.\
+                       \nCheck Error Logs stored in the userbot's log chat kek.**"
                        )
 
                     await check.client.send_file(BOTLOG_CHATID,
