@@ -146,9 +146,9 @@ def register(**args):
                        )
 
                     await check.client.send_file(BOTLOG_CHATID,
-                                                 "error.log",
+                                                 "Erroooor.log",
                                                  caption=text)
-                    remove("error.log")
+                    remove("Erroooor.log")
             else:
                 pass
 
