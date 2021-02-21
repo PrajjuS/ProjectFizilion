@@ -53,15 +53,13 @@ async def sticklet(event):
 
     width, height = draw.multiline_textsize(sticktext, font=font)
     draw.multiline_text(((512-width)/2,(512-height)/2), sticktext, font=font, fill=(R, G, B))
-        
-    await event.edit("..........")    
-        
+                
     image_stream = io.BytesIO()
     image_stream.name = "@UniBorg.webp"
     image.save(image_stream, "WebP")
     image_stream.seek(0)
     
-
+    await event.edit("...........")
     # finally, reply the sticker
     await event.reply("https://t.me/UniBorg/95", file=image_stream)
 
@@ -81,7 +79,7 @@ async def get_font_file(client, channel_id):
         limit=None
     )
     
-    await event.delete()
+
     # get a random font from the list of fonts
     # https://docs.python.org/3/library/random.html#random.choice
     font_file_message = random.choice(font_file_message_s)
