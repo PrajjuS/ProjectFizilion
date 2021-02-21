@@ -43,7 +43,7 @@ async def sticklet(event):
     
     await event.edit("Wait Plox.....\nNeed some time")
     
-    FONT_FILE = "/resources/Aerospace.ttf"
+    FONT_FILE = os.path.exists('/resources/Aerospace.ttf')
 
     font = ImageFont(FONT_FILE, size=fontsize)
     
