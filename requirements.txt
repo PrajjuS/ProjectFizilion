@@ -62,3 +62,4 @@ youtube_search
 google_trans_new
 wget
 validators
+aiofiles
