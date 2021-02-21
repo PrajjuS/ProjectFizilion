@@ -8,6 +8,7 @@
 import asyncio
 import json
 import os
+import glob
 import re
 import shutil
 import time
@@ -34,7 +35,7 @@ from youtube_search import YoutubeSearch
 
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
-from userbot.utils import chrome, googleimagesdownload, progress
+from userbot.utils import chrome, duckduckgoscraper, progress
 
 CARBONLANG = "auto"
 TTS_LANG = "en"
@@ -78,9 +79,7 @@ async def carbon_api(e):
         "params": {"behavior": "allow", "downloadPath": TEMP_DOWNLOAD_DIRECTORY },
     }
     driver.execute("send_command", params)
-    driver.find_element_by_xpath("//button[@id='export-menu']").click()
-    driver.find_element_by_xpath("//button[contains(text(),'4x')]").click()
-    driver.find_element_by_xpath("//button[contains(text(),'PNG')]").click()
+    driver.find_element_by_css_selector('[data-cy="quick-export-button"]').click()
     await e.edit("`Processing...\n75%`")
     # Waiting for downloading
     while not os.path.isfile(file_path):
@@ -104,54 +103,30 @@ async def carbon_api(e):
     await e.delete()  # Deleting msg
 
 
-@register(outgoing=True, pattern=r"^\.img(?: |$)(\d*)? ?(.*)")
+
+@register(outgoing=True, pattern="^.img (.*)")
 async def img_sampler(event):
     """ For .img command, search and return images matching the query. """
-
-    if event.is_reply and not event.pattern_match.group(2):
-        query = await event.get_reply_message()
-        query = str(query.message)
+    await event.edit("`Processing...\n please wait for a moment...`")
+    query = event.pattern_match.group(1)
+    scraper = duckduckgoscraper.DuckDuckGoScraper()
+    
+    #The out directory
+    os.system("mkdir -p /tmp/out/images")
+    out = ("/tmp/out/images")
+    
+    if 'query' not in locals():
+        await event.edit("Please specify a query to get images,\n like .img duck")
     else:
-        query = str(event.pattern_match.group(2))
-
-    if not query:
-        return await event.edit("`Reply to a message or pass a query to search!`")
-
-    await event.edit("`Processing...`")
-
-    if event.pattern_match.group(1) != "":
-        counter = int(event.pattern_match.group(1))
-        if counter > 10:
-            counter = int(10)
-        if counter <= 0:
-            counter = int(1)
-    else:
-        counter = int(3)
-
-    response = googleimagesdownload()
-
-    # creating list of arguments
-    arguments = {
-        "keywords": query,
-        "limit": counter,
-        "format": "png",
-        "no_directory": "no_directory",
-    }
-
-    # if the query contains some special characters, googleimagesdownload errors out
-    # this is a temporary workaround for it (maybe permanent)
-    try:
-        paths = response.download(arguments)
-    except Exception as e:
-        return await event.edit(f"`Error: {e}`")
-
-    lst = paths[0][query]
-    await event.client.send_file(
-        await event.client.get_input_entity(event.chat_id), lst
-    )
-    shutil.rmtree(os.path.dirname(os.path.abspath(lst[0])))
-    await event.delete()
-
+        #TODO: add a limit to the images being downloaded
+        scraper.scrape(query,1,out)
+        await asyncio.sleep(4)
+        files = glob.glob("/tmp/out/images/*.jpg")
+        await event.client.send_file(
+            await event.client.get_input_entity(event.chat_id), files
+                )
+        await event.delete()
+        os.system("rm -rf /tmp/out/images")
 
 @register(outgoing=True, pattern=r"^\.currency (.*)")
 async def moni(event):
@@ -531,7 +506,7 @@ async def translateme(trans):
     if BOTLOG:
         await trans.client.send_message(
             BOTLOG_CHATID,
-            f"Translated some {source_lan.title()} stuff to {transl_lan.title()} just now.",
+            f"Translated some {source_lan.title()} stuff to {LANGUAGES[TRT_LANG].title()} just now.",
         )
 
 
@@ -743,8 +718,7 @@ def deEmojify(inputString):
 CMD_HELP.update(
     {
         "img": ">`.img [count] <query> [or reply]`"
-        "\nUsage: Does an image search on Google."
-        "\nCan specify the number of results needed (default is 3).",
+        "\nUsage: Does an image search on DuckDuckGo.",
         "currency": ">`.currency <amount> <from> <to>`"
         "\nUsage: Converts various currencies for you.",
         "ipinfo": ">`.ipinfo <ip_address>`"
