@@ -1,3 +1,9 @@
+# Copyright (C) 2020 GengKapak and AnggaR96s.
+#
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
+# you may not use this file except in compliance with the License.
+#
+
 import codecs
 import json
 import os
@@ -14,7 +20,7 @@ async def torrent(event):
     await event.edit("**Searching...**")
     query = event.pattern_match.group(1)
     response = requests.get(
-        f"https://sjprojectsapi.herokuapp.com/torrent/?query={query}")
+        f"https://api.sumanjay.cf/torrent/?query={query}")
     try:
         ts = json.loads(response.text)
     except json.decoder.JSONDecodeError:
@@ -37,7 +43,7 @@ async def torrent(event):
             break
 
     if not listdata:
-        return await e.edit("`Error: No results found`")
+        return await event.edit("`Error: No results found`")
 
     tsfileloc = f"{TEMP_DOWNLOAD_DIRECTORY}/{query}.txt"
     with open(tsfileloc, "w+", encoding="utf8") as out_file:
@@ -55,7 +61,7 @@ async def torrent(event):
         f"`Here the results for the query: {query}`\n\nPasted to: [Nekobin]({url})"
     )
     os.remove(tsfileloc)
-    await e.edit(caption, link_preview=False)
+    await event.edit(caption, link_preview=False)
 
 
 def dogbin(magnets):
