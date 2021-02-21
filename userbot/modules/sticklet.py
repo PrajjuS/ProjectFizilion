@@ -45,7 +45,7 @@ async def sticklet(event):
     
     FONT_FILE = os.path.exists('/resources/Aerospace.ttf')
 
-    font = ImageFont.truetype(FONT_FILE, size=fontsize, bool=False)
+    font = ImageFont.truetype(FONT_FILE, size=fontsize)
     
     await event.edit("Processing...........Kek")
     
