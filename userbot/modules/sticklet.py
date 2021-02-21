@@ -59,13 +59,13 @@ async def sticklet(event):
 
     
     image_stream = io.BytesIO()
-    image_stream.name = "@UniBorg.webp"
+    image_stream.name = "@Fizilion.webp"
     image.save(image_stream, "WebP")
     image_stream.seek(0)
     
     await event.delete()
     # finally, reply the sticker
-    await event.reply("https://t.me/UniBorg/95", file=image_stream)
+    await event.reply(file=image_stream)
 
     # cleanup
     try:
