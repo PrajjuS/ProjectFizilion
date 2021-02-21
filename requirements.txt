@@ -60,3 +60,5 @@ PyGithub
 python-dateutil
 youtube_search
 google_trans_new
+wget
+validators
