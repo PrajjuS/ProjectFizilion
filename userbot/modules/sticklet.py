@@ -41,7 +41,7 @@ async def sticklet(event):
     draw = ImageDraw.Draw(image)
     fontsize = 230
     
-    await event.edit("Wait Plox.....")
+    await event.edit("Wait Plox.....\nNeed some time")
     
     FONT_FILE = await get_font_file(event.client, "@FontRes")
 
@@ -53,13 +53,17 @@ async def sticklet(event):
 
     width, height = draw.multiline_textsize(sticktext, font=font)
     draw.multiline_text(((512-width)/2,(512-height)/2), sticktext, font=font, fill=(R, G, B))
-                
+    
+    await event.edit("...")
+    
     image_stream = io.BytesIO()
     image_stream.name = "@UniBorg.webp"
     image.save(image_stream, "WebP")
     image_stream.seek(0)
     
-    await event.edit("...........")
+    await event.edit("Processing...........Kek")
+    
+    await event.delete()
     # finally, reply the sticker
     await event.reply("https://t.me/UniBorg/95", file=image_stream)
 
