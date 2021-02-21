@@ -36,11 +36,13 @@ async def sticklet(event):
     sticktext = textwrap.wrap(sticktext, width=10)
     # converts back the list to a string
     sticktext = '\n'.join(sticktext)
-
+    
     image = Image.new("RGBA", (512, 512), (255, 255, 255, 0))
     draw = ImageDraw.Draw(image)
     fontsize = 230
-
+    
+    await event.edit("Wait Plox.....")
+    
     FONT_FILE = await get_font_file(event.client, "@FontRes")
 
     font = ImageFont.truetype(FONT_FILE, size=fontsize)
@@ -51,11 +53,14 @@ async def sticklet(event):
 
     width, height = draw.multiline_textsize(sticktext, font=font)
     draw.multiline_text(((512-width)/2,(512-height)/2), sticktext, font=font, fill=(R, G, B))
-
+        
+    await event.delete()    
+        
     image_stream = io.BytesIO()
     image_stream.name = "@UniBorg.webp"
     image.save(image_stream, "WebP")
     image_stream.seek(0)
+    
 
     # finally, reply the sticker
     await event.reply("https://t.me/UniBorg/95", file=image_stream)
@@ -65,7 +70,6 @@ async def sticklet(event):
         os.remove(FONT_FILE)
     except:
         pass
-
 
 async def get_font_file(client, channel_id):
     # first get the font messages
