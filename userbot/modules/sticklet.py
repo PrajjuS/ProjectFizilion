@@ -54,7 +54,7 @@ async def sticklet(event):
     width, height = draw.multiline_textsize(sticktext, font=font)
     draw.multiline_text(((512-width)/2,(512-height)/2), sticktext, font=font, fill=(R, G, B))
         
-    await event.delete()    
+    await event.edit("..........")    
         
     image_stream = io.BytesIO()
     image_stream.name = "@UniBorg.webp"
@@ -80,6 +80,8 @@ async def get_font_file(client, channel_id):
         # if used too many times
         limit=None
     )
+    
+    await event.delete()
     # get a random font from the list of fonts
     # https://docs.python.org/3/library/random.html#random.choice
     font_file_message = random.choice(font_file_message_s)
