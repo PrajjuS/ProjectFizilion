@@ -121,7 +121,7 @@ async def fetch_info(replied_user, event):
     restricted = replied_user.user.restricted
     verified = replied_user.user.verified
     photo = await event.client.download_profile_photo(
-        user_id, TEMP_DOWNLOAD_DIRECTORY + str(user_id) + ".jpg", download_big=True
+        user_id, TEMP_DOWNLOAD_DIRECTORY + str(user_id) + ".png", download_big=True
     )
     first_name = (
         first_name.replace("\u2060", "")
