@@ -20,7 +20,7 @@ from userbot.events import register
 async def _(event):
     if event.fwd_from:
         return
-    chat = "@SpotifyNowBot"
+    chat = "@spotipiebot"
     now = f"/now"
     await event.edit("`Processing...`")
     try:
