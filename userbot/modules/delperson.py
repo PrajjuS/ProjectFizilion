@@ -58,9 +58,9 @@ async def set_delmsg(dm_e):
     dm_e.text
     string = dme_e.pattern_match.group(1)
     global DELMSG
-        msg=await dm_e.edit("Turning on DELMSG")
-        await sleep(2)
-        awai t msg.delete()
+    msg = await dm_e.edit("Turning on DELMSG")
+    await sleep(2)
+    await msg.delete()
     if BOTLOG:
         await afk_e.client.send_message(BOTLOG_CHATID, "#DELMSG\nYou turned on DELMSG!")
     DELMSG = True
