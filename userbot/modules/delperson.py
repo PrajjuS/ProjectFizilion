@@ -49,7 +49,7 @@ async def delmsg_on_pm(sender):
                 USERS.update({sender.sender_id: 1})
             else:
                 if USERS[sender.sender_id] % randint(2, 4) == 0:
-                USERS[sender.sender_id] = USERS[sender.sender_id] + 1
+                  USERS[sender.sender_id] = USERS[sender.sender_id] + 1
             COUNT_MSG = COUNT_MSG + 1
             
             
