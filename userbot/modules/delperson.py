@@ -39,7 +39,6 @@ async def delmsg_on_pm(sender):
             try:
                 from userbot.modules.sql_helper.pm_permit_sql import \
                     is_approved
-
                 apprv = is_approved(sender.sender_id)
             except AttributeError:
                 apprv = True
@@ -48,11 +47,11 @@ async def delmsg_on_pm(sender):
                     if apprv and DELMSG:
             if sender.sender_id not in USERS:
                 USERS.update({sender.sender_id: 1})
-            else:
+     
+       else:
                 if USERS[sender.sender_id] % randint(2, 4) == 0:
                 USERS[sender.sender_id] = USERS[sender.sender_id] + 1
             COUNT_MSG = COUNT_MSG + 1
-
 
 @register(outgoing=True, pattern=r"^\.dm(?: |$)(.*)", disable_errors=True)
 async def set_delmsg(dm_e):
