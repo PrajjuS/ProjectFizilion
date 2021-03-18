@@ -53,7 +53,7 @@ async def delmsg_on_pm(sender):
             COUNT_MSG = COUNT_MSG + 1
             
             
-@register(outgoing=True, pattern=r"^\.dm(?: |$)(.*)", disable_errors=True)
+@register(outgoing=True, pattern=r"^\.dm(?: |$)(.*)")
 async def set_delmsg(dm_e):
     dm_e.text
     string = dme_e.pattern_match.group(1)
