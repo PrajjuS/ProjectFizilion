@@ -17,7 +17,11 @@ async def on_dm(dom):
         if (sender := await mention.get_sender()):
             is_bot = sender.bot
         if not is_bot and mention.sender_id not in USERS:
-                USERS[mention.sender_id] = USERS[mention.sender_id] + 1
+            USERS.update({mention.sender_id: 1})
+        else:
+            if not is_bot and sender:
+                if USERS[mention.sender_id] % randint(2, 4) == 0:
+                  USERS[mention.sender_id] = USERS[mention.sender_id] + 1
         COUNT_MSG = COUNT_MSG + 1
 
 
@@ -41,6 +45,11 @@ async def delmsg_on_pm(sender):
                 apprv = True
         else:
             apprv = True
+                    if apprv and DELMSG:
+            if sender.sender_id not in USERS:
+                USERS.update({sender.sender_id: 1})
+            else:
+                if USERS[sender.sender_id] % randint(2, 4) == 0:
                 USERS[sender.sender_id] = USERS[sender.sender_id] + 1
             COUNT_MSG = COUNT_MSG + 1
 
@@ -55,7 +64,7 @@ async def set_delmsg(dm_e):
         awai t msg.delete()
     if BOTLOG:
         await afk_e.client.send_message(BOTLOG_CHATID, "#DELMSG\nYou turned on DELMSG!")
-    ISAFK = True
+    DELMSG = True
     raise StopPropagation
 
 
