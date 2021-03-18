@@ -78,7 +78,7 @@ async def type_del_is_not_true(notdel):
         await sleep(2)
         await msg.delete()
         if BOTLOG:
-            await del.client.send_message(
+            await notdel.client.send_message(
                 BOTLOG_CHATID,
                 "You've recieved "
                 + str(COUNT_MSG)
