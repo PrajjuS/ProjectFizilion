@@ -44,15 +44,15 @@ async def delmsg_on_pm(sender):
                 apprv = True
         else:
             apprv = True
-            if apprv and DELMSG:
+        if apprv and DELMSG:
             if sender.sender_id not in USERS:
                 USERS.update({sender.sender_id: 1})
-     
-       else:
+            else:
                 if USERS[sender.sender_id] % randint(2, 4) == 0:
                 USERS[sender.sender_id] = USERS[sender.sender_id] + 1
             COUNT_MSG = COUNT_MSG + 1
-
+            
+            
 @register(outgoing=True, pattern=r"^\.dm(?: |$)(.*)", disable_errors=True)
 async def set_delmsg(dm_e):
     dm_e.text
