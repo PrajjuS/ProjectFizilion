@@ -243,4 +243,4 @@ CMD_HELP = {}
 ZALG_LIST = {}
 ISAFK = False
 AFKREASON = None
-DELMSG = True
+DELMSG = False
