@@ -44,7 +44,7 @@ async def delmsg_on_pm(sender):
                 apprv = True
         else:
             apprv = True
-                    if apprv and DELMSG:
+            if apprv and DELMSG:
             if sender.sender_id not in USERS:
                 USERS.update({sender.sender_id: 1})
      
