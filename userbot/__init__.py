@@ -6,6 +6,7 @@
 """ Userbot initialization. """
 
 import os
+import platform
 import re
 import time
 from sys import version_info
@@ -18,6 +19,9 @@ from dotenv import load_dotenv
 from requests import get
 from telethon import TelegramClient
 from telethon.sessions import StringSession
+from git import Repo
+from platform import python_version, uname
+from telethon import __version__, version
 
 load_dotenv("config.env")
 
