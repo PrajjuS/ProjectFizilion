@@ -234,6 +234,33 @@ with bot:
         )
         quit(1)
 
+
+async def send_alive_status():
+    if BOTLOG_CHATID and LOGSPAMMER:
+uptime = await get_readable_time((time.time() - StartTime))
+    output = (
+        "` =============================== `\n"
+        f"`Fizilion is Up [Premium Edition] `\n"
+        f"`=============================== `\n"
+        f"•`Telethon       : v{version.__version__} `\n"
+        f"•`Python         : v{python_version()} `\n"   
+        f"•`User           : {DEFAULTUSER} `\n"
+        f"•`Running on     : {repo.active_branch.name} `\n"
+        f"•`Loaded modules : {len(modules)} `\n"
+        f"•`Fizilion       : {USERBOT_VERSION} `\n"
+        f"•`Bot Uptime     : {uptime} `\n"
+    )
+        await bot.send_message(BOTLOG_CHATID, output)
+        return True
+
+
+with bot:
+    try:
+        bot.loop.run_until_complete(send_alive_status())
+    except:
+        pass
+
+
 # Global Variables
 COUNT_MSG = 0
 USERS = {}
