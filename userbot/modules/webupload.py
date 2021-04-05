@@ -16,7 +16,7 @@ async def _(event):
         file_name = input_str
     else:
         reply = await event.get_reply_message()
-        file_name = await event.download_media(reply.media, Var.TEMP_DOWNLOAD_DIRECTORY)
+        file_name = await event.download_media(reply.media, TEMP_DOWNLOAD_DIRECTORY)
     event.message.id
     CMD_WEB = {
         "anonfiles": "curl -F \"file=@{}\" https://anonfiles.com/api/upload",
