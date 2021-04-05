@@ -2,7 +2,7 @@ import asyncio
 import time
 from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
-import is
+import os
 import json
 
 @register(pattern="^.webupload ?(.+?|) (?:)(anonfiles|transfer|filebin|anonymousfiles|megaupload|bayfiles|openload|file.io|vshare)")
