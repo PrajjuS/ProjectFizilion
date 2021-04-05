@@ -1,4 +1,4 @@
-aiohttp
+aiohttp[speedups]
 aria2p
 asyncurban
 async_generator
@@ -49,7 +49,7 @@ redis
 requests
 search-engine-parser
 speedtest-cli
-sqlalchemy
+sqlalchemy==1.3.23
 TgCrypto
 telethon
 telethon-session-sqlalchemy
