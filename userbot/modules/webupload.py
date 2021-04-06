@@ -53,4 +53,4 @@ async def webupload(event):
         await event.edit(t_response)
 
 CMD_HELP.update({"webupload":
-                 "`.webupload` (filename) `anonfiles` | `transfer` | `anonymousfiles` | `megaupload` | `bayfiles` | `openload` | `file.io` | `vshare` "})
+                 "`.webupload` (filename) `anonfiles` | `transfer` | `anonymousfiles` | `megaupload` | `bayfiles` | `openload` | `file.io` | `vshare` | '0x0 ' | 'letsupload' "})
