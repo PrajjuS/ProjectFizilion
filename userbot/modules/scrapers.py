@@ -143,11 +143,11 @@ async def moni(event):
         return
     if "error" in response:
         await event.edit(
-            "''This seems to be some alien currency, which I can't convert right now.'"
+            "'This seems to be some alien currency, which I can't convert right now.'"
         )
         return
     c_to_val = round(c_from_val * response["rates"][c_to], 2)
-    await event.edit(f"**{c_from_val} {c_from} = {c_to_val} {c_to}**")
+    await event.edit(f"'{c_from_val} {c_from} = {c_to_val} {c_to}'")
 
 
 @register(outgoing=True, pattern=r"^\.google(?: |$)(\d*)? ?(.*)")
