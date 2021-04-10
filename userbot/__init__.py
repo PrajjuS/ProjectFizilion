@@ -22,7 +22,7 @@ from telethon.sessions import StringSession
 from git import Repo
 from platform import python_version, uname
 from telethon import __version__, version
-
+from userbot import CMD_HELP
 load_dotenv("config.env")
 
 STORAGE = (lambda n: Storage(Path("data") / n))
