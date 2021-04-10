@@ -244,7 +244,7 @@ with bot:
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 repo = Repo()
 modules = CMD_HELP
-uptime = await get_readable_time((time.time() - StartTime))
+uptime = get_readable_time((time.time() - StartTime))
 output = (
     "` =============================== `\n"
     f"`Fizilion is Up [Premium Edition] `\n"
