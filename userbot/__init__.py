@@ -22,7 +22,7 @@ from telethon.sessions import StringSession
 from git import Repo
 from platform import python_version, uname
 from telethon import __version__, version
-from userbot import CMD_HELP
+from userbot.modules import ALL_MODULES
 load_dotenv("config.env")
 
 STORAGE = (lambda n: Storage(Path("data") / n))
@@ -243,7 +243,7 @@ with bot:
 
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 repo = Repo()
-modules = CMD_HELP
+modules = ALL_MODULES
 uptime = get_readable_time((time.time() - StartTime))
 output = (
     "` =============================== `\n"
