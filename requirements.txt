@@ -41,7 +41,7 @@ pylast
 pySmartDL
 python-barcode
 python-dotenv
-git+https://gitlab.com/royalturd/yt-dl.git
+https://github.com/yt-dlp/yt-dlp/archive/master.zip
 pytz
 pymongo[srv]
 qrcode
