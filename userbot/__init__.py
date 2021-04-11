@@ -283,7 +283,7 @@ DELMSG = False
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 repo = Repo()
 modules = CMD_HELP
-uptime = get_readable_time(StartTime)
+uptime = time.strftime('%X')
 ##
 output = (
     "` =============================== `\n"
