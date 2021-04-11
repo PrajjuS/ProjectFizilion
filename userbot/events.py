@@ -144,7 +144,7 @@ def register(**args):
                            "**Sed, userbot has crashed.\
                        \nCheck Error Logs stored in the userbot's log chat kek.**"
                        )
-                    await check.sleep(2)
+    
                     await check.delete()
 
                     await check.client.send_file(BOTLOG_CHATID,
