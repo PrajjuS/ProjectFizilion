@@ -185,7 +185,6 @@ async def gsearch(event):
 
     try:
         gresults = await gsearch.async_search(*search_args)
-    msg = ""
 
     for i in range(counter):
         try:
