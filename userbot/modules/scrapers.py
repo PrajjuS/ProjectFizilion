@@ -156,52 +156,36 @@ async def moni(event):
     await event.edit(f"`{c_from_val} {c_from} = {c_to_val} {c_to}`")
 
 @register(outgoing=True, pattern=r"^\.google(?: |$)(\d*)? ?(.*)")
-async def gsearch(event):
-    """ For .google command, do a Google search. """
-
-    if event.is_reply and not event.pattern_match.group(2):
-        match = await event.get_reply_message()
-        match = str(match.message)
-    else:
-        match = str(event.pattern_match.group(2))
-
-    if not match:
-        return await event.edit("`Reply to a message or pass a query to search!`")
-
-    await event.edit("`Processing...`")
-
-    if event.pattern_match.group(1) != "":
-        counter = int(event.pattern_match.group(1))
-        if counter > 10:
-            counter = int(10)
-        if counter <= 0:
-            counter = int(1)
-    else:
-        counter = int(3)
-
-    search_args = (str(match), int(1))
-    gsearch = GoogleSearch()
-
+async def gsearch(q_event):
+    catevent = await edit_or_reply(q_event, "`searching........`")
+    match = q_event.pattern_match.group(1)
+    page = re.findall(r"page=\d+", match)
     try:
-        gresults = await gsearch.async_search(*search_args)
-    except Exception:
-        return await event.edit(
-            "`Error: Your query could not be found or it was flagged as unusual traffic.`"
-        )
+        page = page[0]
+        page = page.replace("page=", "")
+        match = match.replace("page=" + page[0], "")
+    except IndexError:
+        page = 1
+    search_args = (str(match), int(page))
+    gsearch = GoogleSearch()
+    gresults = await gsearch.async_search(*search_args)
     msg = ""
-
-    for i in range(counter):
+    for i in range(len(gresults["links"])):
         try:
             title = gresults["titles"][i]
             link = gresults["links"][i]
             desc = gresults["descriptions"][i]
-            msg += f"[{title}]({link})\n`{desc}`\n\n"
+            msg += f"👉[{title}]({link})\n`{desc}`\n\n"
         except IndexError:
             break
-
-    await event.edit(
+    await catevent.edit(
         "**Search Query:**\n`" + match + "`\n\n**Results:**\n" + msg, link_preview=False
     )
+    if BOTLOG:
+        await q_event.client.send_message(
+            BOTLOG_CHATID,
+            "Google Search query `" + match + "` was executed successfully",
+        )
 
     if BOTLOG:
         await event.client.send_message(
