@@ -186,6 +186,12 @@ async def gsearch(event):
     try:
         gresults = await gsearch.async_search(*search_args)
 
+    except Exception:
+             return await event.edit(
+                "`Error: Your query could not be found or it was flagged as unusual traffic.`"
+            )
+        msg = ""
+
     for i in range(counter):
         try:
             title = gresults["titles"][i]
