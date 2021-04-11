@@ -283,7 +283,6 @@ DELMSG = False
 ##Constants
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 repo = Repo()
-uptime = get_readable_time((time.time() - StartTime))
 modules = CMD_HELP
 ##
 output = (
@@ -294,9 +293,9 @@ output = (
     f"•`Python         : v{python_version()} `\n"
     f"•`User           : {DEFAULTUSER} `\n"
     f"•`Running on     : {repo.active_branch.name} `\n"
-    f"•`Loaded modules : {len(modules)} `\n"
+    f"•`Loaded modules : 105 `\n"
     f"•`Fizilion       : {USERBOT_VERSION} `\n"
-    f"•`Bot Uptime     : {len(uptime)} `\n" 
+    f"•`Bot Uptime     : {uptime} `\n" 
 )
 
 async def start():
