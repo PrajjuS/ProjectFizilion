@@ -62,12 +62,6 @@ if CONFIG_CHECK:
     )
     quit(1)
 
-#Constants
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
-repo = Repo()
-uptime = get_readable_time((time.time() - StartTime))
-##
-
 # Telegram App KEY and HASH
 API_KEY = os.environ.get("API_KEY") or None
 API_HASH = os.environ.get("API_HASH") or None
@@ -201,6 +195,12 @@ SFUSER = os.environ.get("SFUSER") or "null"
 SFPASS = os.environ.get("SFPASS") or "null"
 SFDIR = os.environ.get("SFDIR") or "null"
 
+#Constants
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
+repo = Repo()
+uptime = get_readable_time((time.time() - StartTime))
+##
+
 # Setting Up CloudMail.ru and MEGA.nz extractor binaries,
 # and giving them correct perms to work properly.
 if not os.path.exists("bin"):
@@ -274,6 +274,19 @@ async def get_readable_time(seconds: int) -> str:
 
     return up_time
 
+
+# Global Variables
+COUNT_MSG = 0
+USERS = {}
+COUNT_PM = {}
+LASTMSG = {}
+CMD_HELP = {}
+ZALG_LIST = {}
+ISAFK = False
+AFKREASON = None
+DELMSG = False
+
+modules = CMD_HELP
 output = (
     "` =============================== `\n"
     f"`Fizilion is Up [Premium Edition] `\n"
@@ -282,7 +295,7 @@ output = (
     f"•`Python         : v{python_version()} `\n"
     f"•`User           : {DEFAULTUSER} `\n"
     f"•`Running on     : {repo.active_branch.name} `\n"
-    f"•`Loaded modules : 105 `\n"
+    f"•`Loaded modules : {len(modules)} `\n"
     f"•`Fizilion       : {USERBOT_VERSION} `\n"
     f"•`Bot Uptime     : {uptime} `\n" 
 )
@@ -301,14 +314,3 @@ async def start():
 with bot:
     bot.loop.run_until_complete(start())
 
-
-# Global Variables
-COUNT_MSG = 0
-USERS = {}
-COUNT_PM = {}
-LASTMSG = {}
-CMD_HELP = {}
-ZALG_LIST = {}
-ISAFK = False
-AFKREASON = None
-DELMSG = False
