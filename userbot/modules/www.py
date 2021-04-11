@@ -15,6 +15,37 @@ from userbot import CMD_HELP
 from userbot.events import register
 
 
+@register(outgoing=True, pattern=r"^\.speedtest$")
+async def speedtest(event):
+    """ For .speed command, use SpeedTest to check server speeds. """
+    await event.edit("`Running speed test...`")
+
+    test = Speedtest()
+    test.get_best_server()
+    test.download()
+    test.upload()
+    test.results.share()
+    result = test.results.dict()
+
+    msg = (
+        f"`Ping:` `{result['ping']}`\n"
+        f"`Upload:` `{humanbytes(result['upload'])}/s`\n"
+        f"`Download:` `{humanbytes(result['download'])}/s`\n"
+        f"`ISP:` `{result['client']['isp']}`\n"
+        f"`Country:` `{result['client']['country']}`\n"
+        f"`Name:` `{result['server']['name']}`\n"
+        f"`Country:` `{result['server']['country']}`\n"
+        f"`Sponsor:` `{result['server']['sponsor']}`\n\n"
+    )
+
+    await event.client.send_file(
+        event.chat_id,
+        result["share"],
+        caption=msg,
+    )
+    await event.delete()
+    
+
 @register(outgoing=True, pattern="^.speed$")
 async def speedtst(spd):
     """ For .speed command, use SpeedTest to check server speeds. """
