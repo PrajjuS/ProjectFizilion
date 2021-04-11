@@ -22,6 +22,7 @@ from telethon.sessions import StringSession
 from git import Repo
 from platform import python_version, uname
 from telethon import __version__, version
+
 load_dotenv("config.env")
 
 STORAGE = (lambda n: Storage(Path("data") / n))
@@ -60,6 +61,12 @@ if CONFIG_CHECK:
         "Please remove the line mentioned in the first hashtag from the config.env file"
     )
     quit(1)
+
+#Constants
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
+repo = Repo()
+uptime = get_readable_time((time.time() - StartTime))
+##
 
 # Telegram App KEY and HASH
 API_KEY = os.environ.get("API_KEY") or None
@@ -267,9 +274,6 @@ async def get_readable_time(seconds: int) -> str:
 
     return up_time
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
-repo = Repo()
-uptime = get_readable_time((time.time() - StartTime))
 output = (
     "` =============================== `\n"
     f"`Fizilion is Up [Premium Edition] `\n"
