@@ -178,19 +178,13 @@ async def gsearch(q_event):
             msg += f"👉[{title}]({link})\n`{desc}`\n\n"
         except IndexError:
             break
-    await catevent.edit(
+    await q_event.edit(
         "**Search Query:**\n`" + match + "`\n\n**Results:**\n" + msg, link_preview=False
     )
     if BOTLOG:
         await q_event.client.send_message(
-            BOTLOG_CHATID,
-            "Google Search query `" + match + "` was executed successfully",
-        )
-
-    if BOTLOG:
-        await event.client.send_message(
-            BOTLOG_CHATID,
-            "Google Search query` " + match + " `was executed successfully",
+            BOTLOG_CHATID
+           "Google Search query `" + match + "` was executed successfully",
         )
 
 
