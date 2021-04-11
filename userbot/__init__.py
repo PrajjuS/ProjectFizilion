@@ -195,12 +195,6 @@ SFUSER = os.environ.get("SFUSER") or "null"
 SFPASS = os.environ.get("SFPASS") or "null"
 SFDIR = os.environ.get("SFDIR") or "null"
 
-#Constants
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
-repo = Repo()
-uptime = get_readable_time((time.time() - StartTime))
-##
-
 # Setting Up CloudMail.ru and MEGA.nz extractor binaries,
 # and giving them correct perms to work properly.
 if not os.path.exists("bin"):
@@ -286,7 +280,12 @@ ISAFK = False
 AFKREASON = None
 DELMSG = False
 
+##Constants
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
+repo = Repo()
+uptime = get_readable_time((time.time() - StartTime))
 modules = CMD_HELP
+##
 output = (
     "` =============================== `\n"
     f"`Fizilion is Up [Premium Edition] `\n"
