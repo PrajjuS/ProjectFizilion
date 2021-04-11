@@ -268,6 +268,7 @@ async def get_readable_time(seconds: int) -> str:
 
     return up_time
 
+uptime = await get_readable_time((time.time() - StartTime))
 
 # Global Variables
 COUNT_MSG = 0
@@ -295,7 +296,7 @@ output = (
     f"•`Running on     : {repo.active_branch.name} `\n"
     f"•`Loaded modules : 105 `\n"
     f"•`Fizilion       : {USERBOT_VERSION} `\n"
-    f"•`Bot Uptime     : {up_time} `\n" 
+    f"•`Bot Uptime     : {uptime} `\n" 
 )
 
 async def start():
