@@ -120,3 +120,11 @@ CMD_HELP.update(
     \nUsage: Shows how long it takes to ping your bot."
     }
 )
+CMD_HELP.update(
+    {
+        "speedtest": ".speed\
+            \nUsage: Does a speedtest and shows results.\
+            \n.speedtest\
+            \nUsage: Does a speedtest with more data and shows results."
+    }
+)
