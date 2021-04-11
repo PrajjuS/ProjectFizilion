@@ -110,12 +110,6 @@ async def pingme(pong):
 
 CMD_HELP.update(
     {
-        "speedtest:" ".speed|.speedtest"
-    "\nUsage: Does a speedtest and shows the results\n\nNote:use .speedtest if u want more data."
-    }
-)
-CMD_HELP.update(
-    {
         "dc": ".dc\
     \nUsage: Finds the nearest datacenter from your server."
     }
