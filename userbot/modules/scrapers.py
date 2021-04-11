@@ -155,7 +155,6 @@ async def moni(event):
     c_to_val = round(c_from_val * response["rates"][c_to], 2)
     await event.edit(f"`{c_from_val} {c_from} = {c_to_val} {c_to}`")
 
-
 @register(outgoing=True, pattern=r"^\.google(?: |$)(\d*)? ?(.*)")
 async def gsearch(event):
     """ For .google command, do a Google search. """
@@ -185,12 +184,11 @@ async def gsearch(event):
 
     try:
         gresults = await gsearch.async_search(*search_args)
-
     except Exception:
-             return await event.edit(
-                "`Error: Your query could not be found or it was flagged as unusual traffic.`"
-            )
-        msg = ""
+        return await event.edit(
+            "`Error: Your query could not be found or it was flagged as unusual traffic.`"
+        )
+    msg = ""
 
     for i in range(counter):
         try:
