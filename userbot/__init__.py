@@ -268,8 +268,6 @@ async def get_readable_time(seconds: int) -> str:
 
     return up_time
 
-uptime = await get_readable_time((time.time() - StartTime))
-
 # Global Variables
 COUNT_MSG = 0
 USERS = {}
@@ -285,6 +283,7 @@ DELMSG = False
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
 repo = Repo()
 modules = CMD_HELP
+uptime = get_readable_time(StartTime)
 ##
 output = (
     "` =============================== `\n"
