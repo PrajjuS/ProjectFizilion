@@ -261,7 +261,7 @@ async def start():
     if BOTLOG:
         try:
             await bot.send_message(
-                BOTLOG_CHATID, "#Fizilion\n\nYour Fizilion is up and running 
+                BOTLOG_CHATID, "#Fizilion\n\nYour Fizilion is up and running "
                         )
         except BaseException:
             None
