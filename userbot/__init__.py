@@ -240,28 +240,27 @@ with bot:
         )
         quit(1)
         
-#DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
-#repo = Repo()
-#modules = ALL_MODULES
-#uptime = get_readable_time((time.time() - StartTime))
-#output = (
-    #"` =============================== `\n"
-    #f"`Fizilion is Up [Premium Edition] `\n"
-    #f"`=============================== `\n"
-    #f"•`Telethon       : v{version.__version__} `\n"
-    #f"•`Python         : v{python_version()} `\n"  
-    #f"•`User           : {DEFAULTUSER} `\n"
-    #f"•`Running on     : {repo.active_branch.name} `\n"
-    #f"•`Loaded modules : {len(modules)} `\n"
-    #f"•`Fizilion       : {USERBOT_VERSION} `\n"
-    #f"•`Bot Uptime     : {uptime} `\n" 
-#)
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
+repo = Repo()
+uptime = get_readable_time((time.time() - StartTime))
+output = (
+    "` =============================== `\n"
+    f"`Fizilion is Up [Premium Edition] `\n"
+    f"`=============================== `\n"
+    f"•`Telethon       : v{version.__version__} `\n"
+    f"•`Python         : v{python_version()} `\n"
+    f"•`User           : {DEFAULTUSER} `\n"
+    f"•`Running on     : {repo.active_branch.name} `\n"
+    f"•`Loaded modules : 105 `\n"
+    f"•`Fizilion       : {USERBOT_VERSION} `\n"
+    f"•`Bot Uptime     : {uptime} `\n" 
+)
 
 async def start():
     if BOTLOG:
         try:
             await bot.send_message(
-                BOTLOG_CHATID, "#Fizilion\n\nYour Fizilion is up and running "
+                BOTLOG_CHATID, output
                         )
         except BaseException:
             None
