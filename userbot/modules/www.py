@@ -13,7 +13,7 @@ from telethon import functions
 
 from userbot import CMD_HELP
 from userbot.events import register
-
+from userbot.utils import humanbytes
 
 @register(outgoing=True, pattern=r"^\.speedtest$")
 async def speedtest(event):
@@ -106,7 +106,6 @@ async def pingme(pong):
     end = datetime.now()
     duration = (end - start).microseconds / 1000
     await pong.edit("`Pong!\n%sms`" % (duration))
-
 
 CMD_HELP.update(
     {
