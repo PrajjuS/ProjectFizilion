@@ -28,6 +28,7 @@ async def speedtest(event):
     result = test.results.dict()
 
     msg = (
+        f"`--Started at {result['timestamp']}--`\n\n"
         f"`Ping:` `{result['ping']}`\n"
         f"`Upload:` `{humanbytes(result['upload'])}/s`\n"
         f"`Download:` `{humanbytes(result['download'])}/s`\n"
