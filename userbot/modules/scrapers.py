@@ -183,8 +183,7 @@ async def gsearch(q_event):
     )
     if BOTLOG:
         await q_event.client.send_message(
-            BOTLOG_CHATID
-           "Google Search query `" + match + "` was executed successfully",
+            BOTLOG_CHATID, "Google Search query `" + match + "` was executed successfully"
         )
 
 
