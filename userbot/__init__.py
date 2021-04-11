@@ -22,7 +22,6 @@ from telethon.sessions import StringSession
 from git import Repo
 from platform import python_version, uname
 from telethon import __version__, version
-from userbot.modules import ALL_MODULES
 load_dotenv("config.env")
 
 STORAGE = (lambda n: Storage(Path("data") / n))
@@ -240,29 +239,29 @@ with bot:
             "valid entity. Check your environment variables/config.env file."
         )
         quit(1)
-
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
-repo = Repo()
-modules = ALL_MODULES
-uptime = get_readable_time((time.time() - StartTime))
-output = (
-    "` =============================== `\n"
-    f"`Fizilion is Up [Premium Edition] `\n"
-    f"`=============================== `\n"
-    f"•`Telethon       : v{version.__version__} `\n"
-    f"•`Python         : v{python_version()} `\n"  
-    f"•`User           : {DEFAULTUSER} `\n"
-    f"•`Running on     : {repo.active_branch.name} `\n"
-    f"•`Loaded modules : {len(modules)} `\n"
-    f"•`Fizilion       : {USERBOT_VERSION} `\n"
-    f"•`Bot Uptime     : {uptime} `\n" 
-)
+        
+#DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
+#repo = Repo()
+#modules = ALL_MODULES
+#uptime = get_readable_time((time.time() - StartTime))
+#output = (
+    #"` =============================== `\n"
+    #f"`Fizilion is Up [Premium Edition] `\n"
+    #f"`=============================== `\n"
+    #f"•`Telethon       : v{version.__version__} `\n"
+    #f"•`Python         : v{python_version()} `\n"  
+    #f"•`User           : {DEFAULTUSER} `\n"
+    #f"•`Running on     : {repo.active_branch.name} `\n"
+    #f"•`Loaded modules : {len(modules)} `\n"
+    #f"•`Fizilion       : {USERBOT_VERSION} `\n"
+    #f"•`Bot Uptime     : {uptime} `\n" 
+#)
 
 async def start():
     if BOTLOG:
         try:
             await bot.send_message(
-                BOTLOG_CHATID, output
+                BOTLOG_CHATID, "#Fizilion\n\nYour Fizilion is up and running 
                         )
         except BaseException:
             None
