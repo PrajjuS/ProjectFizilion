@@ -110,10 +110,8 @@ async def pingme(pong):
 
 CMD_HELP.update(
     {
-        "speedtest:" ".speed"
-    "\nUsage: Does a speedtest and shows the results."
-    "\n\n.speedtest"
-    "\nUsage: Does speedtest with more data and shows results."
+        "speedtest:" ".speed|.speedtest"
+    "\nUsage: Does a speedtest and shows the results\n\nNote:use .speedtest if u want more data."
     }
 )
 CMD_HELP.update(
