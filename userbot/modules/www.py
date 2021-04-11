@@ -112,6 +112,8 @@ CMD_HELP.update(
     {
         "speed": ".speed\
     \nUsage: Does a speedtest and shows the results."
+        "speedtest": ".speedtest\
+    \nUsage: Does speedtest with more data and shows result."
     }
 )
 CMD_HELP.update(
