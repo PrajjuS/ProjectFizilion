@@ -295,7 +295,7 @@ output = (
     f"•`Running on     : {repo.active_branch.name} `\n"
     f"•`Loaded modules : 105 `\n"
     f"•`Fizilion       : {USERBOT_VERSION} `\n"
-    f"•`Bot Uptime     : {uptime} `\n" 
+    f"•`Bot started at : {uptime} `\n" 
 )
 
 async def start():
