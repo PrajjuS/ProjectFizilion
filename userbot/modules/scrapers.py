@@ -157,7 +157,7 @@ async def moni(event):
 
 @register(outgoing=True, pattern=r"^\.google(?: |$)(\d*)? ?(.*)")
 async def gsearch(q_event):
-    catevent = await edit_or_reply(q_event, "`searching........`")
+    await q_event.edit("`searching........`")
     match = q_event.pattern_match.group(1)
     page = re.findall(r"page=\d+", match)
     try:
