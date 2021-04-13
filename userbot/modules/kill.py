@@ -23,7 +23,7 @@ async def kill_func(message):
         await message.edit(animation_chars[i % 10], parse_mode="html")
 
 CMD_HELP.update({
-    "`kill":
+    "kill":
     "'.kill'"
     "\nUsage: Kill Meme"
     })
