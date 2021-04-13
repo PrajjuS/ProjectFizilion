@@ -21,15 +21,13 @@ async def help(event):
         if args in CMD_HELP:
             await event.edit(str(CMD_HELP[args]))
         else:
-            await event.edit("Plox specify a valid module name sar.")
+            await event.edit("Please specify a valid module name.")
     else:
-        temp = ""
         final = "**List of all loaded module(s)**\n\
                  \nSpecify which module do you want help for! \
                  \n**Usage:** `.help` <module name>\n\n"
 
-        for i in CMD_HELP:
-            temp += str(i) + " "
+        temp = "".join(str(i) + " " for i in CMD_HELP)
         temp = sorted(temp.split())
         for i in temp:
             final += "`" + str(i)
