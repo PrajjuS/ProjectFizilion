@@ -1,3 +1,4 @@
+##ported from userge by @PrajjuS
 from userbot.events import register
 from userbot import CMD_HELP
 import time
