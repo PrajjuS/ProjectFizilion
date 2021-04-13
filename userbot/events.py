@@ -141,8 +141,8 @@ def register(**args):
 
                     if LOGSPAMMER:
                        await check.respond(
-                           "**Sed, userbot has crashed.\
-                       \nCheck Error Logs stored in the userbot's log chat kek.**"
+                           "`Sed, userbot has crashed.\
+                       \nCheck Error Logs stored in the userbot's log chat kek.`"
                        )
                     await sleep(2) 
     
