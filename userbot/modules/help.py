@@ -30,6 +30,6 @@ async def help(event):
         temp = "".join(str(i) + " " for i in CMD_HELP)
         temp = sorted(temp.split())
         for i in temp:
-            final += "`" + str(i)
+            final += "" + str(i)
             final += "`\t\t\t•\t\t\t`"
         await event.edit(f"{final[:-5]}")
