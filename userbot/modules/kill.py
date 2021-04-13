@@ -1,6 +1,6 @@
 import asyncio
 from asyncio import sleep
-
+from userbot.events import register
 
 
 @register(outgoing=True, pattern="^.kill$")
