@@ -169,10 +169,7 @@ async def gsearch(q_event):
     search_args = (str(match), int(page))
     gsearch = GoogleSearch()
     gresults = await gsearch.async_search(*search_args)
-    except Exception:
-        return await event.edit(
-            "**Error: Your query could not be found or it was flagged as unusual traffic.**"
-        )
+   
     msg = ""
     for i in range(len(gresults["links"])):
         try:
