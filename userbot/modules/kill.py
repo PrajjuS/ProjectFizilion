@@ -1,7 +1,7 @@
 import asyncio
 from asyncio import sleep
 from userbot.events import register
-
+from userbot import CMD_HELP
 
 @register(outgoing=True, pattern="^.kill$")
 async def kill_func(message):
