@@ -172,7 +172,7 @@ async def gsearch(q_event):
         gresults = await gsearch.async_search(*search_args)
     except Exception:
         return await event.edit(
-            "**Error: Your query could not be found or it was flagged as unusual traffic.**"
+            "`Error: Your query could not be found or it was flagged as unusual traffic.`"
         )
     msg = ""
 
