@@ -12,7 +12,7 @@ from asyncio import subprocess as asyncsub
 from os import remove
 from time import gmtime, strftime
 from traceback import format_exc
-
+import sleep
 from telethon import events
 
 from userbot import LOGSPAMMER, BOTLOG, BOTLOG_CHATID, bot
@@ -144,8 +144,10 @@ def register(**args):
                            "**Sed, userbot has crashed.\
                        \nCheck Error Logs stored in the userbot's log chat kek.**"
                        )
+                    await sleep(2) 
     
-                    await check.delete()
+                    await check.delete("**Sed, userbot has crashed.\
+                       \nCheck Error Logs stored in the userbot's log chat kek.**")
 
                     await check.client.send_file(BOTLOG_CHATID,
                                                  "Erroooor.log",
