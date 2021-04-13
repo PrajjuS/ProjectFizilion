@@ -1,3 +1,4 @@
+#Ported from userge by @PrajjuS
 import asyncio
 from asyncio import sleep
 from userbot.events import register
