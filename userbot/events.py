@@ -12,7 +12,7 @@ from asyncio import subprocess as asyncsub
 from os import remove
 from time import gmtime, strftime
 from traceback import format_exc
-import sleep
+from asyncio import sleep 
 from telethon import events
 
 from userbot import LOGSPAMMER, BOTLOG, BOTLOG_CHATID, bot
