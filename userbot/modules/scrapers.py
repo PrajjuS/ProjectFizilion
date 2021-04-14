@@ -157,7 +157,7 @@ async def moni(event):
 
 @register(outgoing=True, pattern=r"^\.google(?: |$)(\d*)? ?(.*)")
 async def gsearch(q_event):
-    await q_event.edit("`searching........`")
+    await q_event.edit("`Searching........`")
     match = q_event.pattern_match.group(1)
     page = re.findall(r"page=\d+", match)
     try:
@@ -171,7 +171,7 @@ async def gsearch(q_event):
     try:
         gresults = await gsearch.async_search(*search_args)
     except Exception:
-        return await event.edit(
+        return await q_event.edit(
             "`Error: Your query could not be found or it was flagged as unusual traffic.`"
         )
     msg = ""
