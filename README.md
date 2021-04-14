@@ -1,5 +1,5 @@
 # Project Fizilion
-## Fork of official (Fizilion)[https://github.com/PrajjuS/ProjectFizilion] Userbot
+## Fork of official [Fizilion](https://github.com/PrajjuS/ProjectFizilion) Userbot
 
 ![logo](https://github.com/PrajjuS/ProjectFizilion/raw/dragon/resources/curved.png)
 
