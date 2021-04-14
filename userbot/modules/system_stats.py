@@ -230,7 +230,7 @@ async def amireallyalive(alive):
     uptime = await get_readable_time((time.time() - StartTime))
     output = (
         "` =============================== `\n"
-        f"`Fizilion is Up [Premium Edition] `\n"
+        f"`Fizilion is Up and Running.... `\n"
         f"`=============================== `\n"
         f"•`Telethon       : v{version.__version__} `\n"
         f"•`Python         : v{python_version()} `\n"   
