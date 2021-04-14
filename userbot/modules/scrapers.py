@@ -26,7 +26,16 @@ from search_engine_parser import GoogleSearch
 from telethon.tl.types import DocumentAttributeAudio
 from wikipedia import summary
 from wikipedia.exceptions import DisambiguationError, PageError
-
+from yt_dlp import YoutubeDL
+from yt_dlp.utils import (
+    ContentTooShortError,
+    DownloadError,
+    ExtractorError,
+    GeoRestrictedError,
+    MaxDownloadsReached,
+    PostProcessingError,
+    UnavailableVideoError,
+    XAttrMetadataError,
 )
 from youtube_search import YoutubeSearch
 
@@ -148,7 +157,7 @@ async def moni(event):
 
 @register(outgoing=True, pattern=r"^\.google(?: |$)(\d*)? ?(.*)")
 async def gsearch(q_event):
-    await q_event.edit("`Searching........`")
+    await q_event.edit("`searching........`")
     match = q_event.pattern_match.group(1)
     page = re.findall(r"page=\d+", match)
     try:
@@ -566,7 +575,121 @@ async def yt_search(event):
     await event.edit(output, link_preview=False)
 
 
+@register(outgoing=True, pattern=r"^\.r(a|v)(?: |$)(.*)")
+async def download_video(v_url):
+    """ For media downloader command, download media from YouTube and many other sites. """
 
+    if v_url.is_reply and not v_url.pattern_match.group(2):
+        url = await v_url.get_reply_message()
+        url = str(url.text)
+    else:
+        url = str(v_url.pattern_match.group(2))
+
+    if not url:
+        return await v_url.edit("`Reply to a message with a URL or pass a URL!`")
+
+    type = v_url.pattern_match.group(1).lower()
+    await v_url.edit("`Preparing to download...`")
+
+    if type == "a":
+        opts = {
+            "format": "bestaudio",
+            "addmetadata": True,
+            "key": "FFmpegMetadata",
+            "writethumbnail": True,
+            "prefer_ffmpeg": True,
+            "geo_bypass": True,
+            "nocheckcertificate": True,
+            "postprocessors": [
+                {
+                    "key": "FFmpegExtractAudio",
+                    "preferredcodec": "mp3",
+                    "preferredquality": "320",
+                }
+            ],
+            "outtmpl": "%(id)s.mp3",
+            "quiet": True,
+            "logtostderr": False,
+        }
+        video = False
+        song = True
+
+    elif type == "v":
+        opts = {
+            "format": "best",
+            "addmetadata": True,
+            "key": "FFmpegMetadata",
+            "prefer_ffmpeg": True,
+            "geo_bypass": True,
+            "nocheckcertificate": True,
+            "postprocessors": [
+                {"key": "FFmpegVideoConvertor", "preferedformat": "mp4"}
+            ],
+            "outtmpl": "%(id)s.mp4",
+            "logtostderr": False,
+            "quiet": True,
+        }
+        song = False
+        video = True
+
+    try:
+        await v_url.edit("`Fetching data, please wait..`")
+        with YoutubeDL(opts) as rip:
+            rip_data = rip.extract_info(url)
+    except DownloadError as DE:
+        return await v_url.edit(f"`{str(DE)}`")
+    except ContentTooShortError:
+        return await v_url.edit("`The download content was too short.`")
+    except GeoRestrictedError:
+        return await v_url.edit(
+            "`Video is not available from your geographic location "
+            "due to geographic restrictions imposed by a website.`"
+        )
+    except MaxDownloadsReached:
+        return await v_url.edit("`Max-downloads limit has been reached.`")
+    except PostProcessingError:
+        return await v_url.edit("`There was an error during post processing.`")
+    except UnavailableVideoError:
+        return await v_url.edit("`Media is not available in the requested format.`")
+    except XAttrMetadataError as XAME:
+        return await v_url.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
+    except ExtractorError:
+        return await v_url.edit("`There was an error during info extraction.`")
+    except Exception as e:
+        return await v_url.edit(f"{str(type(e)): {str(e)}}")
+    c_time = time.time()
+    if song:
+        await v_url.edit(f"`Preparing to upload song:`\n**{rip_data['title']}**")
+        await v_url.client.send_file(
+            v_url.chat_id,
+            f"{rip_data['id']}.mp3",
+            supports_streaming=True,
+            attributes=[
+                DocumentAttributeAudio(
+                    duration=int(rip_data["duration"]),
+                    title=str(rip_data["title"]),
+                    performer=str(rip_data["uploader"]),
+                )
+            ],
+            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                progress(d, t, v_url, c_time, "Uploading..", f"{rip_data['title']}.mp3")
+            ),
+        )
+        os.remove(f"{rip_data['id']}.mp3")
+        await v_url.delete()
+    elif video:
+        await v_url.edit(f"`Preparing to upload video:`\n**{rip_data['title']}**")
+        await v_url.client.send_file(
+            v_url.chat_id,
+            f"{rip_data['id']}.mp4",
+            supports_streaming=True,
+            caption=rip_data["title"],
+            progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                progress(d, t, v_url, c_time, "Uploading..", f"{rip_data['title']}.mp4")
+            ),
+        )
+        os.remove(f"{rip_data['id']}.mp4")
+        await v_url.delete()
 
 
 def deEmojify(inputString):
@@ -603,5 +726,7 @@ CMD_HELP.update(
         "\nCan specify the number of results needed (default is 3).",
         "imdb": ">`.imdb <movie-name>`"
         "\nUsage: Shows movie info and other stuff.",
-    
+        "rip": ">`.ra <url> [or reply] or .rv <url> [or reply]`"
+        "\nUsage: Download videos and songs from YouTube "
+        "(and [many other sites](https://ytdl-org.github.io/youtube-dl/supportedsites.html)).",
     })
