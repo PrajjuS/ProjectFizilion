@@ -1,6 +1,7 @@
 # Project Fizilion
+## Fork of official (Fizilion)[https://github.com/PrajjuS/ProjectFizilion] Userbot
 
-![logo](https://github.com/ElytrA8/ProjectFizilion/raw/dragon/resources/curved.png)
+![logo](https://github.com/PrajjuS/ProjectFizilion/raw/dragon/resources/curved.png)
 
 ```
 #include <std/disclaimer.h>
