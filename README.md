@@ -70,6 +70,6 @@ and many more people who aren't mentioned here, but may be found in [Contributor
 
 ## License
 
-This userbot licensed on [Raphielscape Public License](https://github.com/ElytrA8/ProjectFizilion/blob/dragon/LICENSE) - Version 1.d, February 2020
+This userbot licensed on [Raphielscape Public License](https://github.com/PrajjuS/ProjectFizilion/blob/demon/LICENSE) - Version 1.d, February 2020
 
 Graphics Copyrighted By [ElytrA8](https://t.me/ElytrA8)
