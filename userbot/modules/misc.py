@@ -75,7 +75,7 @@ async def killdabot(reboot):
 async def reedme(event):
     await event.edit(
         "Here's something for you to read:\n"
-        "\n[Fizilions README.md file](https://github.com/FrosT2k5/ProjectFizilion/blob/dragon/README.md)"
+        "\n[Fizilions README.md file](https://github.com/PrajjuS/ProjectFizilion/blob/demon/README.md)"
 )
 
 
@@ -107,7 +107,14 @@ async def repeat(rep):
 async def repo_is_here(wannasee):
     """ For .repo command, just returns the repo URL. """
     await wannasee.edit(
-        "[Click here](https://github.com/FrosT2k5/ProjectFizilion) to open Fizilion's GitHub Repo."
+        "[Click here](https://github.com/PrajjuS/ProjectFizilion/blob/demon) to open Fizilion's GitHub Repo."
+    )
+
+@register(outgoing=True, pattern="^.deploy$")
+async def repo_is_here(wannasee):
+    """ For .deploy command, just returns the heroku deploying URL. """
+    await wannasee.edit(
+        "[Click here](https://heroku.com/deploy?template=https://github.com/PrajjuS/ProjectFizilion/tree/demon) to deploy Fizilion Userbot on Heroku."
     )
 
 @register(outgoing=True, pattern="^.support$")
@@ -158,5 +165,7 @@ CMD_HELP.update(
 "\nUsage: Restarts the bot !!\n\n"
 ".raw"
 "\nUsage: Get detailed JSON-like formatted data about replied message."
+".deploy"
+"\nUsage: Get link to deploy Fizilion Userbot on Heroku."
      }
 )
