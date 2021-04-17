@@ -76,7 +76,7 @@ async def magnet_download(event):
         return await event.edit("Error:\n`" + str(e) + "`")
     gid = download.gid
     await check_progress_for_dl(gid=gid, event=event, previous=None)
-    await sleep(15)
+    await sleep(25)
     new_gid = await check_metadata(gid)
     await check_progress_for_dl(gid=new_gid, event=event, previous=None)
 
@@ -160,7 +160,7 @@ async def show_all(event):
                "\n\n")
     if len(msg) <= 4096:
         await event.edit("`On-going Downloads: `\n" + msg)
-        await sleep(5)
+        await sleep(15)
         await event.delete()
     else:
         await event.edit("`Output is too big, sending it as a file...`")
@@ -197,8 +197,7 @@ async def check_progress_for_dl(gid, event, previous):
                 downloaded = percentage * int(file.total_length) / 100
                 prog_str = "`Downloading` | [{0}{1}] `{2}`".format(
                     "".join(["●" for i in range(math.floor(percentage / 10))]),
-                    "".join([
-                        "○" for i in range(10 - math.floor(percentage / 10))
+                    "".join(["○" for i in range(10 - math.floor(percentage / 10))
                     ]),
                     file.progress_string(),
                 )
