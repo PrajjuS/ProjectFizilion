@@ -98,7 +98,7 @@ def register(**args):
                     date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
                     text = "**USERBOT ERROR REPORT**\n"
-                    link = "[Userbot Support]()"
+                    link = "[Userbot Support](https://t.me/ProjectFizilion)"
                     text += "If you want to, you can report it"
                     text += f". Head and forward this message to Support Group.\n"
                     text += "Nothing is logged except the fact of error and date\n"
@@ -135,19 +135,19 @@ def register(**args):
 
                     ftext += result
 
-                    file = open("Erroooor.log", "w+")
+                    file = open("error.log", "w+")
                     file.write(ftext)
                     file.close()
 
                     if LOGSPAMMER:
-                       await check.client.send_file(BOTLOG_CHATID, "Erroooor.log", caption=text)
+                       await check.client.send_file(BOTLOG_CHATID, "error.log", caption=text)
                                                  
                                                  
                     else: 
-                       await check.client.send_file(BOTLOG_CHATID, "Erroooor.log", caption=text)
+                       await check.client.send_file(BOTLOG_CHATID, "error.log", caption=text)
                                                  
                                                  
-                    remove("Erroooor.log")
+                    remove("error.log")
             else:
                 pass
 
