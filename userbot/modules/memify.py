@@ -13,17 +13,17 @@ from userbot import CMD_HELP, LOGS, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 
-@register(outgoing=True, pattern=r"^\.mmf2 (.*)")
+@register(outgoing=True, pattern=r"^\.mmf (.*)")
 async def memify(event):
     reply_msg = await event.get_reply_message()
     input_str = event.pattern_match.group(1)
-    await event.edit("**Processing...**")
+    await event.edit("`Processing...`")
 
     if not reply_msg:
-        return await event.edit("**Reply to a message containing media!**")
+        return await event.edit("`Reply to a message containing media!`")
 
     if not reply_msg.media:
-        return await event.edit("**Reply to an image/sticker/gif/video!**")
+        return await event.edit("`Reply to an image/sticker/gif/video!`")
 
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TEMP_DOWNLOAD_DIRECTORY)
@@ -32,29 +32,29 @@ async def memify(event):
     dls_path = os.path.join(TEMP_DOWNLOAD_DIRECTORY, os.path.basename(dls))
 
     if dls_path.endswith(".tgs"):
-        await event.edit("**Extracting first frame..**")
+        await event.edit("`Extracting first frame..`")
         png_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY, "meme.png")
         cmd = f"lottie_convert.py --frame 0 -if lottie -of png {dls_path} {png_file}"
         stdout, stderr = (await runcmd(cmd))[:2]
         os.remove(dls_path)
         if not os.path.lexists(png_file):
-            return await event.edit("**Couldn't parse this image.**")
+            return await event.edit("`Couldn't parse this image.`")
         dls_path = png_file
 
     elif dls_path.endswith(".mp4"):
-        await event.edit("**Extracting first frame..**")
+        await event.edit("`Extracting first frame..`")
         jpg_file = os.path.join(TEMP_DOWNLOAD_DIRECTORY, "meme.jpg")
         await take_screen_shot(dls_path, 0, jpg_file)
         os.remove(dls_path)
         if not os.path.lexists(jpg_file):
-            return await event.edit("**Couldn't parse this video.**")
+            return await event.edit("`Couldn't parse this video.`")
         dls_path = jpg_file
 
-    await event.edit("**Adding text...**")
+    await event.edit("`Adding text...`")
     try:
         webp_file = await draw_meme_text(dls_path, input_str)
     except Exception as e:
-        return await event.edit(f"**An error occurred:**\n`{e}`")
+        return await event.edit(f"`An error occurred:`\n`{e}`")
     await event.client.send_file(entity=event.chat_id,
                                  file=webp_file,
                                  force_document=False,
@@ -172,8 +172,8 @@ async def take_screen_shot(video_file: str,
 
 
 CMD_HELP.update({
-    "memify2":
-    ">`.mmf2 <top text>;<bottom text>`"
+    "memify":
+    ">`.mmf <top text>;<bottom text>`"
     "\nUsage: Reply to an image/sticker/gif/video to add text to it."
     "\nIf it's a video, text will be added to the first frame."
 })
