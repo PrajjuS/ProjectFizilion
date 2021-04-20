@@ -495,29 +495,29 @@ async def upload(u_event):
 
 
 
-#def extract_w_h(file):
- #   """ Get width and height of media """
- #   command_to_run = [
-  #      "ffprobe",
-   #     "-v",
-    #    "quiet",
-     #   "-print_format",
-      #  "json",
-       # "-show_format",
-        #"-show_streams",
-        #file,
-   # ]
+def extract_w_h(file):
+    """ Get width and height of media """
+    command_to_run = [
+        "ffprobe",
+        "-v",
+        "quiet",
+        "-print_format",
+        "json",
+        "-show_format",
+        "-show_streams",
+        file,
+    ]
     # https://stackoverflow.com/a/11236144/4723940
- #   try:
-  #      t_response = subprocess.check_output(command_to_run, stderr=subprocess.STDOUT)
-   # except subprocess.CalledProcessError as exc:
-    #    LOGS.warning(exc)
-   # else:
-    #    x_reponse = t_response.decode("UTF-8")
-     #   response_json = json.loads(x_reponse)
-      #  width = int(response_json["streams"][0]["width"])
-       # height = int(response_json["streams"][0]["height"])
-        #return width, height
+    try:
+        t_response = subprocess.check_output(command_to_run, stderr=subprocess.STDOUT)
+    except subprocess.CalledProcessError as exc:
+        LOGS.warning(exc)
+    else:
+        x_reponse = t_response.decode("UTF-8")
+        response_json = json.loads(x_reponse)
+        width = int(response_json["streams"][0]["width"])
+        height = int(response_json["streams"][0]["height"])
+        return width, height
 
 
 @register(pattern=r".uploadas(stream|vn|all) (.*)", outgoing=True)
