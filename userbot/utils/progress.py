@@ -7,6 +7,8 @@
 import time
 import math
 
+from telethon.errors.rpcerrorlist import MessageNotModifiedError
+
 from .tools import humanbytes, time_formatter
 from .exceptions import CancelProcess
 
@@ -45,5 +47,8 @@ async def progress(
             f"`ETA` -> {time_formatter(eta)}\n"
             f"`Duration` -> {time_formatter(elapsed_time)}"
         )
-        await gdrive.edit(f"`{prog_type}`\n\n"
-                          f"`Status`\n{tmp}")
+        try:
+             await gdrive.edit(f"`{prog_type}`\n\n"
+                               f"`Status`\n{tmp}")
+        except MessageNotModifiedError:
+            pass          
