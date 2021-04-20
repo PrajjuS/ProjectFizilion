@@ -494,32 +494,6 @@ async def upload(u_event):
         await u_event.edit("404: File Not Found")
 
 
-def get_video_thumb(file, output=None, width=90):
-    """ Get video thumbnail """
-    metadata = extractMetadata(createParser(file))
-    popen = subprocess.Popen(
-        [
-            "ffmpeg",
-            "-i",
-            file,
-            "-ss",
-            str(
-                int((0, metadata.get("duration").seconds)[metadata.has("duration")] / 2)
-            ),
-            "-filter:v",
-            "scale={}:-1".format(width),
-            "-vframes",
-            "1",
-            output,
-        ],
-        shell=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.DEVNULL,
-    )
-    if not popen.returncode and os.path.lexists(file):
-        return output
-    return None
-
 
 def extract_w_h(file):
     """ Get width and height of media """
