@@ -7,8 +7,7 @@
 
 from userbot import CMD_HELP
 from userbot.events import register
-
-
+from asyncio import sleep
 @register(outgoing=True, pattern=r"^\.help(?: |$)(.*)")
 async def help(event):
     """ For .help command,"""
@@ -19,9 +18,13 @@ async def help(event):
         return
     if args:
         if args in CMD_HELP:
-            await event.edit(str(CMD_HELP[args]))
+            msg=await event.edit(str(CMD_HELP[args]))
+            await sleep(45)
+            await msg.delete()
         else:
-            await event.edit("Please specify a valid module name.")
+            msg=await event.edit("Please specify a valid module name.")
+            await sleep(10)
+            await msg.delete()
     else:
         final = "**List of all loaded module(s)**\n\
                  \nSpecify which module do you want help for! \
@@ -32,4 +35,6 @@ async def help(event):
         for i in temp:
             final += "`" + str(i)
             final += "`\t\t\t•\t\t\t"
-        await event.edit(f"{final[:-5]}")
+        msg=await event.edit(f"{final[:-5]}")
+        await sleep(45)
+        await msg.delete()
