@@ -169,7 +169,7 @@
       "required": false 
     },
     "HELP_TIMEOUT": {
-      "description": "If True help message will be deleted after 45 seconds, else it will stay XD, Default is False
+      "description": "If True help message will be deleted after 45 seconds, else it will stay XD, Default is False",
       "required": false
     },
     "DEFAULT_BIO": {
