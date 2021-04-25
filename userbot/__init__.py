@@ -65,7 +65,7 @@ if CONFIG_CHECK:
 # Telegram App KEY and HASH
 API_KEY = os.environ.get("API_KEY") or None
 API_HASH = os.environ.get("API_HASH") or None
-
+SUDO_USERS = {int(x) for x in os.environ.get("SUDO_USERS", "").split()}
 
 # Userbot Session String
 STRING_SESSION = os.environ.get("STRING_SESSION") or None
