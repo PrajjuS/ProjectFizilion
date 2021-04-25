@@ -1,4 +1,23 @@
+# Copyright (C) 2019 Adek Maulana
+#
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
+# you may not use this file except in compliance with the License.
+#
+
 from .chrome import chrome, options
-from .google_images_download import googleimagesdownload
 from .progress import progress
-from .tools import human_to_bytes, humanbytes, md5, time_formatter, run_cmd, check_media
+from .google_images_download import googleimagesdownload
+
+from .tools import (
+    humanbytes,
+    time_formatter,
+    human_to_bytes,
+    md5,
+    check_media,
+    run_cmd,
+    runcmd,
+    media_to_pic,
+    edit_delete,
+    edit_or_reply,
+    media_type
+)
