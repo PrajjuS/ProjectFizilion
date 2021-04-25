@@ -18,13 +18,13 @@
     I will be rolling on the floor laughing at you.
 /**
 ```
-[![Build](https://img.shields.io/github/workflow/status/ElytrA8/ProjectFizilion/FailedChecker?style=for-the-badge)](https://github.com/ElytrA8/ProjectFizilion/actions "build")
+[![Build](https://img.shields.io/github/workflow/status/PrajjuS/ProjectFizilion/FailedChecker?style=for-the-badge)](https://github.com/PrajjuS/ProjectFizilion/actions "build")
 
-![Docker](https://img.shields.io/docker/cloud/build/elytra8/projectfizilion?style=for-the-badge)
+![Docker](https://img.shields.io/docker/cloud/build/prajwals3/projectfizilion?style=for-the-badge)
 
-![Docker_Size](https://img.shields.io/docker/image-size/elytra8/projectfizilion?style=for-the-badge)
+![Docker_Size](https://img.shields.io/docker/image-size/prajwals3/projectfizilion?style=for-the-badge)
 
-![Docker_Pulls](https://img.shields.io/docker/pulls/elytra8/projectfizilion?style=for-the-badge)
+![Docker_Pulls](https://img.shields.io/docker/pulls/prajwals3/projectfizilion?style=for-the-badge)
 
 ![Spec](https://img.shields.io/badge/Made%20with-LOVE-black?style=for-the-badge)
 
@@ -38,7 +38,7 @@ Easy way to get STRING_SESSION.
 
 ### or Run on your terminal
 ```
-wget https://raw.githubusercontent.com/ElytrA8/ProjectFizilion/dragon/terminal_getstring.sh && bash terminal_getstring.sh
+wget https://raw.githubusercontent.com/PrajjuS/ProjectFizilion/demon/terminal_getstring.sh && bash terminal_getstring.sh
 ```
 
 ## How To Host?
