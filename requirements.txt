@@ -8,6 +8,7 @@ lottie
 cffi
 coffeehouse
 covid
+colour
 cryptg
 dnspython
 deezloader
