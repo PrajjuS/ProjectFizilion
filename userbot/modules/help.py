@@ -5,7 +5,7 @@
 #
 """ Userbot help command """
 
-from userbot import CMD_HELP
+from userbot import CMD_HELP, HELP_TIMEOUT
 from userbot.events import register
 from asyncio import sleep
 @register(outgoing=True, pattern=r"^\.help(?: |$)(.*)")
@@ -19,8 +19,11 @@ async def help(event):
     if args:
         if args in CMD_HELP:
             msg=await event.edit(str(CMD_HELP[args]))
-            await sleep(45)
-            await msg.delete()
+            if HELP_TIMEOUT:
+                await sleep(45)
+                await msg.delete()
+            else:
+                return
         else:
             msg=await event.edit("Please specify a valid module name.")
             await sleep(10)
@@ -36,5 +39,6 @@ async def help(event):
             final += "`" + str(i)
             final += "`\t\t\t•\t\t\t"
         msg=await event.edit(f"{final[:-5]}")
-        await sleep(45)
-        await msg.delete()
+        if HELP_TIMEOUT:
+            await sleep(45)
+            await msg.delete()
