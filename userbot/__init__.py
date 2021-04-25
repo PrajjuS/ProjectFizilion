@@ -28,7 +28,8 @@ load_dotenv("config.env")
 STORAGE = (lambda n: Storage(Path("data") / n))
 
 StartTime = time.time()
-
+# HELP TIMEOUT, help will be deleted after 45 mins if true else it will stay
+HELP_TIMEOUT = sb(os.environ.get("HELP_TIMEOUT") or "False")
 # Bot Logs setup:
 CONSOLE_LOGGER_VERBOSE = sb(os.environ.get(
     "CONSOLE_LOGGER_VERBOSE") or "False")
