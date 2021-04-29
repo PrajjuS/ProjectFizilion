@@ -45,7 +45,7 @@ from userbot.utils import chrome, duckduckgoscraper, progress
 
 CARBONLANG = "auto"
 TTS_LANG = "en"
-TRT_LANG = "en"
+TRT_LANG = os.environ.get("TRT_LANG") or "en"
 TEMP_DOWNLOAD_DIRECTORY = "/Fizilion/.bin/"
 
 
@@ -720,7 +720,7 @@ CMD_HELP.update(
         "\nUse >`.lang tts <language code>` to set language for tts. (Default is English.)",
         "trt": ">`.trt <text> [or reply]`"
         "\nUsage: Translates text to the language which is set."
-        "\nUse >`.lang trt <language code>` to set language for trt. (Default is English)",
+        "\nUse >`.lang trt <language code>` to set language for trt. (Default is English),  you can also set environment variable for this, TRT_LANG and then the language code",
         "yt": ">`.yt [count] <query> [or reply]`"
         "\nUsage: Does a YouTube search."
         "\nCan specify the number of results needed (default is 3).",
