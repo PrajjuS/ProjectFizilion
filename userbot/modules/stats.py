@@ -11,11 +11,12 @@ from userbot.events import register
 from userbot.utils import edit_or_reply, edit_delete
 from userbot import CMD_HELP
 
-# =========================================================== #
-#                           STRINGS                           #
-# =========================================================== #
+# ===================================================== #
+#                       STRINGS                         #
+# ===================================================== #
 STAT_INDICATION = "`Collecting stats, Plox wait....`"
-# =========================================================== #
+# ===================================================== #
+
 
 ###################################  Functions  ##################################
 def user_full_name(user):
@@ -141,12 +142,17 @@ async def _(event):
     sevent = await edit_or_reply(event, "`Processing...`")
     async with event.client.conversation(chat) as conv:
         try:
-            await conv.send_message(f"{uid}")
+            msg = await conv.send_message(f"{uid}")
         except Exception:
             await edit_delete(sevent, "`unblock `@tgscanrobot` and then try`")
         response = await conv.get_response()
         await event.client.send_read_acknowledge(conv.chat_id)
         await sevent.edit(response.text)
+        """Cleanup after completed"""
+        await event.client.delete_messages(conv.chat_id, [msg.id, response.id])
+
+        
+
         
 CMD_HELP.update({
     "stats":
