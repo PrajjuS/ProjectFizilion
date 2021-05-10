@@ -16,7 +16,7 @@ from telethon.tl.types import MessageEntityMentionName
 import userbot.modules.sql_helper.gban_sql_helper as gban_sql
 from userbot.modules.sql_helper.mute_sql import is_muted, mute, unmute
 
-from userbot import BOTLOG, BOTLOG_CHATID, SUDO_USERS, CMD_HELP
+from userbot import BOTLOG, BOTLOG_CHATID, DEVS, CMD_HELP
 from userbot.utils import edit_delete, edit_or_reply
 from userbot.events import register
 
@@ -104,10 +104,10 @@ async def gban(event):
     if not user:
         return
     if user.id == (await event.client.get_me()).id:
-        await gbun.edit("why would I ban myself")
+        await gbun.edit("`Why would I Gban myself`")
         return
-    if user.id in SUDO_USERS:
-        await gbun.edit("why would I ban my dev")
+    if user.id in DEVS:
+        await gbun.edit("**Tryning to Gban my Dev huh?...**")
         return
     try:
         hmm = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
@@ -286,6 +286,8 @@ async def startgmute(event):
             return
         if user.id == (await event.client.get_me()).id:
             return await edit_or_reply(event, "`Sorry, I can't gmute myself`")
+        if user.id in DEVS:
+            return await edit_or_reply(event, "**Trying to Gmute my Dev huh?...**")
         userid = user.id
     try:
         user = (await event.client(GetFullUserRequest(userid))).user
@@ -403,8 +405,8 @@ async def gkick(event):
     if user.id == (await event.client.get_me()).id:
         await gkic.edit("why would I kick myself")
         return
-    if user.id in SUDO_USERS:
-        await gkic.edit("why would I kick my dev")
+    if user.id in DEVS:
+        await gkic.edit("**Trying to Gkick my Dev huh?...**")
         return
     try:
         hmm = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
