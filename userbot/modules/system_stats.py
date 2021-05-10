@@ -236,10 +236,10 @@ async def amireallyalive(alive):
         "` =============================== `\n"
         f"`Fizilion is Running.... `\n"
         f"`=============================== `\n\n"
-        f"`(os info)`\n
+        f"`(os info)`\n"
         f"•`Platform Type   : {os.name}`\n"
         f"•`Distro          : {distro.name(pretty=False)} {distro.version(pretty=False, best=False)}`\n\n"
-        f"`(pypi modules version)`"\n
+        f"`(pypi modules version)`\n"
         f"•`Python         : v{python_version()} `\n"   
         f"•`Telethon       : v{version.__version__} `\n"
         f"•`PIP            : v{pip.__version__} `\n\n"
