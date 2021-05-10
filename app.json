@@ -166,11 +166,7 @@
     },
      "MONGO_DB_URI": {
       "description": "Your MongoDB Atlas URL.",
-      "required": false 
-    },
-    "HELP_TIMEOUT": {
-      "description": "If True help message will be deleted after 45 seconds, else it will stay XD, Default is False",
-      "required": false
+      "required": true 
     },
     "DEFAULT_BIO": {
       "description": "Default profile bio.",
@@ -184,6 +180,10 @@
     "ALIVE_LOGO": {
       "description": "Show Image/Logo in .alive message. Fill value of image your link image, use telegra.ph / i.ibb.co to get your own image",
       "required": false
+    },
+    "TIMEOUT": {
+      "description": "Timeout settings for alive and help modules. Setting it to True will delete help and alive msgs after 30secs whenever the command it used.",
+      "value": "True"
     },
     "G_DRIVE_CLIENT_SECRET": {
       "description": "Enter Your Client Secret for Google Drive.",
