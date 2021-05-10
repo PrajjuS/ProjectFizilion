@@ -10,6 +10,7 @@ coffeehouse
 covid
 colour
 cryptg
+distro
 dnspython
 deezloader
 emoji
