@@ -67,8 +67,8 @@ async def download(target_file):
             percentage = downloader.get_progress() * 100
             speed = downloader.get_speed()
             progress_str = "[{}{}] `{}%`".format(
-                "".join("●" for _ in range(math.floor(percentage / 10))),
-                "".join("○" for _ in range(10 - math.floor(percentage / 10))),
+                "".join("■" for _ in range(math.floor(percentage / 10))),
+                "".join("▨" for _ in range(10 - math.floor(percentage / 10))),
                 round(percentage, 2),
             )
 
