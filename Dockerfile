@@ -1,6 +1,6 @@
 # inherit prebuilt image
 #Changed docker file
-FROM prajwals3/projectfizilion:latest
+FROM elytra8/fizfed:latest
 
 # env setup
 RUN mkdir /Fizilion && chmod 777 /Fizilion
