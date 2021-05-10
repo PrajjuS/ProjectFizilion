@@ -119,7 +119,7 @@ async def repo_is_here(wannasee):
 
 @register(outgoing=True, pattern="^.support$")
 async def grup(sapot):
-    await sapot.edit("Support Group: @ProjectFizilion")
+    await sapot.edit("**Channel:** @TheProjectFizilion\n**Support Group:** @ProjectFizilionChat")
     
 @register(outgoing=True, pattern="^.raw$")
 async def raw(rawtext):
