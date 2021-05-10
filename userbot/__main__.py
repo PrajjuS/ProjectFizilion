@@ -30,7 +30,7 @@ LOGS.info("You are running Project Fizilion")
 
 LOGS.info(
     "Congratulations, your userbot is now running !! Test it by typing .alive / .on in any chat."
-    "If you need assistance, head to https://t.me/ProjectFizilion")
+    "If you need assistance, head to https://t.me/ProjectFizilionChat")
 
 if len(argv) not in (1, 3, 4):
     bot.disconnect()
