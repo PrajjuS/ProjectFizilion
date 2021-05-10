@@ -142,6 +142,10 @@ ALIVE_NAME = os.environ.get("ALIVE_NAME") or None
 
 # Default .alive logo
 ALIVE_LOGO = str(os.environ.get("ALIVE_LOGO") or "https://github.com/ElytrA8/ProjectFizilion/raw/dragon/resources/glitch.gif")
+
+# .alive and .help timeout
+TIMEOUT = sb(os.environ.get("TIMEOUT") or "True")
+
 # Time & Date - Country and Time Zone
 COUNTRY = str(os.environ.get("COUNTRY") or "")
 TZ_NUMBER = os.environ.get("TZ_NUMBER") or 1

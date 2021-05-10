@@ -5,13 +5,10 @@
 #
 """ Userbot module for getting information about the server. """
 
-import distro
 import platform
-import pip
 import shutil
 import sys
 import time
-import os
 from asyncio import sleep
 from asyncio import create_subprocess_exec as asyncrunapp
 from asyncio.subprocess import PIPE as asyncPIPE
@@ -24,7 +21,7 @@ import psutil
 from git import Repo
 from telethon import __version__, version
 
-from userbot import ALIVE_LOGO, ALIVE_NAME, CMD_HELP, USERBOT_VERSION, StartTime, bot
+from userbot import ALIVE_LOGO, ALIVE_NAME, CMD_HELP, TIMEOUT, USERBOT_VERSION, StartTime, bot
 from userbot.events import register
 
 # ================= CONSTANT =================
@@ -234,41 +231,52 @@ async def amireallyalive(alive):
     uptime = await get_readable_time((time.time() - StartTime))
     output = (
         "` =============================== `\n"
-        f"`Fizilion is Running.... `\n"
-        f"`=============================== `\n\n"
-        f"`(os info)`\n"
-        f"•`Platform Type   : {os.name}`\n"
-        f"•`Distro          : {distro.name(pretty=False)} {distro.version(pretty=False, best=False)}`\n\n"
-        f"`(pypi modules version)`\n"
-        f"•`Python         : v{python_version()} `\n"   
+        f"`Fizilion is Up [Premium Edition] `\n"
+        f"`=============================== `\n"
         f"•`Telethon       : v{version.__version__} `\n"
-        f"•`PIP            : v{pip.__version__} `\n\n"
-        f"`(MISC info)`\n"
+        f"•`Python         : v{python_version()} `\n"   
         f"•`User           : {DEFAULTUSER} `\n"
         f"•`Running on     : {repo.active_branch.name} `\n"
         f"•`Loaded modules : {len(modules)} `\n"
         f"•`Fizilion       : {USERBOT_VERSION} `\n"
         f"•`Bot Uptime     : {uptime} `\n"
-        f"` =============================== `\n"
     )
-    if ALIVE_LOGO:
-        try:
-            logo = ALIVE_LOGO
-            msg = await bot.send_file(alive.chat_id, logo, caption=output, del_in=10)
-            await alive.delete()
-            await sleep(15)
+    if TIMEOUT:
+        if ALIVE_LOGO:
+                try:
+                    logo = ALIVE_LOGO
+                    msg = await bot.send_file(alive.chat_id, logo, caption=output)
+                    await alive.delete()
+                    await sleep(10)
+                    await msg.delete()
+                    
+                except BaseException:
+                    await alive.edit(
+                        output + "\n\n *`The provided logo is invalid."
+                        "\nMake sure the link is directed to the logo picture`"
+                    )
+        else:
+            msg=await alive.edit(output)
+            await sleep(10)
             await msg.delete()
-        except BaseException:
-            await alive.edit(
-                output + "\n\n *`The provided logo is invalid."
-                "\nMake sure the link is directed to the logo picture`"
-            )
-    else:
-        msg=await alive.edit(output)
-        await sleep(15)
-        await msg.delete()
-
-
+                
+    if not TIMEOUT:
+        if ALIVE_LOGO:
+                try:
+                    logo = ALIVE_LOGO
+                    msg = await bot.send_file(alive.chat_id, logo, caption=output)
+                    await alive.delete()
+                    
+                except BaseException:
+                    await alive.edit(
+                        output + "\n\n *`The provided logo is invalid."
+                        "\nMake sure the link is directed to the logo picture`"
+                    )
+            
+        else:
+            msg=await alive.edit(output)
+          
+    
 @register(outgoing=True, pattern="^.aliveu")
 async def amireallyaliveuser(username):
     """ For .aliveu command, change the username in the .alive command. """
