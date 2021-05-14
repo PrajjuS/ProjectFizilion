@@ -162,11 +162,7 @@
     },
     "BIO_PREFIX": {
       "description": "Prefix for Last.FM Module Bio.",
-      "required": false
-    },
-     "MONGO_DB_URI": {
-      "description": "Your MongoDB Atlas URL.",
-      "required": true 
+      "required": false 
     },
     "DEFAULT_BIO": {
       "description": "Default profile bio.",
@@ -189,8 +185,8 @@
       "description": "Enter Your Client Secret for Google Drive.",
       "required": false
     },
-    "G_DRIVE_AUTH_TOKEN_DATA": {
-      "description": "Enter the Google Drive authentication data, as a JSON structure.",
+    "G_DRIVE_FOLDER_ID": {
+      "description": "Enter the Google Drive Folder id where you want to upload your files.",
       "required": false
     },
     "WEATHER_DEFCITY": {
