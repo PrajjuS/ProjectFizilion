@@ -22,21 +22,19 @@ from userbot.utils import chrome, human_to_bytes, humanbytes, md5, time_formatte
 GITHUB = "https://github.com"
 
 
-@register(outgoing=True, pattern="^.magisk$")
+@register(outgoing=True, pattern=r"^\.magisk$")
 async def magisk(request):
-    """ magisk latest releases """
     magisk_dict = {
-        "Stable": "https://raw.githubusercontent.com/topjohnwu/magisk_files/master/stable.json",
-        "Beta": "https://raw.githubusercontent.com/topjohnwu/magisk_files/master/beta.json",
-        "Canary": "https://raw.githubusercontent.com/SuperCosmicBeing/tesla-canary/master/keneri.json",
+        "Stable": "https://raw.githubusercontent.com/topjohnwu/magisk-files/master/stable.json",
+        "Beta": "https://raw.githubusercontent.com/topjohnwu/magisk-files/master/beta.json",
+        "Canary": "https://raw.githubusercontent.com/topjohnwu/magisk-files/master/canary.json",
     }
     releases = "Latest Magisk Releases:\n"
     for name, release_url in magisk_dict.items():
-        data = get(release_url).json()
+        data = data = get(release_url).json()
         releases += (
-            f'{name}: [ZIP v{data["magisk"]["version"]}]({data["magisk"]["link"]}) | '
-            f'[APK v{data["app"]["version"]}]({data["app"]["link"]}) | '
-            f'[Uninstaller]({data["uninstaller"]["link"]})\n'
+            f'{name}: [APK v{data["magisk"]["version"]}]({data["magisk"]["link"]}) | '
+            f'[Changelog]({data["magisk"]["note"]})\n'
         )
     await request.edit(releases)
 
