@@ -9,7 +9,6 @@ cffi
 coffeehouse
 covid
 colour
-cryptg
 distro
 dnspython
 deezloader
@@ -51,9 +50,9 @@ redis
 requests
 speedtest-cli
 sqlalchemy==1.3.23
-TgCrypto
 telethon
 telethon-session-sqlalchemy
+telethon-tgcrypto
 telegraph
 urbandict
 wikipedia
