@@ -70,4 +70,4 @@ and many more people who aren't mentioned here, but may be found in [Contributor
 
 This userbot licensed on [Raphielscape Public License](https://github.com/PrajjuS/ProjectFizilion/blob/demon/LICENSE) - Version 1.d, February 2020
 
-Graphics Copyrighted By [ElytrA8](https://t.me/ElytrA8)
+Graphics Copyrighted By [ElytrA8](https://t.me/ElytrA8) © 2021
