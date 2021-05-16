@@ -25,18 +25,18 @@ async def _(event):
         file_name = await bot.download_media(reply.media, Var.TEMP_DOWNLOAD_DIRECTORY)
     event.message.id
     CMD_WEB = {
-        "arp": "./transfer arp \"{}\"",
-        "bit": "./transfer bit \"{}\"",
-        "cat": "./transfer cat \"{}\"",
-        "cow": "./transfer cow \"{}\"",
-        "gof": "./transfer gof \"{}\"",
-        "tmp": "./transfer tmp \"{}\"",
-        "vim": "./transfer vim \"{}\"",
-        "wss": "./transfer wss \"{}\"",
-        "wet": "./transfer wet \"{}\"",
-        "flk": "./transfer flk \"{}\"",
-        "trs": "./transfer trs \"{}\"",
-        "lzs": "./transfer lzs \"{}\""}
+        "arp": "transfer arp \"{}\"",
+        "bit": "transfer bit \"{}\"",
+        "cat": "transfer cat \"{}\"",
+        "cow": "transfer cow \"{}\"",
+        "gof": "transfer gof \"{}\"",
+        "tmp": "transfer tmp \"{}\"",
+        "vim": "transfer vim \"{}\"",
+        "wss": "transfer wss \"{}\"",
+        "wet": "transfer wet \"{}\"",
+        "flk": "transfer flk \"{}\"",
+        "trs": "transfer trs \"{}\"",
+        "lzs": "transfer lzs \"{}\""}
     try:
         selected_one = CMD_WEB[selected_transfer].format(file_name)
     except KeyError:
