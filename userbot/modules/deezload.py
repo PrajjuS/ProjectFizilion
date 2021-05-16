@@ -142,12 +142,11 @@ async def upload_track(track_location, message):
             waveform=None,
         )
     ]
-    supports_streaming = True
-    force_document = False
+
     caption_rts = os.path.basename(track_location)
     with open(track_location, "rb") as f:
         result = await upload_file(
-            client=message.event,
+            client=message.client,
             file=f,
             name=caption_rts
         )       
@@ -155,8 +154,8 @@ async def upload_track(track_location, message):
         message.chat_id,
         result,
         caption=caption_rts,
-        force_document=force_document,
-        supports_streaming=supports_streaming,
+        force_document=False,
+        supports_streaming=True,
         allow_cache=False,
         attributes=document_attributes,
     )
