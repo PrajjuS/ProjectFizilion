@@ -147,7 +147,7 @@ async def upload_track(track_location, message):
     caption_rts = os.path.basename(track_location)
     with open(track_location, "rb") as f:
         result = await upload_file(
-            client=client.event,
+            client=message.event,
             file=f,
             name=caption_rts
         )       
