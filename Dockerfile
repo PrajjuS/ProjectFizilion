@@ -12,7 +12,7 @@ RUN git clone https://github.com/PrajjuS/ProjectFizilion -b demon /Fizilion
 #RUN git clone https://github.com/Senpai-sama-afk/ProjectFizilion -b dragon /Fizilion
 
 # Copies session and config(if it exists)
-COPY ./sample_config.env ./userbot.session ./config.env /Fizilion/
+COPY ./sample_config.env ./userbot.session* ./config.env* /Fizilion/
 
 # install required pypi modules
 RUN pip3 install -r requirements.txt
