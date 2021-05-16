@@ -17,14 +17,13 @@ from telethon.tl.types import DocumentAttributeAudio
 
 from userbot import CMD_HELP, DEEZER_ARL_TOKEN, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
+from userbot.utils.FastTelethon import upload_file
 
 
 @register(outgoing=True, pattern=r"^\.deez (.+?|) (FLAC|MP3\_320|MP3\_256|MP3\_128)")
 async def _(event):
     """DeezLoader by @An0nimia
     Ported for UniBorg by @SpEcHlDe"""
-    if event.fwd_from:
-        return
 
     strings = {
         "name": "DeezLoad",
@@ -146,9 +145,15 @@ async def upload_track(track_location, message):
     supports_streaming = True
     force_document = False
     caption_rts = os.path.basename(track_location)
+    with open(track_location, "rb") as f:
+        result = await upload_file(
+            client=client.event,
+            file=f,
+            name=caption_rts
+        )       
     await message.client.send_file(
         message.chat_id,
-        track_location,
+        result,
         caption=caption_rts,
         force_document=force_document,
         supports_streaming=supports_streaming,
