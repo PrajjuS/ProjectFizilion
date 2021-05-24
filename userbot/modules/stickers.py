@@ -294,6 +294,7 @@ async def k(args):
     emoji = None
 
     if message and message.media:
+        await args.delete()
         if isinstance(message.media, MessageMediaPhoto):
             photo = io.BytesIO()
             photo = await bot.download_media(message.photo, photo)
@@ -320,7 +321,6 @@ async def k(args):
             photo = 1
         else:
             return await args.edit("**Unsupported file!**")
-        await args.delete()
     else:
         return await args.edit("**I can't kang that...**")
         time.sleep(1)
