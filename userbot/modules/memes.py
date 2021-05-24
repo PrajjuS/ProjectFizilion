@@ -773,6 +773,162 @@ async def emo(sigh):
         await sigh.edit(okay)
 
 
+@register(outgoing=True, pattern="^.tu$")
+async def thumbsup(palm):
+    """Thumbsup"""
+    await palm.edit("👍")
+
+@register(outgoing=True, pattern="^.e$")
+async def smile(palm):
+    """smile 😂"""
+    await palm.edit("😂")
+
+@register(outgoing=True, pattern="^.i$")
+async def meh(palm):
+    """-_-"""
+    await palm.edit("-_-")
+
+@register(outgoing=True, pattern="^.np$")
+async def noprob(palm):
+    """No problem 👍"""
+    await palm.edit("No problem 👍")
+
+@register(outgoing=True, pattern=r"^.l (.*)")
+async def payl(event):
+    paytext = event.pattern_match.group(1)
+    pay = "{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}".format(
+        paytext * 3,
+        paytext * 3,
+        paytext * 3,
+        paytext * 3,
+        paytext * 3,
+        paytext * 3,
+        paytext * 3,
+        paytext * 3,
+        paytext * 3,
+        paytext * 3,
+        paytext * 8,
+        paytext * 8,
+    )
+    await event.edit(pay)
+
+
+@register(outgoing=True, pattern="^pruhmote$")
+async def pruhmote_func(pruhmote):
+    animation_chars = [
+        "Promoting user.",
+        "Promoting user..",
+        "Promoting user...",
+        "Promoting user..",
+        "Promoting user.",
+        "Promoting user..",
+        "Promoting user...",
+        "Promoting user..",
+        "Promoting user.",
+        "<b>Can,t promote user because he's not worthy</b>",
+    ]
+    for j in range(10):
+        await asyncio.sleep(0.6)
+        await message.edit(animation_chars[i % 10], parse_mode="html")
+
+
+@register(outgoing=True, pattern="^premote$")
+async def premote_func(pruhmote):
+    animation_chars = [
+        "Promoting user.",
+        "Promoting user..",
+        "Promoting user...",
+        "Promoting user..",
+        "Promoting user.",
+        "Promoting user..",
+        "Promoting user...",
+        "Promoting user..",
+        "Promoting user.",
+        "<b>Can,t promote user\nReason:\nConnection timed out</b>",
+    ]
+    for j in range(10):
+        await asyncio.sleep(0.6)
+        await message.edit(animation_chars[i % 10], parse_mode="html")
+
+@register(outgoing=True, pattern="^admeme$")
+async def admeme_func(admeme):
+    animation_chars = [
+        "Promoting user.",
+        "Promoting user..",
+        "Promoting user...",
+        "Promoting user..",
+        "Promoting user.",
+        "Promoting user..",
+        "Promoting user...",
+        "Promoting user..",
+        "Promoting user.",
+        "<b>Can,t promote user because he's a retard</b>",
+    ]
+    for j in range(10):
+        await asyncio.sleep(0.6)
+        await message.edit(animation_chars[i % 10], parse_mode="html")
+
+
+
+@register(outgoing=True, pattern="^owner$")
+async def owner_func(ownerrr):
+    animation_chars = [
+        "Promoting user .",
+        "Promoting user..",
+        "Promoting user...",
+        "Demoting current owner..",
+        "Demoting current owner.",
+        "Demoting current owner..",
+        "Setting user as new owner...",
+        "Setting user as new owner..",
+        "Setting user as new owner.",
+        "<b>Error</b>\nCan,t set user as group owner reason:\n<b>He's a retard</b>",
+    ]
+    for j in range(10):
+        await asyncio.sleep(0.6)
+        await message.edit(animation_chars[i % 10], parse_mode="html")
+
+
+
+@register(outgoing=True, pattern="^ownor$")
+async def ownor_func(pruhmote):
+    animation_chars = [
+        "Promoting user .",
+        "Promoting user..",
+        "Promoting user...",
+        "Demoting current owner..",
+        "Demoting current owner.",
+        "Demoting current owner..",
+        "Setting user as new owner...",
+        "Setting user as new owner..",
+        "Setting user as new owner.",
+        "<b>Can,t complete action\nReason:\nConnection timed out</b>",
+    ]
+    for j in range(10):
+        await asyncio.sleep(0.6)
+        await message.edit(animation_chars[i % 10], parse_mode="html")
+
+
+
+@register(outgoing=True, pattern="^setowner$")
+async def setowner_func(setowner):
+    animation_chars = [
+        "Promoting user .",
+        "Promoting user..",
+        "Promoting user...",
+        "Demoting current owner..",
+        "Demoting current owner.",
+        "Demoting current owner..",
+        "Setting user as new owner...",
+        "Setting user as new owner..",
+        "Setting user as new owner.",
+        "<b>Error</b>\nCan,t set user as group owner reason:\n<b>He's not worthy</b>",
+    ]
+    for j in range(10):
+        await asyncio.sleep(0.6)
+        await message.edit(animation_chars[i % 10], parse_mode="html")
+
+
 @register(outgoing=True, pattern="^.(yes|no|maybe|decide)$")
 async def decide(event):
     decision = event.pattern_match.group(1).lower()
@@ -1701,6 +1857,19 @@ async def nou(noway):
             "`\n┫┈┈  Prooooooooooo\n┃┈╰╰━━━━╯`"
             "`\n┗━━┻━┛`"
         )
+
+@register(outgoing=True, pattern="^.gn$")
+async def nou(noway):
+    if not noway.text[0].isalpha() and noway.text[0] not in ("/", "#", "@", "!"):
+        await noway.edit(
+            "`\n-✭´-"
+            "`\n¯¨˜“ª¤.¸°¸.¤ª“˜¨¨¯¯¨˜“ª¤.¸°¸.¤`"
+            "`\n..¤ª“˜¨¨¯¯¨¨˜“ª¤. : ☆ ☆ ☆`"
+            "`\n☆ ☆ ☆ ƓƠƠƊ ƝƖƓӇƬ ☆ ☆ ☆`"
+            "`\n……-✭´-.*_-`☆´-`"
+            "`\n.¤ª“˜¨¨¯¯¨¨˜“ª¤.☆.¤ ª“˜¨°¸.¤ª`"
+            "`\nGood night , I go to sleep.-`"
+        )
         
 @register(outgoing=True, pattern="^.gm$")
 async def nou(noway):
@@ -1721,13 +1890,6 @@ async def nou(noway):
     if not noway.text[0].isalpha() and noway.text[0] not in ("/", "#", "@", "!"):
         await noway.edit(
           "Good Evening"
-     )
-
-@register(outgoing=True, pattern="^.gn$")
-async def nou(noway):
-    if not noway.text[0].isalpha() and noway.text[0] not in ("/", "#", "@", "!"):
-        await noway.edit(
-          "Good Night"
      )
 
 @register(outgoing=True, pattern="^.hii$")

@@ -153,6 +153,58 @@ async def promote(promt):
     await promt.edit("`Promoting...`")
     user, rank = await get_user_from_event(promt)
     if not rank:
+        rank = "Admin"  # Just in case.
+    if user:
+        pass
+    else:
+        return
+
+    # Try to promote if current user is admin or creator
+    try:
+        await promt.client(EditAdminRequest(promt.chat_id, user.id, new_rights, rank))
+        await promt.edit("`Promoted Successfully!`")
+
+    # If Telethon spit BadRequestError, assume
+    # we don't have Promote permission
+    except BadRequestError:
+        await promt.edit(NO_PERM)
+        return
+
+    # Announce to the logging group if we have promoted successfully
+    if BOTLOG:
+        await promt.client.send_message(
+            BOTLOG_CHATID,
+            "#PROMOTE\n"
+            f"USER: [{user.first_name}](tg://user?id={user.id})\n"
+            f"CHAT: {promt.chat.title}(`{promt.chat_id}`)",
+        )
+
+@register(outgoing=True, pattern="^.fpromote(?: |$)(.*)")
+async def fpromote(promt):
+    """ For .fpromote command, promotes the replied/tagged person """
+    # Get targeted chat
+    chat = await promt.get_chat()
+    # Grab admin status or creator in a chat
+    admin = chat.admin_rights
+    creator = chat.creator
+
+    # If not admin and not creator, also return
+    if not admin and not creator:
+        await promt.edit(NO_ADMIN)
+        return
+
+    new_rights = ChatAdminRights(
+        add_admins=True,
+        invite_users=True,
+        change_info=True,
+        ban_users=True,
+        delete_messages=True,
+        pin_messages=True,
+    )
+
+    await promt.edit("`Promoting...`")
+    user, rank = await get_user_from_event(promt)
+    if not rank:
         rank = "Administrator"  # Just in case.
     if user:
         pass
@@ -625,6 +677,48 @@ async def pin(msg):
 @register(outgoing=True, pattern="^.kick(?: |$)(.*)")
 async def kick(usr):
     """ For .kick command, kicks the replied/tagged person from the group. """
+    # Admin or creator check
+    chat = await usr.get_chat()
+    admin = chat.admin_rights
+    creator = chat.creator
+
+    # If not admin and not creator, return
+    if not admin and not creator:
+        await usr.edit(NO_ADMIN)
+        return
+
+    user, reason = await get_user_from_event(usr)
+    if not user:
+        await usr.edit("`Couldn't fetch user.`")
+        return
+
+    await usr.edit("`Kicking...`")
+
+    try:
+        await usr.client.kick_participant(usr.chat_id, user.id)
+        await sleep(1)
+    except Exception as e:
+        await usr.edit(NO_PERM + f"\n{str(e)}")
+        return
+
+    if reason:
+        await usr.edit(
+            f"`Kicked` [{user.first_name}](tg://user?id={user.id})`!`\nReason: {reason}"
+        )
+    else:
+        await usr.edit(f"`Kicked` [{user.first_name}](tg://user?id={user.id})`!`")
+
+    if BOTLOG:
+        await usr.client.send_message(
+            BOTLOG_CHATID,
+            "#KICK\n"
+            f"USER: [{user.first_name}](tg://user?id={user.id})\n"
+            f"CHAT: {usr.chat.title}(`{usr.chat_id}`)\n",
+        )
+
+@register(outgoing=True, pattern="^.punch(?: |$)(.*)")
+async def kick(usr):
+    """ For .punch command, kicks the replied/tagged person from the group. """
     # Admin or creator check
     chat = await usr.get_chat()
     admin = chat.admin_rights

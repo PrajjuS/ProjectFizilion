@@ -12,6 +12,7 @@ from userbot.events import register
 from userbot.modules.admin import get_user_from_event
 
 
+@register(outgoing=True, pattern="^.id$")
 @register(outgoing=True, pattern="^.userid$")
 async def useridgetter(target):
     """ For .userid command, returns the ID of the target user. """
@@ -47,6 +48,7 @@ async def permalink(mention):
         await mention.edit(f"[{tag}](tg://user?id={user.id})")
 
 
+@register(outgoing=True, pattern="^.ids$")
 @register(outgoing=True, pattern="^.chatid$")
 async def chatidgetter(chat):
     """ For .chatid, returns the ID of the chat you are in at that moment. """

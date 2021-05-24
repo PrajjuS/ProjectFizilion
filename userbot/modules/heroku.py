@@ -122,6 +122,7 @@ async def set_var(var):
 """
 
 
+@register(outgoing=True, pattern=r"^.dyno(?: |$)")
 @register(outgoing=True, pattern=r"^.usage(?: |$)")
 async def dyno_usage(dyno):
     """
