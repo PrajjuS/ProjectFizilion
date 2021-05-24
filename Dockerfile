@@ -1,5 +1,4 @@
 # inherit prebuilt image
-#Changed docker file
 FROM elytra8/fizfed:latest
 
 # env setup
