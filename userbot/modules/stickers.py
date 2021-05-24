@@ -320,7 +320,6 @@ async def k(args):
             photo = 1
         else:
             return await args.edit("**Unsupported file!**")
-        time.sleep(1)
         await args.delete()
     else:
         return await args.edit("**I can't kang that...**")
