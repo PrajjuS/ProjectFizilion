@@ -45,13 +45,16 @@ async def progress(
             f"**ETA :**` {time_formatter(eta)}`\n"
             f"**Duration :** `{time_formatter(elapsed_time)}`"
         )
-        if file_name:
-            await gdrive.edit(
-                f"**{prog_type}**\n\n"
-                f"**File Name : **`{file_name}`**\nStatus**\n{tmp}"
-            )
-        else:
-            await gdrive.edit(f"**{prog_type}**\n\n" f"**Status**\n{tmp}")
+        try:
+             if file_name:
+                 await gdrive.edit(
+                   f"**{prog_type}**\n\n"
+                   f"**File Name : **`{file_name}`**\nStatus**\n{tmp}"
+                    )
+             else:
+                 await gdrive.edit(f"**{prog_type}**\n\n" f"**Status**\n{tmp}")
+        except MessageNotModifiedError:
+            pass            
         
 class CancelProcess(Exception):
     """
