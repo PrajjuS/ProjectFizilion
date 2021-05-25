@@ -50,7 +50,7 @@ For further guide you can head to [Groups and Support](https://github.com/MoveAn
 
 ## Groups and Support
 
-For discussion, bug reporting, and help, you can join [project Fizilion Support Group](https://t.me/ProjectFizilion).
+For discussion, bug reporting, and help, you can join [Project Fizilion Support Group](https://t.me/ProjectFizilionChat).
 
 ## Credits
 
