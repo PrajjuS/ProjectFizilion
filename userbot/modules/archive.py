@@ -75,7 +75,7 @@ async def _(event):
                     f"`the given file {str(path)} is not zip file to unzip`"
                 )
             destination = os.path.join(
-                TMP_DOWNLOAD_DIRECTORY,
+                TEMP_DOWNLOAD_DIRECTORY,
                 os.path.splitext(os.path.basename(path))[0],
             )
             with zipfile.ZipFile(path, "r") as zip_ref:
