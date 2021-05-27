@@ -15,9 +15,9 @@ async def clone(event):
         return
     inputArgs = event.pattern_match.group(1)
     if "-r" in inputArgs:
-        await event.edit("`Reverting to my true identity..`")
         if not STORAGE.userObj:
             return await event.edit("`You need to clone a profile before reverting!`")
+        await event.edit("`Reverting to my true identity..`")
         await updateProfile(STORAGE.userObj, reset=True)
         await event.edit("`Feels good to be back.`")
         return
@@ -48,9 +48,7 @@ async def updateProfile(userObj, reset=False):
                 access_hash=userPfp.access_hash,
                 file_reference=userPfp.file_reference
             )]))
-        await bot(UpdateProfileRequest(
-             about=userAbout, first_name=firstName, last_name=lastName
-           ))
+        
     else:
         try:
             userPfp = userObj.profile_photo
@@ -58,7 +56,9 @@ async def updateProfile(userObj, reset=False):
             await bot(UploadProfilePhotoRequest(await bot.upload_file(pfpImage)))
         except BaseException:
             pass
-    
+    await bot(UpdateProfileRequest(
+             about=userAbout, first_name=firstName, last_name=lastName
+           ))
 
 
 async def getUserObj(event):
