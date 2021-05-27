@@ -48,6 +48,9 @@ async def updateProfile(userObj, reset=False):
                 access_hash=userPfp.access_hash,
                 file_reference=userPfp.file_reference
             )]))
+        await bot(UpdateProfileRequest(
+             about=userAbout, first_name=firstName, last_name=lastName
+           ))
     else:
         try:
             userPfp = userObj.profile_photo
@@ -55,9 +58,7 @@ async def updateProfile(userObj, reset=False):
             await bot(UploadProfilePhotoRequest(await bot.upload_file(pfpImage)))
         except BaseException:
             pass
-    await bot(UpdateProfileRequest(
-        about=userAbout, first_name=firstName, last_name=lastName
-    ))
+    
 
 
 async def getUserObj(event):
