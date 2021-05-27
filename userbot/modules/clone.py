@@ -36,6 +36,8 @@ async def clone(event):
 
 
 async def updateProfile(userObj, reset=False):
+    if event.reply_to_msg_id is None:
+        return await event.edit("Wat am I suppose to clone?(Reply to someone)")
     firstName = "Deleted Account" if userObj.user.first_name is None else userObj.user.first_name
     lastName = "" if userObj.user.last_name is None else userObj.user.last_name
     userAbout = userObj.about if userObj.about is not None else ""
