@@ -509,17 +509,6 @@ async def rm_deletedacc(show):
             \nCHAT: {show.chat.title}(`{show.chat_id}`)",
         )
 
-@register(outgoing=True, pattern="^.all$")
-async def _(event):
-    if event.fwd_from:
-        return
-    mentions = "`Tagged all`"
-    chat = await event.get_input_chat()
-    async for x in event.client.iter_participants(chat, 100):
-        mentions += f"[\u2063](tg://user?id={x.id})"
-    msg = await event.reply(mentions)
-
-
 @register(outgoing=True, pattern="^.admins(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
@@ -901,8 +890,6 @@ CMD_HELP.update(
 \nUsage: Removes the person from the muted list.\
 \n\n.zombies\
 \nUsage: Searches for deleted accounts in a group. Use .zombies clean to remove deleted accounts from the group.\
-\n\n.all\
-\nUsage: Tag all member in the group chat.\
 \n\n.admins\
 \nUsage: Retrieves a list of admins in the chat.\
 \n\n.bots\
