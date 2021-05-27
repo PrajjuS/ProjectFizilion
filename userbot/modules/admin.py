@@ -517,7 +517,7 @@ async def _(event):
     chat = await event.get_input_chat()
     async for x in event.client.iter_participants(chat, 100):
         mentions += f"[\u2063](tg://user?id={x.id})"
-    msg = await event.edit(mentions)
+    msg = await event.reply(mentions)
 
 
 @register(outgoing=True, pattern="^.admins(?: |$)(.*)")
