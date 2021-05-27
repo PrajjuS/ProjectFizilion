@@ -1,7 +1,7 @@
 from telethon import events
 from userbot.utils import admin_cmd
 
-@register(outgoing=True, pattern="^.all$")
+@register(outgoing=True, pattern="^.all (?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
