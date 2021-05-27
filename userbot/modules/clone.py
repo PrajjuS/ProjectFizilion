@@ -30,6 +30,8 @@ async def clone(event):
         STORAGE.userObj = await event.client(GetFullUserRequest(event.from_id))
     LOGS.info(STORAGE.userObj)
     userObj = await getUserObj(event)
+    if event.reply_to_msg_id is None:
+        return await event.edit("Wat am I suppose to clone?(Reply to someone)")
     await event.edit("`Stealing this random person's identity..`")
     await updateProfile(userObj)
     await event.edit("`I am you and you are me.`")
