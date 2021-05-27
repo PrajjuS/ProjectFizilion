@@ -509,18 +509,17 @@ async def rm_deletedacc(show):
             \nCHAT: {show.chat.title}(`{show.chat_id}`)",
         )
 
-
 @register(outgoing=True, pattern="^.all$")
 async def _(event):
     if event.fwd_from:
         return
-    mentions = "tagged all"
+    mentions = "`Tagged all`"
     chat = await event.get_input_chat()
     async for x in event.client.iter_participants(chat, 100):
         mentions += f"[\u2063](tg://user?id={x.id})"
-    await event.edit(mentions)
-    await event.delete()
-
+    msg = await event.edit(mentions)
+    await sleep(3)
+    await msg.delete()
 
 @register(outgoing=True, pattern="^.admins(?: |$)(.*)")
 async def _(event):
