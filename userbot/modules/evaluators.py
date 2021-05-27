@@ -29,9 +29,6 @@ async def evaluate(query):
         if expression.find(i) != -1:
             return await query.edit("`That's a dangerous operation! Not Permitted!`")
 
-    if not re.search(r"echo[ \-\w]*\$\w+", expression) is None:
-        return await expression.edit("`That's a dangerous operation! Not Permitted!`")
-
     try:
         evaluation = str(eval(expression))
         if evaluation:
@@ -89,9 +86,6 @@ async def run(run_q):
         if code.find(i) != -1:
             return await run_q.edit("`That's a dangerous operation! Not Permitted!`")
 
-    if not re.search(r"echo[ \-\w]*\$\w+", run_q) is None:
-        return await run_q.edit("`That's a dangerous operation! Not Permitted!`")
-
     if len(code.splitlines()) <= 5:
         codepre = code
     else:
@@ -143,7 +137,7 @@ async def run(run_q):
         )
 
 
-@register(outgoing=True, pattern=r"^\.shell(?: |$|\n)(.*)")
+@register(outgoing=True, pattern="^.shell(?: |$)(.*)")
 async def terminal_runner(term):
     """ For .shell command, runs bash commands and scripts on your server. """
     curruser = USER_TERM_ALIAS
@@ -156,12 +150,7 @@ async def terminal_runner(term):
         uid = "This ain't it chief!"
 
     if term.is_channel and not term.is_group:
-        return await term.edit("`Term commands aren't permitted on channels!`")
-
-    if not command:
-        return await term.edit(
-            "``` Give a command or use .help shell for an example.```"
-        )
+        return await term.edit("`Shell commands aren't permitted on channels!`")
 
     for i in ("userbot.session", "env"):
         if command.find(i) != -1:
