@@ -11,6 +11,8 @@ if not hasattr(STORAGE, "userObj"):
 
 @register(outgoing=True, pattern=r"\.clone ?(.*)")
 async def clone(event):
+    if event.reply_to_msg_id is None:
+        return await event.edit("Wat am I suppose to clone?(Reply to someone)")
     if event.fwd_from:
         return
     inputArgs = event.pattern_match.group(1)
