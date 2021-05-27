@@ -1,5 +1,4 @@
 from telethon import events
-from userbot.utils import admin_cmd
 from userbot import CMD_HELP
 
 @register(outgoing=True, pattern="^.all(?: |$)(.*)")
@@ -19,7 +18,7 @@ async def _(event):
         reply_to_id = await event.get_reply_message()
     mentions = "`Tagged all`"
     chat = await event.get_input_chat()
-    async for x in borg.iter_participants(chat, 100):
+    async for x in event.client.iter_participants(chat, 100):
         mentions += f"[\u2063](tg://user?id={x.id})"
     await reply_to_id.reply(mentions)
     await event.delete()
@@ -27,7 +26,7 @@ async def _(event):
     if input_str:
       mentions = input_str 
       chat = await event.get_input_chat()
-      async for x in borg.iter_participants(chat, 100):
+      async for x in event.client.iter_participants(chat, 100):
           mentions += f"[\u2063](tg://user?id={x.id})"
       await reply_to_id.reply(mentions)
       await event.delete()
