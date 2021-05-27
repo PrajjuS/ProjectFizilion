@@ -1,5 +1,6 @@
 from telethon import events
 from userbot import CMD_HELP
+from userbot.events import register
 
 @register(outgoing=True, pattern="^.all(?: |$)(.*)")
 async def _(event):
