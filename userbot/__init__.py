@@ -100,7 +100,7 @@ GITHUB_ACCESS_TOKEN = os.environ.get("GITHUB_ACCESS_TOKEN") or None
 # Custom (forked) repo URL and BRANCH for updater.
 UPSTREAM_REPO_URL = (os.environ.get("UPSTREAM_REPO_URL")
                      or "https://github.com/PrajjuS/ProjectFizilion.git")
-UPSTREAM_REPO_BRANCH = os.environ.get("UPSTREAM_REPO_BRANCH") or "demon"
+UPSTREAM_REPO_BRANCH = os.environ.get("UPSTREAM_REPO_BRANCH") or "Kaiju"
 ###
 FUPSTREAM_REPO_URL = (os.environ.get("FPSTREAM_REPO_URL")
                      or "https://github.com/Elytra8/ProjectFizilion.git")
@@ -154,7 +154,7 @@ TZ_NUMBER = os.environ.get("TZ_NUMBER") or 1
 USERBOT_VERSION = os.environ.get("USERBOT_VERSION") or "production 3.0"
 
 # User Terminal alias
-USER_TERM_ALIAS = os.environ.get("USER_TERM_ALIAS") or "dem0n"
+USER_TERM_ALIAS = os.environ.get("USER_TERM_ALIAS") or "Kaiju"
 
 # Updater alias
 UPDATER_ALIAS = os.environ.get("UPDATER_ALIAS") or "Fizilion"
