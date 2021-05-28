@@ -10,7 +10,15 @@ async def _(event):
     if event.reply_to_msg_id:
         reply_to_id = await event.get_reply_message()
     input_str = event.pattern_match.group(1)
-
+    
+    if input_str:
+      mentions = input_str 
+      chat = await event.get_input_chat()
+      async for x in event.client.iter_participants(chat, 100):
+          mentions += f"[\u2063](tg://user?id={x.id})"
+      await reply_to_id.reply(mentions)
+      await event.delete()
+      
     if not input_str:
      if event.fwd_from:
          return
@@ -24,15 +32,6 @@ async def _(event):
     await reply_to_id.reply(mentions)
     await event.delete()
     
-    if input_str:
-      mentions = input_str 
-      chat = await event.get_input_chat()
-      async for x in event.client.iter_participants(chat, 100):
-          mentions += f"[\u2063](tg://user?id={x.id})"
-      await reply_to_id.reply(mentions)
-      await event.delete()
-      
-      
 CMD_HELP.update(
     {
       "tagall": ">`.all` <custom msg/reply>"
