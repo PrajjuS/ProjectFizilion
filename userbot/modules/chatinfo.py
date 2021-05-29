@@ -23,7 +23,6 @@ from userbot import CMD_HELP
 from userbot.events import register
 
 
-@register(pattern=".info(?: |$)(.*)", outgoing=True)
 @register(pattern=".chatinfo(?: |$)(.*)", outgoing=True)
 async def info(event):
     await event.edit("`Analysing the chat...`")
