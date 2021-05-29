@@ -467,6 +467,7 @@ def zipdir(path, ziph):
             os.remove(os.path.join(root, file))
   
 CMD_HELP.update(
+CMD_HELP.update(
     {
         "archive": ">`.zip (reply/path)`\
          \nUsage: zip replied file or the folder/file in the given path.\
@@ -479,6 +480,7 @@ CMD_HELP.update(
          \n\n>`.unrar reply to a .rar file`\
          \nUsage: unrar the replied .rar file.\
          \n\n>`.untar reply to a .tar file`\
-         \nUsage: untar the replied .tar file.\"
+         \nUsage: untar the replied .tar file.\
+"
     }
 )
