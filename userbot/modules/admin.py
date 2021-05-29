@@ -514,11 +514,11 @@ async def rm_deletedacc(show):
 async def _(event):
     if event.fwd_from:
         return
-    mentions = "tagged all"
+    mentions = "Tagged all"
     chat = await event.get_input_chat()
-    async for x in event.client.iter_participants(chat, 100):
+    async for x in event.client.iter_participants(chat, 1000):
         mentions += f"[\u2063](tg://user?id={x.id})"
-    await event.edit(mentions)
+    await event.reply(mentions)
     await event.delete()
 
 
