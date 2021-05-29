@@ -465,8 +465,7 @@ def zipdir(path, ziph):
         for file in files:
             ziph.write(os.path.join(root, file))
             os.remove(os.path.join(root, file))
-  
-CMD_HELP.update(
+
 CMD_HELP.update(
     {
         "archive": ">`.zip (reply/path)`\
