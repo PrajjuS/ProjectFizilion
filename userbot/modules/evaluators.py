@@ -7,6 +7,10 @@
 
 import asyncio
 import re
+
+import os
+import io
+import sys
 from os import remove
 from sys import executable
 
