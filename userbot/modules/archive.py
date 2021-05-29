@@ -390,7 +390,81 @@ def get_lst_of_files(input_directory, output_lst):
             return get_lst_of_files(current_file_name, output_lst)
         output_lst.append(current_file_name)
     return output_lst
+@register(outgoing=True, pattern=r"^\.addzip(?: |$)(.*)")
+async def addzip(add):
+    """Copyright (c) 2020 azrim @github"""
+    # Prevent Channel Bug to use update
+    if add.is_channel and not add.is_group:
+        await add.edit("**Command isn't permitted on channels.**")
+        return
+    if add.fwd_from:
+        return
+    if not add.is_reply:
+        await add.edit("**Reply to a file to compress it.**")
+        return
+    mone = await add.edit("**Processing...**")
+    if not os.path.isdir(ZIP_DOWNLOAD_DIRECTORY):
+        os.makedirs(ZIP_DOWNLOAD_DIRECTORY)
+    if add.reply_to_msg_id:
+        reply_message = await add.get_reply_message()
+        try:
+            c_time = time.time()
+            downloaded_file_name = await bot.download_media(
+                reply_message,
+                ZIP_DOWNLOAD_DIRECTORY,
+                progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+                    progress(d, t, mone, c_time, "Zip - Download")
+                ),
+            )
+            success = str(downloaded_file_name).replace("./zips/", "")
+            await add.edit(f"`{success}` successfully added to list.")
+        except Exception as e:  # pylint:disable=C0103,W0703
+            await mone.edit(str(e))
+            return
 
+
+@register(outgoing=True, pattern=r"^\.upzip(?: |$)(.*)")
+async def upload_zip(up):
+    if not os.path.isdir(ZIP_DOWNLOAD_DIRECTORY):
+        await up.edit("**File not found.**")
+        return
+    mone = await up.edit("**Zipping file...**")
+    input_str = up.pattern_match.group(1)
+    curdate = today.strftime("%m%d%y")
+    title = str(input_str) if input_str else "zipfile" + f"{curdate}"
+    zipf = zipfile.ZipFile(title + ".zip", "w", zipfile.ZIP_DEFLATED)
+    zipdir(ZIP_DOWNLOAD_DIRECTORY, zipf)
+    zipf.close()
+    c_time = time.time()
+    await bot.send_file(
+        up.chat_id,
+        title + ".zip",
+        force_document=True,
+        allow_cache=False,
+        reply_to=up.message.id,
+        progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
+            progress(d, t, mone, c_time, "Zip - Upload", input_str)
+        ),
+    )
+    os.rmdir(ZIP_DOWNLOAD_DIRECTORY)
+    await up.delete()
+
+
+@register(outgoing=True, pattern=r"^\.rmzip(?: |$)(.*)")
+async def remove_dir(rm):
+    if not os.path.isdir(ZIP_DOWNLOAD_DIRECTORY):
+        await rm.edit("**Directory not found.**")
+        return
+    os.rmdir(ZIP_DOWNLOAD_DIRECTORY)
+    await rm.edit("**Zip list removed.**")
+
+
+def zipdir(path, ziph):
+    # ziph is zipfile handle
+    for root, _, files in os.walk(path):
+        for file in files:
+            ziph.write(os.path.join(root, file))
+            os.remove(os.path.join(root, file))
   
 CMD_HELP.update(
     {
@@ -406,6 +480,7 @@ CMD_HELP.update(
          \nUsage: unrar the replied .rar file.\
          \n\n>`.untar reply to a .tar file`\
          \nUsage: untar the replied .tar file.\
+    
 "
     }
 )
