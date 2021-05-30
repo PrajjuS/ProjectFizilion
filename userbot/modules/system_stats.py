@@ -99,8 +99,8 @@ async def psu(event):
     dtotal, dused, dfree = shutil.disk_usage(".")
     disk = "**Disk Usage**\n"
     disk += f"`Total     : {get_size(dtotal)}`\n"
-    disk += f"`Free      : {get_size(dused)}`\n"
-    disk += f"`Used      : {get_size(dfree)}`\n"
+    disk += f"`Free      : {get_size(dfree)}`\n"
+    disk += f"`Used      : {get_size(dused)}`\n"
     # Bandwidth Usage
     bw = "**Bandwith Usage**\n"
     bw += f"`Upload  : {get_size(psutil.net_io_counters().bytes_sent)}`\n"
