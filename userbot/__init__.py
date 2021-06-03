@@ -293,7 +293,7 @@ uptime = time.strftime('%X')
 ##
 output = (
     "` =============================== `\n"
-    f"`Fizilion is Up and Running.... `\n"
+    f"`Fizilion is Up [Premium Edition] `\n"
     f"`=============================== `\n"
     f"•`Telethon       : v{version.__version__} `\n"
     f"•`Python         : v{python_version()} `\n"
