@@ -17,8 +17,8 @@ animation_chars=[
   "**Dare**",
   "**Choosing Random Person....**",
   "**..........**",
-  "**.....**"
-  "**Done**"
+  "**.....**",
+  "**Done**",
 ]
   
 @register(outgoing=True, pattern="^.trd$")
