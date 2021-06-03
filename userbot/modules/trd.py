@@ -12,12 +12,14 @@ TRD_NAMES=[
 ]
 
 animation_chars=[
-  "**Truth**",
-  "**or**",
-  "**Dare**",
+  "**TRUTH**",
+  "**OR**",
+  "**DARE**",
   "**Choosing Random Person....**",
   "**..........**",
+  "**........**",
   "**.....**",
+  "**..**",
   "**Done**",
 ]
   
@@ -28,5 +30,5 @@ async def truthordare(trd):
   for i in range(max_ani):
       await sleep(2)
       msg=await trd.edit(animation_chars[i % max_ani])
-  await msg.sleep(3)
+  await sleep(3)
   await msg.edit("**Truth or Dare**\n\n**Name:** " + choice(TRD_NAMES))
