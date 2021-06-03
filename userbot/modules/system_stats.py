@@ -234,7 +234,7 @@ async def amireallyalive(alive):
     uptime = await get_readable_time((time.time() - StartTime))
     output = (
         f"`===============================`\n"
-        f"**FIZILION IS UP AND RUNNING...**\n"
+        f"**FIZILION IS UP [Premium Edition]**\n"
         f"`=============================== `\n"
         f"**[OS Info]:**\n"
         f"•`Platform Type   : {os.name}`\n"
