@@ -21,7 +21,7 @@ animation_chars=[
   "**Done**"
 ]
   
-@register(outgoing=true, pattern="^.trd$")
+@register(outgoing=True, pattern="^.trd$")
 async def truthordare(trd):
   """T R D Chooser"""
   max_ani = len(animation_chars)
