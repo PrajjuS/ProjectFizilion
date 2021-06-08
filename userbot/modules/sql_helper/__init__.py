@@ -22,3 +22,22 @@ except AttributeError as e:
         "DB_URI is not configured. Features depending on the database might have issues."
     )
     print(str(e))
+      
+  
+""" code which loads all of the sql helpers """
+
+def __list__all__sql-_helpers():
+    import glob
+    from os.path import basename, dirname, isfile
+
+    mod_paths = glob.glob(dirname(__file__) + "/*.py")
+    sql_helpers = [
+        basename(f)[:-3]
+        for f in mod_paths
+        if isfile(f) and f.endswith(".py") and not f.endswith("__init__.py")
+    ]
+    return sql_helpers
+
+
+SQL_HELPERS = sorted(__list__all__sql__helpers())
+__all__ = ALL_MODULES + ["SQL_HELPERS"]
