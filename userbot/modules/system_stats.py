@@ -250,7 +250,7 @@ async def amireallyalive(alive):
         f"**[MISC Info]:**\n"
         f"•`User           : {DEFAULTUSER} `\n"
         f"•`Branch         : {repo.active_branch.name} `\n"
-        f"•`Fork status    : Yes `\n"
+        f"•`Fork status    : Connected `\n"
         f"•`Loaded modules : {len(modules)} `\n"
         f"•`Release        : {USERBOT_VERSION} `\n"
         f"•`Bot Uptime     : {uptime} `\n"

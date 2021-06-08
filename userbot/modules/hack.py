@@ -44,7 +44,7 @@ async def hack_func(event):
     hecked = (f"**Targeted Account Hacked**\n\nPay 69$ To `AbOuLfOoOoOuF`\nTo Remove This Hack")
     max_ani = len(animation_chars)
     for i in range(max_ani):
-        await sleep(2)
+        await sleep(1)
         await event.edit(animation_chars[i % max_ani])
     await event.edit(hecked)
 

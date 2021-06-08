@@ -232,6 +232,62 @@ async def fpromote(promt):
         )
 
 
+@register(outgoing=True, pattern="^.xpromote(?: |$)(.*)")
+async def xpromote(promt):
+    """ For .xpromote command, promotes the replied/tagged person """
+    # Get targeted chat
+    chat = await promt.get_chat()
+    # Grab admin status or creator in a chat
+    admin = chat.admin_rights
+    creator = chat.creator
+
+    # If not admin and not creator, also return
+    if not admin and not creator:
+        await promt.edit(NO_ADMIN)
+        return
+
+    new_rights = ChatAdminRights(
+        add_admins=False,
+        invite_users=False,
+        change_info=False,
+        ban_users=False,
+        add_users=False,
+        delete_messages=False,
+        pin_messages=False,
+    )
+
+    await promt.edit("`Promoting...`")
+    user, rank = await get_user_from_event(promt)
+    if not rank:
+        rank = "Administrator"  # Just in case.
+    if user:
+        pass
+    else:
+        return
+
+    # Try to promote if current user is admin or creator
+    try:
+        await promt.client(EditAdminRequest(promt.chat_id, user.id, new_rights, rank))
+        await promt.edit("`Promoted Successfully!`")
+
+    # If Telethon spit BadRequestError, assume
+    # we don't have Promote permission
+    except BadRequestError:
+        await promt.edit(NO_PERM)
+        return
+
+    # Announce to the logging group if we have promoted successfully
+    if BOTLOG:
+        await promt.client.send_message(
+            BOTLOG_CHATID,
+            "#PROMOTE\n"
+            f"USER: [{user.first_name}](tg://user?id={user.id})\n"
+            f"CHAT: {promt.chat.title}(`{promt.chat_id}`)",
+        )
+
+
+
+
 @register(outgoing=True, pattern="^.demote(?: |$)(.*)")
 async def demote(dmod):
     """ For .demote command, demotes the replied/tagged person """
