@@ -11,6 +11,7 @@ from sys import argv
 from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
 from userbot import LOGS, bot
 from userbot.modules import ALL_MODULES
+from userbot.modules.sql_helper import SQL_HELPER
 
 
 INVALID_PH = '\nERROR: The Phone No. entered is INVALID' \
@@ -24,8 +25,11 @@ except PhoneNumberInvalidError:
     sys.exit(1)
 
 for module_name in ALL_MODULES:
-    imported_module = import_module("userbot.modules." + module_name)
-
+  imported_module = import_module("userbot.modules." + module_name)
+    
+for helper in SQL_HELPER:
+  impoted_sql_helper = import_module("userbot.modules.sql_helper" + helper)
+  
 LOGS.info("You are running Project Fizilion")
 
 LOGS.info(
