@@ -192,8 +192,7 @@ async def notifon(non_event):
     delgvar("NOTIF_OFF")
     await non_event.edit("`Notifications from unapproved PM's unmuted!`")
 
-@register(outgoing=True, pattern=r"^.a$")
-@register(outgoing=True, pattern=r"^.approve$")
+@register(outgoing=True, pattern=r"^.(approve|a)$")
 async def approvepm(apprvpm):
     """ For .approve command, give someone the permissions to PM you. """
     try:
@@ -241,8 +240,7 @@ async def approvepm(apprvpm):
             "#APPROVED\n" + "User: " + f"[{name0}](tg://user?id={uid})",
         )
 
-@register(outgoing=True, pattern=r"^.da$")
-@register(outgoing=True, pattern=r"^.disapprove$")
+@register(outgoing=True, pattern=r"^.(disapprove|da)$")
 async def disapprovepm(disapprvpm):
     try:
         from userbot.modules.sql_helper.pm_permit_sql import dissprove
