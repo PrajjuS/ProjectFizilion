@@ -26,7 +26,7 @@ except AttributeError as e:
   
 """ code which loads all of the sql helpers """
 
-def __list__all__sql-_helpers():
+def __list__all__sql__helpers():
     import glob
     from os.path import basename, dirname, isfile
 
