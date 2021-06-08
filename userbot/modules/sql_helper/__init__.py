@@ -40,4 +40,4 @@ def __list__all__sql__helpers():
 
 
 SQL_HELPERS = sorted(__list__all__sql__helpers())
-__all__ = SQL_HELPER + ["SQL_HELPERS"]
+__all__ = SQL_HELPERS + ["SQL_HELPERS"]
