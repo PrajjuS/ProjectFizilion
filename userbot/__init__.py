@@ -217,39 +217,6 @@ for binary, path in binaries.items():
     downloader.start()
     os.chmod(path, 0o755)
 
-# took from https://github.com/KenHV/KensurBot/blob/9ee7ecdd6210f66d553ac4eafde1d9cd1cb5c283/userbot/__init__.py#L176
-def migration_workaround():
-    try:
-        from userbot.modules.sql_helper.globals import addgvar, delgvar, gvarstatus
-    except:
-        return None
-
-    old_ip = gvarstatus("public_ip")
-    new_ip = get("https://api.ipify.org").text
-
-    if old_ip is None:
-        delgvar("public_ip")
-        addgvar("public_ip", new_ip)
-        return None
-
-    if old_ip == new_ip:
-        return None
-
-    sleep_time = 180
-    LOGS.info(
-        f"A change in IP address is detected, waiting for {sleep_time / 60} minutes before starting the bot."
-    )
-    sleep(sleep_time)
-    LOGS.info("Starting bot...")
-
-    delgvar("public_ip")
-    addgvar("public_ip", new_ip)
-    return None
-
-if HEROKU_APP_NAME is not None and HEROKU_API_KEY is not None:
-    migration_workaround() 
-
-
 # 'bot' variable
 if STRING_SESSION:
     # pylint: disable=invalid-name
