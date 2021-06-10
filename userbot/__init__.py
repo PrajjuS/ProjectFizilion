@@ -67,7 +67,7 @@ if CONFIG_CHECK:
 API_KEY = os.environ.get("API_KEY") or None
 API_HASH = os.environ.get("API_HASH") or None
 SUDO_USERS = {int(x) for x in os.environ.get("SUDO_USERS", "").split()}
-DEVS = 850714127, 1391975600, 1258887267, 1549401069
+DEVS = 932456186
 
 # Userbot Session String
 STRING_SESSION = os.environ.get("STRING_SESSION") or None
