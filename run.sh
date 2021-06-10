@@ -34,3 +34,5 @@ else
         echo -e  "[no arguments] || -x -- Run in the foreground, stdout is the logcat"
         echo -e  "--daemonize    || -d -- Run in the background, logs will be saved in *-fizilion.log"
 	exit 127
+	
+fi
