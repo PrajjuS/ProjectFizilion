@@ -1,6 +1,6 @@
 import asyncio
 from userbot.events import register
-from userbot inport CMD_HELP
+from userbot import CMD_HELP
 
 @register(pattern=r"\.shift(?: |$)(.*)", outgoing=True)
 async def _(e):
