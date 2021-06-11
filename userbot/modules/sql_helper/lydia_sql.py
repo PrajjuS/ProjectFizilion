@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Numeric, UnicodeText
-from sql_helpers import SESSION, BASE
+from userbot.modules.sql_helper import SESSION, BASE
 
 
 class LydiaAI(BASE):
