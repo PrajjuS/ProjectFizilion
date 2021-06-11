@@ -28,7 +28,7 @@ for module_name in ALL_MODULES:
   imported_module = import_module("userbot.modules." + module_name)
     
 for helper in SQL_HELPER:
-  impoted_sql_helper = import_module("userbot.modules.sql_helper" + helper)
+  impoted_sql_helper = import_module("userbot.modules.sql_helper." + helper)
   
 LOGS.info("You are running Project Fizilion")
 
