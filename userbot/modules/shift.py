@@ -1,5 +1,6 @@
 import asyncio
 from userbot.events import register
+from userbot inport CMD_HELP
 
 @register(pattern=r"\.shift(?: |$)(.*)", outgoing=True)
 async def _(e):
@@ -29,3 +30,13 @@ async def _(e):
         except BaseException:
             pass
     await z.edit("`Done`")
+    
+    
+CMD_HELP.update(
+    {
+        "shift":
+        ">`.shift <groupid/channelid>`"
+        "\nUsage: shifts all chats from one to another channel or group."
+    }
+)
+    
