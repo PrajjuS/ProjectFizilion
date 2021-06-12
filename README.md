@@ -1,6 +1,10 @@
 # Project Fizilion
 
-<p style="text-align:center;"><img src="https://github.com/PrajjuS/ProjectFizilion/raw/dragon/resources/IMG_20201109_130207_262.jpg" alt="Logo"></p>
+<p align="center">
+   <a href="https://github.com/code-rgb/USERGE-X"><img src="https://github.com/PrajjuS/ProjectFizilion/raw/dragon/resources/IMG_20201109_130207_262.jpg" alt="Fizi Logo" width=400px></a>
+   <br>
+   <br>
+</p>
 
 ```
     Your Telegram account may get banned.
