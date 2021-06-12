@@ -1,7 +1,6 @@
 # Project Fizilion
-<p align="centre">
-    <img src="https://github.com/PrajjuS/ProjectFizilion/raw/dragon/resources/IMG_20201109_130207_262.jpg" alt="Logo">
-</p>
+
+<p style="text-align:center;"><img src="https://github.com/PrajjuS/ProjectFizilion/raw/dragon/resources/IMG_20201109_130207_262.jpg" alt="Logo"></p>
 
 ```
     Your Telegram account may get banned.
