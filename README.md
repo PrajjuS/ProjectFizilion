@@ -1,8 +1,7 @@
 # Project Fizilion
-
-## Fork Of Official [Fizilion](https://github.com/PrajjuS/ProjectFizilion) Userbot
-
-![logo](https://github.com/PrajjuS/ProjectFizilion/raw/dragon/resources/IMG_20201109_130207_262.jpg)
+<p align="centre">
+    <img src="https://github.com/PrajjuS/ProjectFizilion/raw/dragon/resources/IMG_20201109_130207_262.jpg" alt="Logo">
+</p>
 
 ```
     Your Telegram account may get banned.
