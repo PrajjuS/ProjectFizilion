@@ -4,8 +4,6 @@
 ![logo](https://github.com/PrajjuS/ProjectFizilion/raw/dragon/resources/IMG_20201109_130207_262.jpg)
 
 ```
-#include <std/disclaimer.h>
-/**
     Your Telegram account may get banned.
     I am not responsible for any improper use of this bot
     This bot is intended for the purpose of having fun with memes,
@@ -16,7 +14,6 @@
     And after that, then you pointed your fingers at us
     for getting your acoount deleted?
     I will be rolling on the floor laughing at you.
-/**
 ```
 [![Build](https://img.shields.io/github/workflow/status/PrajjuS/ProjectFizilion/FailedChecker?style=for-the-badge)](https://github.com/PrajjuS/ProjectFizilion/actions "build")
 
@@ -29,7 +26,6 @@
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
 ## Generate String Session
-Easy way to get STRING_SESSION. 
 
 ### Run on repl.it
 [![Run repl.it](https://img.shields.io/badge/run-string__session.py-blue?style=flat-square&logo=repl.it)](https://session.uraniumcore.repl.run)
