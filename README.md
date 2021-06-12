@@ -1,6 +1,6 @@
 # Project Fizilion
 
-<p align="center">
+<p align="left">
    <a href="https://github.com/PrajjuS/ProjectFizilion"><img src="https://github.com/PrajjuS/ProjectFizilion/raw/dragon/resources/IMG_20201109_130207_262.jpg" alt="Fizi Logo" width=600px height="550px"></a>
    <br>
    <br>
@@ -8,7 +8,6 @@
 
 ```
 #include <std/disclaimer.h>
-
 /**
       Your Telegram account may get banned.
       I am not responsible for any improper use of this bot
