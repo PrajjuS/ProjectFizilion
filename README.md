@@ -1,7 +1,7 @@
 # Project Fizilion
 
 <p align="center">
-   <a href="https://github.com/PrajjuS/ProjectFizilion"><img src="https://github.com/PrajjuS/ProjectFizilion/raw/dragon/resources/IMG_20201109_130207_262.jpg" alt="Fizi Logo" width=600px></a>
+   <a href="https://github.com/PrajjuS/ProjectFizilion"><img src="https://github.com/PrajjuS/ProjectFizilion/raw/dragon/resources/IMG_20201109_130207_262.jpg" alt="Fizi Logo" width=600px height="550px"></a>
    <br>
    <br>
 </p>
