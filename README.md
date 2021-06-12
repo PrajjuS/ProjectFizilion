@@ -1,6 +1,6 @@
 # Project Fizilion
 <p align="centre">
-    <img src="https://github.com/PrajjuS/ProjectFizilion/raw/dragon/resources/IMG_20201109_130207_262.jpg" alt="Logo" width="100" height="132">
+    <img src="https://github.com/PrajjuS/ProjectFizilion/raw/dragon/resources/IMG_20201109_130207_262.jpg" alt="Logo" width="1000" height="1000">
 </p>
 
 ```
