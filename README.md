@@ -41,16 +41,30 @@ wget https://raw.githubusercontent.com/PrajjuS/ProjectFizilion/demon/terminal_ge
 
 ## How To Host?
 
-The easiest way to deploy this great bot! is click on button below.
+### Deploy on Heroku
 Make sure you have an account of heroku and follow all the steps required.
 
 <p align="left"><a href="https://heroku.com/deploy?template=https://github.com/PrajjuS/ProjectFizilion/tree/demon"> <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" /></a></p>
 
-For further guide you can head to [Groups and Support](https://github.com/MoveAngel/One4uBot#Groups-and-Support) or read this [guide](https://telegra.ph/How-to-host-a-Telegram-Userbot-07-01-2)
+
+### Deploy Locally (Linux, macOS, and Android [via Termux])
+1. Clone this repository on your local machine and `cd` (or `chdir`, anti bloat guy) to it
+2. Set up Python virtual environment named "venv" inside it (Requires `virtualenv` installed on the system)
+  - `virtualenv venv`
+  - Don't forget to activate the virtualenv: `. venv/bin/activate`
+3. Set up database for the userbot, search Google on how to set up a local database (PostgreSQL is recommended)
+4. Install the requirements: `pip3 install -r ./requirements.txt`
+5. Edit `sample_config.env` and save it as `config.env`
+  - Do not forget to fill in the `REQUIRED %%` values, or else the bot will not run
+6. Run the bot: `bash ./exec.sh`
+  - Protip: See what `bash ./exec.sh --help` tells you
+
 
 ## Groups and Support
 
-For discussion, bug reporting, and help, you can join [project Fizilion Support Group](https://t.me/ProjectFizilion).
+For discussion, bug reporting, and help, you can join [Project Fizilion](https://t.me/ProjectFizilionChat) support group.
+For further guide you can read this [Guide](https://telegra.ph/How-to-host-a-Telegram-Userbot-07-01-2).
+
 
 ## Credits
 
@@ -64,7 +78,7 @@ Thanks:
 * [Mkaraniya](https://github.com/mkaraniya) & [Dev73](https://github.com/Devp73) - OpenUserBot
 * [MoveAngel](https://github.com/MoveAngel) - One4U
 
-and many more people who aren't mentioned here, but may be found in [Contributors](https://github.com/ElytrA8/ProjectFizilion/graphs/contributors).
+and many more people who aren't mentioned here, but may be found in [Contributors](https://github.com/PrajjuS/ProjectFizilion/graphs/contributors).
 
 ## License
 
