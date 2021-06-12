@@ -8,6 +8,7 @@
 
 ```
 #include <std/disclaimer.h>
+
 /**
       Your Telegram account may get banned.
       I am not responsible for any improper use of this bot
@@ -19,7 +20,7 @@
       And after that, then you pointed your fingers at us
       for getting your acoount deleted?
       I will be rolling on the floor laughing at you.
-**/
+/**
 ```
 
 [![Build](https://img.shields.io/github/workflow/status/PrajjuS/ProjectFizilion/FailedChecker?style=for-the-badge)](https://github.com/PrajjuS/ProjectFizilion/actions "build")
