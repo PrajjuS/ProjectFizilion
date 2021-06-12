@@ -15,8 +15,7 @@
     for getting your acoount deleted?
     I will be rolling on the floor laughing at you.
 ```
-<p align="centre">
-    
+
 [![Build](https://img.shields.io/github/workflow/status/PrajjuS/ProjectFizilion/FailedChecker?style=for-the-badge)](https://github.com/PrajjuS/ProjectFizilion/actions "build")
 
 ![Docker_Size](https://img.shields.io/docker/image-size/elytra8/fizfed?style=for-the-badge)
@@ -27,7 +26,6 @@
 
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
-</p>
 
 ## Generate String Session
 
