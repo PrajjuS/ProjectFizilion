@@ -114,14 +114,14 @@ async def repo_is_here(wannasee):
 async def repo_is_heree(wannaseee):
     """ For .repo command, just returns the repo URL. """
     await wannaseee.edit(
-        "[Click here](https://github.com/AbOuLfOoOoOuF/ProjectFizilion) to open Fizilion's GitHub Repo."
+        "[Click here](https://github.com/AbOuLfOoOoOuF/ProjectFizilion) to open my fork of Fizilion's GitHub Repo."
     )
 
 @register(outgoing=True, pattern="^.deploy$")
 async def repo_is_here(wannasee):
     """ For .deploy command, just returns the heroku deploying URL. """
     await wannasee.edit(
-        "[Click here](https://heroku.com/deploy?template=https://github.com/PrajjuS/ProjectFizilion/tree/demon) to deploy Fizilion Userbot on Heroku."
+        "[Click here](https://heroku.com/deploy?template=https://github.com/AbOuLfOoOoOuF/ProjectFizilion/tree/demon) to deploy Fizilion Userbot on Heroku."
     )
 
 @register(outgoing=True, pattern="^.support$")
