@@ -251,7 +251,6 @@ async def xpromote(promt):
         invite_users=False,
         change_info=False,
         ban_users=False,
-        add_users=False,
         delete_messages=False,
         pin_messages=False,
     )
