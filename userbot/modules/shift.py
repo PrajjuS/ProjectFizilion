@@ -35,7 +35,7 @@ async def _(e):
 CMD_HELP.update(
     {
         "shift":
-        ">`.shift <groupid/channelid>`"
+        ">`.shift <from_chatid|to_chatid>`"
         "\nUsage: shifts all chats from one to another channel or group."
     }
 )
