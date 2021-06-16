@@ -224,7 +224,7 @@ async def get_file_id(input_str):
         return link, "unknown"
 
 
-async def download(event, gdrive, service, uri=None):
+async def download(gdrive, service, uri=None):
     start = datetime.now()
     global is_cancelled
     reply = ""
