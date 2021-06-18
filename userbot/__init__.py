@@ -11,7 +11,8 @@ import re
 import time
 from sys import version_info
 import logging 
-from logging import basicConfig, getLogger, INFO, DEBUG, RotatingFileHandler
+from logging.handlers import RotatingFileHandler
+from logging import basicConfig, getLogger, INFO, DEBUG
 from distutils.util import strtobool as sb
 from .storage import Storage
 from pylast import LastFMNetwork, md5
