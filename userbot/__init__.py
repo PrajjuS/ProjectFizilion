@@ -10,7 +10,8 @@ import platform
 import re
 import time
 from sys import version_info
-from logging import basicConfig, getLogger, INFO, DEBUG
+import logging 
+from logging import basicConfig, getLogger, INFO, DEBUG, RotatingFileHandler
 from distutils.util import strtobool as sb
 from .storage import Storage
 from pylast import LastFMNetwork, md5
@@ -24,6 +25,12 @@ from platform import python_version, uname
 from telethon import __version__, version
 
 load_dotenv("config.env")
+LOG_FILE = "log.txt"
+
+if os.path.exists(LOG_FILE):
+    with open(LOG_FILE, "r+") as f_d:
+        f_d.truncate(0)
+FREE_USER_MAX_FILE_SIZE = 2097152000
 
 STORAGE = (lambda n: Storage(Path("data") / n))
 
@@ -40,9 +47,20 @@ if CONSOLE_LOGGER_VERBOSE:
         level=DEBUG,
     )
 else:
-    basicConfig(
-        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-        level=INFO)
+
+     logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    datefmt="%d-%b-%y %H:%M:%S",
+    handlers=[
+        RotatingFileHandler(
+            LOG_FILE,
+            maxBytes=FREE_USER_MAX_FILE_SIZE,
+            backupCount=10
+        ),
+        logging.StreamHandler()
+    ]
+)
 LOGS = getLogger(__name__)
 
 if version_info[0] < 3 or version_info[1] < 8:
