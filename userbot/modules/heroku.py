@@ -17,7 +17,7 @@ import aiohttp
 import heroku3
 import requests
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, HEROKU_API_KEY, HEROKU_APP_NAME
+from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, HEROKU_API_KEY, HEROKU_APP_NAME, LOG_FILE
 from userbot.events import register
 
 heroku_api = "https://api.heroku.com"
@@ -185,7 +185,12 @@ async def dyno_usage(dyno):
             )
             return True
 
-
+@register(outgoing=True, pattern=r"^\.locallogs")
+async def _(locallogs):
+   callback = await e.edit("Sending local logs...")
+   await e.send_file(e.chat_id, LOG_FILE)
+   await callback.delete()
+   return
 @register(outgoing=True, pattern=r"^\.logs")
 async def _(dyno):
     try:
