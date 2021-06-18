@@ -186,7 +186,7 @@ async def dyno_usage(dyno):
             return True
 
 @register(outgoing=True, pattern=r"^\.locallogs")
-async def _(locallogs):
+async def _(e):
    callback = await e.edit("Sending local logs...")
    await e.send_file(e.chat_id, LOG_FILE)
    await callback.delete()
