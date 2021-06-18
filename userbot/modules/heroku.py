@@ -185,7 +185,7 @@ async def dyno_usage(dyno):
             )
             return True
 
-@register(outgoing=True, pattern=r"^\.locallogs")
+@register(outgoing=True, pattern=r"^\.local")
 async def _(e):
    callback = await e.edit("Sending local logs...")
    await e.client.send_file(e.chat_id, LOG_FILE)
