@@ -236,7 +236,7 @@ async def amireallyalive(alive):
         f"`===================================`\n"
         f"**FIZILION IS UP** [Premium Edition]\n"
         f"`=================================== `\n"
-        f"**Hello AbOuLfOoOoOuF**\n"
+        f"**Hello  {DEFAULTUSER} **\n"
         f"`=================================== `\n"
         f"**[OS Info]:**\n"
         f"•`Platform Type    : {os.name}`\n"
