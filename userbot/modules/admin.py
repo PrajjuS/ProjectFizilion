@@ -129,7 +129,7 @@ async def set_group_photo(gpic):
 
 @register(outgoing=True, pattern="^.promote(?: |$)(.*)")
 async def promote(promt):
-    """ For .promote command, promotes the replied/tagged person """
+    """ For .promote command, promotes the replied/tagged person with semi full perms"""
     # Get targeted chat
     chat = await promt.get_chat()
     # Grab admin status or creator in a chat
@@ -181,7 +181,7 @@ async def promote(promt):
 
 @register(outgoing=True, pattern="^.fpromote(?: |$)(.*)")
 async def fpromote(promt):
-    """ For .fpromote command, promotes the replied/tagged person """
+    """ For .fpromote command, promotes the replied/tagged person with full perms"""
     # Get targeted chat
     chat = await promt.get_chat()
     # Grab admin status or creator in a chat
@@ -234,7 +234,7 @@ async def fpromote(promt):
 
 @register(outgoing=True, pattern="^.xpromote(?: |$)(.*)")
 async def xpromote(promt):
-    """ For .xpromote command, promotes the replied/tagged person """
+    """ For .xpromote command, promotes the replied/tagged person with none perms """
     # Get targeted chat
     chat = await promt.get_chat()
     # Grab admin status or creator in a chat
@@ -1040,6 +1040,10 @@ CMD_HELP.update(
     {
         "admin": ".promote <username/reply> <custom rank (optional)>\
 \nUsage: Provides admin rights to the person in the chat.\
+\n\n.fpromote <username/reply>\
+\nUsage: Provides full admin rights to the person in the chat.\
+\n\n.xpromote <username/reply>\
+\nUsage: Provides few admin rights to the person in the chat.\
 \n\n.demote <username/reply>\
 \nUsage: Revokes the person's admin permissions in the chat.\
 \n\n.ban <username/reply> <reason (optional)>\
