@@ -103,7 +103,7 @@ async def kang(args):
                 # pack
                 emoji = splat[1]
 
-        packname = f"a{user.id}_by_fiz_{pack}"
+        packname = f"a{user.id}_1by_fiz_{pack}"
         packnick = f"kanged stickers Vol.{pack}"
         cmd = "/newpack"
         file = io.BytesIO()
@@ -135,7 +135,7 @@ async def kang(args):
                 x = await conv.get_response()
                 while "120" in x.text:
                     pack += 1
-                    packname = f"a{user.id}_by_fiz_{pack}"
+                    packname = f"a{user.id}_1by_fiz_{pack}"
                     packnick = f"kanged stickers Vol.{pack}"
                     await args.edit(
                         "**Switching to Pack "
@@ -283,7 +283,7 @@ async def resize_photo(photo):
 
 @register(outgoing=True, pattern=r"^\.k$")
 async def k(args):
-    """ For .kang command, kangs stickers or creates new ones. """
+    """ For .kang command, kangs stickers or creates new ones silently. """
     user = await bot.get_me()
     if not user.username:
         user.username = user.first_name
@@ -376,7 +376,7 @@ async def k(args):
                 x = await conv.get_response()
                 while "120" in x.text:
                     pack += 1
-                    packname = f"a{user.id}_by_fiz_{pack}"
+                    packname = f"a{user.id}_1by_fiz_{pack}"
                     packnick = f"kanged stickers Vol.{pack}"
                     await args.edit(
                         "**Switching to Pack "
