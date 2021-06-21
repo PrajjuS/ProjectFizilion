@@ -281,7 +281,7 @@ async def resize_photo(photo):
     return image
 
 
-@register(outgoing=True, pattern=r"^\.k")
+@register(outgoing=True, pattern=r"^\.k$")
 async def k(args):
     """ For .kang command, kangs stickers or creates new ones. """
     user = await bot.get_me()
