@@ -34,11 +34,11 @@ from userbot.utils.FastTelethon import download_file, upload_file
 
 @register(pattern=r"\.encode(?: |$)(.*)", outgoing=True)
 async def _(e):
-    crf = e.pattern_match.group(1)
-    if not crf:
-        crf = 27
-    to_stream = e.pattern_match.group(2)
-    media = await e.get_reply_message()
+        crf = e.pattern_match.group(1)
+        if not crf:
+            crf = 27
+        to_stream = e.pattern_match.group(2)
+        media = await e.get_reply_message()
         try:
             media = replied.media
             if hasattr(media, "document"):
@@ -199,7 +199,7 @@ async def _(e):
                 )
             await e.delete()
             os.remove(out)
-        else:
-            await e.edit("`Reply To Video File Only`")
-    else:
-        await e.edit("`Reply To Video File Only`")
+#        else:
+#            await e.edit("`Reply To Video File Only`")
+#    else:
+#        await e.edit("`Reply To Video File Only`")
