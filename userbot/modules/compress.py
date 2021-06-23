@@ -17,8 +17,9 @@ import asyncio
 import os
 import re
 import time
+from requests import get
 from datetime import datetime as dt
-
+from urllib.parse import unquote_plus
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from telethon.errors.rpcerrorlist import MessageNotModifiedError
@@ -48,11 +49,11 @@ async def _(e):
                 if not filename:
                     if "audio" in mime_type:
                         filename = (
-                            "audio_" + datetime.now().isoformat("_", "seconds") + ".ogg"
+                            "audio_" + dt.now().isoformat("_", "seconds") + ".ogg"
                         )
                     elif "video" in mime_type:
                         filename = (
-                            "video_" + datetime.now().isoformat("_", "seconds") + ".mp4"
+                            "video_" + dt.now().isoformat("_", "seconds") + ".mp4"
                         )
                 outdir = TEMP_DOWNLOAD_DIRECTORY + filename
                 c_time = time.time()
@@ -74,11 +75,11 @@ async def _(e):
                         ),
                     )
             else:
-                start_time = datetime.now()
+                start_time = dt.now()
                 result = await e.client.download_media(
                     media, TEMP_DOWNLOAD_DIRECTORY
                 )
-            dl_time = (datetime.now() - start_time).seconds
+            dl_time = (dt.now() - start_time).seconds
         except Exception as e:  # pylint:disable=C0103,W0703
             await e.edit(str(e))
     
