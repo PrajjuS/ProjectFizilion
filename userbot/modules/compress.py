@@ -57,7 +57,7 @@ async def _(e):
                         )
                 outdir = TEMP_DOWNLOAD_DIRECTORY + filename
                 c_time = time.time()
-                start_time = datetime.now()
+                start_time = dt.now()
                 with open(outdir, "wb") as f:
                     result = await download_file(
                         client=e.client,
