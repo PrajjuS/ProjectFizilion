@@ -38,7 +38,7 @@ async def _(e):
         if not crf:
             crf = 27
         #to_stream = e.pattern_match.group(2)
-        media = await e.get_reply_message()
+        replied = await e.get_reply_message()
         try:
             media = replied.media
             if hasattr(media, "document"):
