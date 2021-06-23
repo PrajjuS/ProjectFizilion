@@ -37,7 +37,7 @@ async def _(e):
         crf = e.pattern_match.group(1)
         if not crf:
             crf = 27
-        to_stream = e.pattern_match.group(2)
+        #to_stream = e.pattern_match.group(2)
         media = await e.get_reply_message()
         try:
             media = replied.media
