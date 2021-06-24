@@ -11,6 +11,7 @@ from telethon.tl.functions.messages import ReportSpamRequest
 from telethon.tl.types import User
 
 from userbot import (
+    ALIVE_LOGO,
     BOTLOG,
     BOTLOG_CHATID,
     CMD_HELP,
@@ -18,6 +19,7 @@ from userbot import (
     LASTMSG,
     LOGS,
     PM_AUTO_BAN,
+    bot
 )
 from userbot.events import register
 
