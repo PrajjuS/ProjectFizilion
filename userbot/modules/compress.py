@@ -35,6 +35,7 @@ from userbot.utils.FastTelethon import download_file, upload_file
 
 @register(pattern=r"\.encode(?: |$)(.*)", outgoing=True)
 async def _(e):
+        xxx = await e.edit('Encoding')
         crf = e.pattern_match.group(1)
         if not crf:
             crf = 27
@@ -81,14 +82,14 @@ async def _(e):
                 )
             dl_time = (dt.now() - start_time).seconds
         except Exception as e:  # pylint:disable=C0103,W0703
-            await e.edit(str(e))
+            await xxx.edit(str(e))
     
             o_size = os.path.getsize(file.name)
             d_time = time.time()
             diff = time_formatter((d_time - c_time) * 1000)
             file_name = (file.name).split("/")[-1]
             out = file_name.replace(file_name.split(".")[-1], " compressed.mkv")
-            await e.edit(
+            await xxx.edit(
                 f"`Downloaded {file.name} of {humanbytes(o_size)} in {diff}.\nNow Compressing...`"
             )
             x, y = await run_cmd(
@@ -128,7 +129,7 @@ async def _(e):
                         )
                         e_size = humanbytes(size)
                         try:
-                            await e.edit(
+                            await xxx.edit(
                                 text
                                 + progress_str
                                 + "`"
@@ -144,7 +145,7 @@ async def _(e):
             c_size = os.path.getsize(out)
             f_time = time.time()
             difff = time_formatter((f_time - d_time) * 1000)
-            await e.edit(
+            await xxx.edit(
                 f"`Compressed {humanbytes(o_size)} to {humanbytes(c_size)} in {difff}\nTrying to Upload...`"
             )
             differ = 100 - ((c_size / o_size) * 100)
@@ -165,7 +166,7 @@ async def _(e):
                     file=f,
                     name=file_name,
                     progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
-                        progress(d, t, e, f_time, "Telegram - Upload", out)
+                        progress(d, t, xxx, f_time, "Telegram - Upload", out)
                     ),
                 )
             if to_stream and "| stream" in to_stream:
@@ -198,7 +199,7 @@ async def _(e):
                     force_document=True,
                     reply_to=e.reply_to_msg_id,
                 )
-            await e.delete()
+            await xxx.delete()
             os.remove(out)
 #        else:
 #            await e.edit("`Reply To Video File Only`")
