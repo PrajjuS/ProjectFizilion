@@ -121,7 +121,7 @@ async def repo_is_heree(wannaseee):
 async def repo_is_here(wannasee):
     """ For .deploy command, just returns the heroku deploying URL. """
     await wannasee.edit(
-        "[Click here](https://heroku.com/deploy?template=https://github.com/AbOuLfOoOoOuF/ProjectFizilion/tree/demon) to deploy Fizilion Userbot on Heroku."
+        "[Click here](https://heroku.com/deploy?template=https://github.com/AbOuLfOoOoOuF/ProjectFizilion/tree/pruh) to deploy Fizilion Userbot on Heroku."
     )
 
 @register(outgoing=True, pattern="^.support$")
