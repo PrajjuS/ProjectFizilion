@@ -184,11 +184,6 @@ async def selfdestruct(destroy):
 
 
 
-@register(outgoing=True, pattern="^s/")
-async def deletesed(delsed):
-    await delsed.delete()
-
-
 CMD_HELP.update(
     {
         "purge": ".purge\
