@@ -40,13 +40,22 @@ async def word_spam(wspammer):
 @register(outgoing=True, pattern="^.spam (.*)")
 async def spammer(spamm):
     counter = int(spamm.pattern_match.group(1).split(" ", 1)[0])
-    spam_message = str(spamm.pattern_match.group(1).split(" ", 1)[1])
-    await spamm.delete()
-    await asyncio.wait([spamm.respond(spam_message) for i in range(counter)])
-    if BOTLOG:
-        await spamm.client.send_message(
-            BOTLOG_CHATID, "#SPAM\n" "Spam was executed successfully"
-        )
+    textx = await spamm.get_reply_message()
+    if not textx:
+        spam_message = str(spamm.pattern_match.group(1).split(" ", 1)[1])
+        await spamm.delete()
+        await asyncio.wait([spamm.respond(spam_message) for i in range(counter)])
+        if BOTLOG:
+            await spamm.client.send_message(
+                BOTLOG_CHATID, "#SPAM\n" "Spam was executed successfully"
+            )
+    elif (textx and textx.text):
+        await spamm.delete()
+        await asyncio.wait([spamm.respond(textx) for i in range(counter)])
+        if BOTLOG:
+            await spamm.client.send_message(
+                BOTLOG_CHATID, "#SPAM\n" "Spam was executed successfully"
+            )
 
 
 @register(outgoing=True, pattern="^.picspam")
