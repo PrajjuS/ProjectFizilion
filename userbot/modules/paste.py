@@ -3,8 +3,6 @@
 # Licensed under the Raphielscape Public License, Version 1.d (the "License");
 # you may not use this file except in compliance with the License.
 #
-""" Userbot module containing commands for interacting with dogbin(https://del.dog)"""
-
 import os
 
 from requests import exceptions, get, post
@@ -12,13 +10,13 @@ from requests import exceptions, get, post
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
-DOGBIN_URL = "https://del.dog/"
+BIN_URL = https://nekobin.com/"
 
 
 @register(outgoing=True, pattern=r"^.paste(?: |$)([\s\S]*)")
 async def paste(pstl):
-    """ For .paste command, pastes the text directly to dogbin. """
-    dogbin_final_url = ""
+    """ For .paste command, pastes the text directly to nekobin. """
+    nekobin_final_url = ""
     match = pstl.pattern_match.group(1).strip()
     reply_id = pstl.reply_to_msg_id
 
@@ -45,31 +43,30 @@ async def paste(pstl):
         else:
             message = message.message
 
-    # Dogbin
     await pstl.edit("`Pasting text . . .`")
-    resp = post(DOGBIN_URL + "documents", data=message.encode("utf-8"))
+    resp = post(BIN_URL + "documents", data=message.encode("utf-8"))
 
     if resp.status_code == 200:
         response = resp.json()
         key = response["key"]
-        dogbin_final_url = DOGBIN_URL + key
+        bin_final_url = BIN_URL + key
 
         if response["isUrl"]:
             reply_text = (
                 "`Pasted successfully!`\n\n"
-                f"[Shortened URL]({dogbin_final_url})\n\n"
+                f"[Shortened URL]({bin_final_url})\n\n"
                 "`Original(non-shortened) URLs`\n"
-                f"[Dogbin URL]({DOGBIN_URL}v/{key})\n"
-                f"[View RAW]({DOGBIN_URL}raw/{key})"
+                f"`•`[Nekobin URL]({BIN_URL}v/{key})\n"
+                f"`•`[RAW]({BIN_URL}raw/{key})"
             )
         else:
-            reply_text = (
-                "`Pasted successfully!`\n\n"
-                f"[Dogbin URL]({dogbin_final_url})\n"
-                f"[View RAW]({DOGBIN_URL}raw/{key})"
+            reply_text = ( 
+                "`Pasted successfully!`\n\n" 
+                f"`•`[Nekobin URL]({BIN_URL}v/{key})\n"
+                f"`•`[RAW]({BIN_URL}raw/{key})"
             )
     else:
-        reply_text = "`Failed to reach Dogbin`"
+        reply_text = "`Failed to reach Nekobin`"
 
     await pstl.edit(reply_text)
     if BOTLOG:
@@ -80,62 +77,60 @@ async def paste(pstl):
 
 
 @register(outgoing=True, pattern="^.getpaste(?: |$)(.*)")
-async def get_dogbin_content(dog_url):
-    """ For .getpaste command, fetches the content of a dogbin URL. """
-    textx = await dog_url.get_reply_message()
-    message = dog_url.pattern_match.group(1)
-    await dog_url.edit("`Getting dogbin content...`")
+async def get_nekobin_content(neko_url):
+    """ For .getpaste command, fetches the content of a nekobin URL. """
+    textx = await neko_url.get_reply_message()
+    message = neko_url.pattern_match.group(1)
+    await neko_url.edit("`Getting nekobin content...`")
 
     if textx:
         message = str(textx.message)
 
-    format_normal = f"{DOGBIN_URL}"
-    format_view = f"{DOGBIN_URL}v/"
+    format_normal = f"{BIN_URL}"
+    format_view = f"{BIN_URL}v/"
 
     if message.startswith(format_view):
         message = message[len(format_view) :]
     elif message.startswith(format_normal):
         message = message[len(format_normal) :]
-    elif message.startswith("del.dog/"):
-        message = message[len("del.dog/") :]
+    elif message.startswith("nekobin.com/"):
+        message = message[len("nekobin.com/") :]
     else:
-        await dog_url.edit("`Is that even a dogbin url?`")
+        await neko_url.edit("`Is that even a nekobin url?`")
         return
 
-    resp = get(f"{DOGBIN_URL}raw/{message}")
+    resp = get(f"{BIN_URL}raw/{message}")
 
     try:
         resp.raise_for_status()
     except exceptions.HTTPError as HTTPErr:
-        await dog_url.edit(
+        await neko_url.edit(
             "Request returned an unsuccessful status code.\n\n" + str(HTTPErr)
         )
         return
     except exceptions.Timeout as TimeoutErr:
-        await dog_url.edit("Request timed out." + str(TimeoutErr))
+        await neko_url.edit("Request timed out." + str(TimeoutErr))
         return
     except exceptions.TooManyRedirects as RedirectsErr:
-        await dog_url.edit(
+        await neko_url.edit(
             "Request exceeded the configured number of maximum redirections."
             + str(RedirectsErr)
         )
         return
 
-    reply_text = "`Fetched dogbin URL content successfully!`\n\n`Content:` " + resp.text
+    reply_text = "`Fetched nekobin URL content successfully!`\n\n`Content:` " + resp.text
 
-    await dog_url.edit(reply_text)
+    await neko_url.edit(reply_text)
     if BOTLOG:
-        await dog_url.client.send_message(
+        await neko_url.client.send_message(
             BOTLOG_CHATID,
-            "Get dogbin content query was executed successfully",
+            "Get nekobin content query was executed successfully",
         )
 
 
 CMD_HELP.update(
     {
-        "dogbin": ".paste <text/reply>\
-\nUsage: Create a paste or a shortened url using dogbin (https://del.dog/)\
-\n\n.getpaste\
-\nUsage: Gets the content of a paste or shortened url from dogbin (https://del.dog/)"
-    }
-)
+        "paste": ".paste <text/reply>\ 
+        \nUsage: Create a paste or a shortened url using [Nekobin](https://nekobin.com/)\
+        \n\n.getpaste\ 
+        \nUsage: Gets the content of a paste or shortened url from [Nekobin](https://nekobin.com/)"
