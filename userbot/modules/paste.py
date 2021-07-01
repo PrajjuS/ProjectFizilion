@@ -134,3 +134,5 @@ CMD_HELP.update(
         \nUsage: Create a paste or a shortened url using [Nekobin](https://nekobin.com/)\
         \n\n.getpaste\ 
         \nUsage: Gets the content of a paste or shortened url from [Nekobin](https://nekobin.com/)"
+    }
+)
