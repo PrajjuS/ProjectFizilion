@@ -130,9 +130,10 @@ async def get_nekobin_content(neko_url):
 
 CMD_HELP.update(
     {
-        "paste": ".paste <text/reply>\
-\nUsage: Create a paste or a shortened url using [Nekobin](https://nekobin.com/)\
-\n\n.getpaste\ 
-\nUsage: Gets the content of a paste or shortened url from [Nekobin](https://nekobin.com/)"
+        "paste": ".paste <text/reply>"
+"\nUsage: Create a paste or a shortened url using [Nekobin](https://nekobin.com)"
+"\n\n.getpaste"
+"\nUsage: Gets the content of a paste or shortened url from [Nekobin](https://nekobin.com)"
+
     }
 )
