@@ -48,7 +48,12 @@ async def paste(pstl):
 
     if resp.status_code == 200:
         response = resp.json()
-        key = response["key"]
+        key = (
+            requests.post("https://nekobin.com/api/documents", json={"content": data})
+            .json()
+            .get("result")
+            .get("key")
+        )
         bin_final_url = BIN_URL + key
 
         if response["isUrl"]:
