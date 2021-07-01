@@ -10,7 +10,7 @@ from requests import exceptions, get, post
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
-BIN_URL = https://nekobin.com/"
+BIN_URL = "https://nekobin.com/"
 
 
 @register(outgoing=True, pattern=r"^.paste(?: |$)([\s\S]*)")
