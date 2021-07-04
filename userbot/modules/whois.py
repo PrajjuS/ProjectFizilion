@@ -32,7 +32,8 @@ async def who(event):
 
     try:
         photo, caption = await fetch_info(replied_user, event)
-    except AttributeError:
+    #except AttributeError:
+    except Exception:
         event.edit("`Could not fetch info of that user.`")
         return
 
