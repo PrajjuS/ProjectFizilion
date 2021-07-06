@@ -12,7 +12,7 @@ from requests import exceptions, get, post
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
-DOGBIN_URL = "https://del.dog/"
+DOGBIN_URL = "https://katb.in/"
 
 
 @register(outgoing=True, pattern=r"^.paste(?: |$)([\s\S]*)")
