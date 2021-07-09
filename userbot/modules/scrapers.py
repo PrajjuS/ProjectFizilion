@@ -493,7 +493,7 @@ async def _(event):
         output_str = f"**TRANSLATED** from {tt.src} to {lan}\n{tt.text}"
         await xx.edit(output_str)
     except Exception as exc:
-        await xx.edit(str(exc), time=10)
+        await xx.edit(str(exc))
 
         
 @register(pattern=r"\.lang (trt|tts) (.*)", outgoing=True)
