@@ -499,7 +499,7 @@ async def translateme(trans):
         target_lang = "en"
 
     try:
-        reply_text = translator.translate(deEmojify(message), lang_tgt=target_lang)
+        reply_text = translator.translate(message, dest=target_lang)
     except ValueError:
         return await trans.edit(
             "**Invalid language selected, use **`.lang trt <language code>`**.**"
