@@ -472,9 +472,9 @@ async def imdb(e):
 
 @register(outgoing=True, pattern=r"^\.trt(?: |$)([\s\S]*)")
 async def _(event):
-    if len(event.text) > 3:
-        if not event.text[3] == " ":
-            return
+    #if len(event.text) > 3:
+     #   if not event.text[3] == " ":
+     #       return
     input = event.text[4:6]
     txt = event.text[7:]
     xx = await event.edit("`Translating...`")
