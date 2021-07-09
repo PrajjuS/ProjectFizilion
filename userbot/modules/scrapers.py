@@ -19,6 +19,7 @@ import asyncurban
 from bs4 import BeautifulSoup
 from emoji import get_emoji_regexp
 from google_trans_new import LANGUAGES, google_translator
+from googletrans import Translator
 from gtts import gTTS
 from gtts.lang import tts_langs
 from requests import get
@@ -472,7 +473,8 @@ async def imdb(e):
 @register(outgoing=True, pattern=r"^.trt(?: |$)([\s\S]*)")
 async def translateme(trans):
     """ For .trt command, translate the given text using Google Translate. """
-    translator = google_translator()
+    #translator = google_translator()
+    translator = Translator()
     textx = await trans.get_reply_message()
     message = trans.pattern_match.group(1)
     if message:
