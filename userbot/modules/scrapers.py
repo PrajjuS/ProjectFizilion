@@ -486,7 +486,8 @@ async def translateme(trans):
         )
 
     await trans.edit("**Processing...**")
-    translator = google_translator()
+    translator = Translator()
+    #translator = google_translator()
 
     try:
         from userbot.modules.sql_helper.globals import gvarstatus
