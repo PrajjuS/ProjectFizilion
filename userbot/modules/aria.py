@@ -7,7 +7,7 @@ import math
 import os
 from asyncio import sleep
 from subprocess import PIPE, Popen
-
+from telethon.errors.rpcerrorlist import MessageNotModifiedError
 import aria2p
 from requests import get
 
@@ -209,8 +209,12 @@ async def check_progress_for_dl(gid, event, previous):
                     f" @ {file.download_speed_string()}`\n"
                     f"`ETA` -> {file.eta_string()}\n")
                 if msg != previous:
-                    await event.edit(msg)
-                    msg = previous
+                    try:
+                      await event.edit(msg)
+                      await sleep(20)
+                      msg = previous
+                    except MessageNotModifiedError:
+                       pass 
             else:
                 await event.edit(f"`{msg}`")
             await sleep(5)
