@@ -71,7 +71,8 @@ def dogbin(magnets):
         message = magnets[counter]
         url = "https://nekobin.com/api/documents"
         r = requests.post(url, data=message.encode("UTF-8")).json()
-        url = f"https://nekobin.com/raw/{r['key']}"
+        #url = f"https://nekobin.com/raw/{r['key']}"
+        url = f"https://nekobin.com/raw/{key}"
         urls.append(url)
         counter = counter + 1
     return urls
