@@ -505,7 +505,40 @@ async def lang(value):
             BOTLOG_CHATID, f"`Language for {scraper} changed to {LANG.title()}.`"
         )
 
+@register(outgoing=True, pattern=r"^.trt(?: |$)([\s\S]*)")
+async def translateme(trans):
+    """ For .trt command, translate the given text using Google Translate. """
+    #translator = google_translator()
+    translator = Translator()
+    textx = await trans.get_reply_message()
+    message = trans.pattern_match.group(1)
+    if message:
+        pass
+    elif textx:
+        message = textx.text
+    else:
+        await trans.edit("`Give a text or reply to a message to translate!`")
+        return
+    try:
+        reply_text = translator.translate(deEmojify(message),
+                                          targetlang=TRT_LANG)
+    except ValueError:
+        await trans.edit("Invalid destination language.")
+        return
 
+    try:
+        source_lan = translator.detect(deEmojify(message))[1].title()
+    except:
+        source_lan = "(Google didn't provide this info.)"
+
+    reply_text = f"From: **{source_lan}**\nTo: **{LANGUAGES.get(TRT_LANG).title()}**\n\n{reply_text}"
+
+    await trans.edit(reply_text)
+    if BOTLOG:
+        await trans.client.send_message(
+            BOTLOG_CHATID,
+            f"Translated some {source_lan.title()} stuff to {LANGUAGES[TRT_LANG].title()} just now.",
+        )
 @register(outgoing=True, pattern=r"^\.yt(?: |$)(\d*)? ?(.*)")
 async def yt_search(event):
     """ For .yt command, do a YouTube search from Telegram. """
