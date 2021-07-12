@@ -527,7 +527,7 @@ async def translateme(trans):
         return
 
     try:
-        source_lan = await translator.detect(deEmojify(message))[1].title()
+        source_lan = await translator.detect(deEmojify(message))
     except:
         source_lan = "(Google didn't provide this info.)"
 
