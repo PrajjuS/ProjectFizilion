@@ -520,14 +520,14 @@ async def translateme(trans):
         await trans.edit("`Give a text or reply to a message to translate!`")
         return
     try:
-        reply_text = translator.translate(deEmojify(message),
+        reply_text = await translator.translate(deEmojify(message),
                                           targetlang=TRT_LANG)
     except ValueError:
         await trans.edit("Invalid destination language.")
         return
 
     try:
-        source_lan = translator.detect(deEmojify(message))[1].title()
+        source_lan = await translator.detect(deEmojify(message))[1].title()
     except:
         source_lan = "(Google didn't provide this info.)"
 
