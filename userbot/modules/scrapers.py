@@ -528,12 +528,12 @@ async def translateme(trans):
 
     try:
         source_lan = await translator.detect(deEmojify(message))
-        source_lan = LANGUAGES.get(source_lan)
+        source_lan = LANGUAGES.get(source_lan).title()
         
     except:
         source_lan = "(Google didn't provide this info.)"
 
-    reply_text = f"From: **{source_lan}**\nTo: **{LANGUAGES.get(TRT_LANG).title()}**\n\n{reply_text}"
+    reply_text = f"From: **{source_lan}**\nTo: **{LANGUAGES.get(TRT_LANG).title()}**\n\n{reply_text.text}"
 
     await trans.edit(reply_text)
     if BOTLOG:
