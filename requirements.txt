@@ -22,6 +22,7 @@ googletrans
 google_images_download
 gTTS
 gTTS-token
+gpytranslate
 hachoir
 heroku3
 html_telegraph_poster
