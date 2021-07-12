@@ -186,30 +186,21 @@ async def dyno_usage(dyno):
             )
             return True
 
-
 @register(outgoing=True, pattern=r"^\.logs")
 async def _(dyno):
-    try:
-        Heroku = heroku3.from_key(HEROKU_API_KEY)
-        app = Heroku.app(HEROKU_APP_NAME)
-    except BaseException:
-        return await dyno.reply(
-            "`Please make sure your Heroku API Key, Your App name are configured correctly in the heroku var.`"
+    if app is None:
+        return await dyno.edit(
+            "**Please setup your** `HEROKU_APP_NAME` **and** `HEROKU_API_KEY`**.**"
         )
-    await dyno.edit("`Getting Logs....`")
+    await dyno.edit("**Processing...**")
     with open("logs.txt", "w") as log:
         log.write(app.get_log())
-    fd = codecs.open("logs.txt", "r", encoding="utf-8")
-    data = fd.read()
-    key = (
-        requests.post("https://nekobin.com/api/documents", json={"content": data})
-        .json()
-        .get("result")
-        .get("key")
+    await dyno.client.send_file(
+        entity=dyno.chat_id, file="logs.txt", caption="**Heroku dyno logs**"
     )
-    url = f"https://nekobin.com/raw/{key}"
-    await dyno.edit(f"`Here the heroku logs:`\n\nPasted to: [Nekobin]({url})")
+    await dyno.delete()
     return os.remove("logs.txt")
+
 
 
 CMD_HELP.update(
