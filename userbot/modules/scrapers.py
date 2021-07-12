@@ -19,7 +19,8 @@ import asyncurban
 from bs4 import BeautifulSoup
 from emoji import get_emoji_regexp
 from google_trans_new import LANGUAGES, google_translator
-from googletrans import Translator
+#from googletrans import Translator
+from gpytranslate import Translator
 from gtts import gTTS
 from gtts.lang import tts_langs
 from requests import get
@@ -470,30 +471,6 @@ async def imdb(e):
         await e.edit("Plox enter **Valid movie name** kthx")
 
 
-@register(outgoing=True, pattern=r"^\.trt(?: |$)([\s\S]*)")
-async def _(event):
-    #if len(event.text) > 3:
-     #   if not event.text[3] == " ":
-     #       return
-    input = event.text[4:6]
-    txt = event.text[7:]
-    xx = await event.edit("`Translating...`")
-    if event.reply_to_msg_id:
-        previous_message = await event.get_reply_message()
-        text = previous_message.message
-        lan = input or "en"
-    elif input:
-        text = txt
-        lan = input or "en"
-    else:
-        return await xx.edit(f"`{hndlr}tr LanguageCode` as reply to a message", time=5)
-    translator = Translator()
-    try:
-        tt = translator.translate(text, dest=lan)
-        output_str = f"**TRANSLATED** from {tt.src} to {lan}\n{tt.text}"
-        await xx.edit(output_str)
-    except Exception as exc:
-        await xx.edit(str(exc))
 
         
 @register(pattern=r"\.lang (trt|tts) (.*)", outgoing=True)
