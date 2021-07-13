@@ -82,9 +82,10 @@ async def reedme(event):
 @register(outgoing=True, pattern="^.guide$")
 async def guidee(event):
     await event.edit(
-        "*Guide on Deploying Fizilion*\n"
+        "**Guide on Deploying Fizilion**\n"
         "•[Reading Guide](https://elytra8.github.io/ProjectFizilion)\n"
         "•[Yt Guide](https://youtu.be/tJzmrTq09tA)\n"
+        "•[Repo](https://github.com/PrajjuS/Projectizilion)"
 )
 
 
