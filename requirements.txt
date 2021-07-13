@@ -1,3 +1,4 @@
+async-google-trans-new
 aiohttp[speedups]
 aria2p
 asyncurban
