@@ -243,8 +243,6 @@ CMD_HELP.update(
     {
         "file": ".ls <directory>"
         "\nUsage: Get information about files in Userbot's Storage"
-        "file": ".la <directory>"
-        "\nUsage: Get information about files in Userbot's Storage(BETA)"
-        
+                
     }
 )
