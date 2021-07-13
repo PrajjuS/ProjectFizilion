@@ -9,10 +9,11 @@ import os
 import os.path
 import time
 from os.path import exists, isdir
+from pathlib import Path
 
 from userbot import CMD_HELP
 from userbot.events import register
-from userbot.utils import humanbytes
+from userbot.utils import humanbytes as hb
 
 MAX_MESSAGE_SIZE_LIMIT = 4095
 
@@ -104,7 +105,7 @@ async def lst(event):
         time3 = time.ctime(os.path.getatime(path))
         msg += f"**Location :** `{path}`\n"
         msg += f"**Icon :** `{mode}`\n"
-        msg += f"**Size :** `{humanbytes(size)}`\n"
+        msg += f"**Size :** `{hb(size)}`\n"
         msg += f"**Last Modified Time:** `{time2}`\n"
         msg += f"**Last Accessed Time:** `{time3}`"
 
@@ -121,11 +122,129 @@ async def lst(event):
             await event.delete()
     else:
         await event.edit(msg)
+@register(outgoing=True, pattern=r"^\.la ?(.*)")
+async def lsta(e):
+    path = Path(e.pattern_match.group(1))
+    if not path:
+        path = Path(".")
+    else:
+        if not os.path.isdir(path):
+            return await e.edit("`Incorrect Directory.`")
+        if not os.listdir(path):
+            return await e.edit("`This Directory is Empty.`")
+    files = path.iterdir()
+    pyfiles = []
+    jsons = []
+    vdos = []
+    audios = []
+    pics = []
+    others = []
+    otherfiles = []
+    folders = []
+    text = []
+    apk = []
+    exe = []
+    zip_ = []
+    book = []
+    for file in sorted(files):
+        if os.path.isdir(file):
+            folders.append("📂 " + str(file))
+        elif str(file).endswith(".py"):
+            pyfiles.append("🐍 " + str(file))
+        elif str(file).endswith(".json"):
+            jsons.append("🔮 " + str(file))
+        elif str(file).endswith((".mkv", ".mp4", ".avi", ".gif")):
+            vdos.append("🎥 " + str(file))
+        elif str(file).endswith((".mp3", ".ogg", ".m4a")):
+            audios.append("🔊 " + str(file))
+        elif str(file).endswith((".jpg", ".jpeg", ".png", ".webp")):
+            pics.append("🖼 " + str(file))
+        elif str(file).endswith((".txt", ".text", ".log")):
+            text.append("📄 " + str(file))
+        elif str(file).endswith((".apk", ".xapk")):
+            apk.append("📲 " + str(file))
+        elif str(file).endswith(".exe"):
+            exe.append("⚙ " + str(file))
+        elif str(file).endswith((".zip", ".rar")):
+            zip_.append("🗜 " + str(file))
+        elif str(file).endswith((".pdf", ".epub")):
+            book.append("📗 " + str(file))
+        elif "." in str(file)[1:]:
+            others.append("🏷 " + str(file))
+        else:
+            otherfiles.append("📒 " + str(file))
+    omk = [
+        *sorted(folders),
+        *sorted(pyfiles),
+        *sorted(jsons),
+        *sorted(zip_),
+        *sorted(vdos),
+        *sorted(pics),
+        *sorted(audios),
+        *sorted(apk),
+        *sorted(exe),
+        *sorted(book),
+        *sorted(text),
+        *sorted(others),
+        *sorted(otherfiles),
+    ]
+    text = ""
+    fls, fos = 0, 0
+    flc, foc = 0, 0
+    for i in omk:
+        emoji = i.split()[0]
+        name = i.split(maxsplit=1)[1]
+        nam = name.split("/")[-1]
+        if os.path.isdir(name):
+            size = 0
+            for path, dirs, files in os.walk(name):
+                for f in files:
+                    fp = os.path.join(path, f)
+                    size += os.path.getsize(fp)
+            if hb(size):
+                text += emoji + f" `{nam}`" + "  `" + hb(size) + "`\n"
+                fos += size
+            else:
+                text += emoji + f" `{nam}`" + "\n"
+            foc += 1
+        else:
+            if hb(int(os.path.getsize(name))):
+                text += (
+                    emoji + f" `{nam}`" + "  `" + hb(int(os.path.getsize(name))) + "`\n"
+                )
+                fls += int(os.path.getsize(name))
+            else:
+                text += emoji + f" `{nam}`" + "\n"
+            flc += 1
+    tfos, tfls, ttol = hb(fos), hb(fls), hb(fos + fls)
+    if not hb(fos):
+        tfos = "0 B"
+    if not hb(fls):
+        tfls = "0 B"
+    if not hb(fos + fls):
+        ttol = "0 B"
+    text += f"\n\n`Folders` :  `{foc}` :   `{tfos}`\n`Files` :       `{flc}` :   `{tfls}`\n`Total` :       `{flc+foc}` :   `{ttol}`"
+    if len(text) > MAX_MESSAGE_SIZE_LIMIT:
+        with io.BytesIO(str.encode(text)) as out_file:
+            out_file.name = "ls.txt"
+            await e.client.send_file(
+                e.chat_id,
+                out_file,
+                force_document=True,
+                allow_cache=False,
+                caption=path,
+            )
+            await e.delete()
+    else:
+        await e.edit(text)
 
 
 CMD_HELP.update(
     {
         "file": ".ls <directory>"
-        "\nUsage: Get an information about data covid-19 in your country."
+        "\nUsage: Get information about files in Userbot's Storage"
+        "file": ".la <directory>"
+        "\nUsage: Get information about files in Userbot's Storage(BETA)"
+        
     }
 )
