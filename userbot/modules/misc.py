@@ -189,7 +189,7 @@ CMD_HELP.update(
 "\nUsage: Get detailed JSON-like formatted data about replied message."
 ".deploy"
 "\nUsage: Get link to deploy Fizilion Userbot on Heroku."
-"send": ">`.send <username/id>` (as a reply)"
+".send <username/id>` (as a reply)"
 '\nUsage: Forwards the replied message to given chat without the "Forwarded from" tag.',
     }
 )
