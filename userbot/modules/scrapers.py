@@ -14,7 +14,7 @@ import shutil
 import time
 from asyncio import sleep
 from urllib.parse import quote_plus
-
+import async_google_trans_new  
 import asyncurban
 from bs4 import BeautifulSoup
 from emoji import get_emoji_regexp
@@ -510,6 +510,7 @@ async def translateme(trans):
     """ For .trt command, translate the given text using Google Translate. """
     #translator = google_translator()
     translator = Translator()
+    g = async_google_trans_new.AsyncTranslator()
     detector = tr()
     textx = await trans.get_reply_message()
     message = trans.pattern_match.group(1)
@@ -521,8 +522,8 @@ async def translateme(trans):
         await trans.edit("`Give a text or reply to a message to translate!`")
         return
     try:
-        reply_text = await translator.translate(deEmojify(message),
-                                          dest=TRT_LANG)
+        reply_text = await g.translate(deEmojify(message),
+                                          TRT_LANG)
     except ValueError:
         await trans.edit("Invalid destination language.")
         return
