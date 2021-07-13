@@ -19,8 +19,8 @@ import asyncurban
 from bs4 import BeautifulSoup
 from emoji import get_emoji_regexp
 from google_trans_new import LANGUAGES, google_translator
-#from googletrans import Translator
-from gpytranslate import Translator
+from googletrans import Translator
+from gpytranslate import Translator as tr
 from gtts import gTTS
 from gtts.lang import tts_langs
 from requests import get
@@ -510,6 +510,7 @@ async def translateme(trans):
     """ For .trt command, translate the given text using Google Translate. """
     #translator = google_translator()
     translator = Translator()
+    trans = tr()
     textx = await trans.get_reply_message()
     message = trans.pattern_match.group(1)
     if message:
@@ -521,13 +522,13 @@ async def translateme(trans):
         return
     try:
         reply_text = await translator.translate(deEmojify(message),
-                                          targetlang=TRT_LANG)
+                                          dest=TRT_LANG)
     except ValueError:
         await trans.edit("Invalid destination language.")
         return
 
     try:
-        source_lan = await translator.detect(deEmojify(message))
+        source_lan = await trans.detect(deEmojify(message))
         source_lan = LANGUAGES.get(source_lan).title()
         
     except:
