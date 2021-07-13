@@ -24,6 +24,9 @@ except PhoneNumberInvalidError:
     exit(1)
 
 for module_name in ALL_MODULES:
+  try:
+    imported_module = import_module("userbot.modules." + module_name)
+  except:
     imported_module = import_module("userbot.modules." + module_name)
 
 LOGS.info("You are running Project Fizilion")
