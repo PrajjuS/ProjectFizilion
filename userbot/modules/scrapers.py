@@ -510,7 +510,7 @@ async def translateme(trans):
     """ For .trt command, translate the given text using Google Translate. """
     #translator = google_translator()
     translator = Translator()
-    trans = tr()
+    detector = tr()
     textx = await trans.get_reply_message()
     message = trans.pattern_match.group(1)
     if message:
@@ -528,7 +528,7 @@ async def translateme(trans):
         return
 
     try:
-        source_lan = await trans.detect(deEmojify(message))
+        source_lan = await detector.detect(deEmojify(message))
         source_lan = LANGUAGES.get(source_lan).title()
         
     except:
