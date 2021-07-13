@@ -57,7 +57,7 @@ async def killbot(shut):
     if BOTLOG:
         await shut.client.send_message(BOTLOG_CHATID, "#SHUTDOWN \n" "Bot shut down")
     await bot.disconnect()
-
+    exit(1)
 
 @register(outgoing=True, pattern="^.restart$")
 async def killdabot(reboot):
