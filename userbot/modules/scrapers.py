@@ -2,6 +2,7 @@
 #
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
+# Modified by Senpai-sama-afk/@SenpaiAF
 """ Userbot module containing various scrapers. """
 
 import asyncio
@@ -13,11 +14,13 @@ import shutil
 import time
 from asyncio import sleep
 from urllib.parse import quote_plus
-from gpytranslate import Translator
+import async_google_trans_new  
 import asyncurban
 from bs4 import BeautifulSoup
 from emoji import get_emoji_regexp
 from google_trans_new import LANGUAGES, google_translator
+from googletrans import Translator
+from gpytranslate import Translator as tr
 from gtts import gTTS
 from gtts.lang import tts_langs
 from requests import get
@@ -468,43 +471,8 @@ async def imdb(e):
         await e.edit("Plox enter **Valid movie name** kthx")
 
 
-@register(outgoing=True, pattern=r"^.trt(?: |$)([\s\S]*)")
-async def translateme(trans):
-    """ For .trt command, translate the given text using Google Translate. """
-    translator = Translator()
-    textx = await trans.get_reply_message()
-    message = trans.pattern_match.group(1)
-    if message:
-        pass
-    elif textx:
-        message = textx.text
-    else:
-        await trans.edit("`Give a text or reply to a message to translate!`")
-        return
-    try:
-        reply_text = await translator.translate(deEmojify(message),
-                                          targetlang=TRT_LANG)
-    except ValueError:
-        await trans.edit("Invalid destination language.")
-        return
 
-    try:
-        source_lan = await translator.detect(deEmojify(message))
-        source_lan = LANGUAGES.get(source_lan).title()
         
-    except:
-        source_lan = "(Google didn't provide this info.)"
-
-    reply_text = f"From: **{source_lan}**\nTo: **{LANGUAGES.get(TRT_LANG).title()}**\n\n{reply_text.text}"
-
-    await trans.edit(reply_text)
-    if BOTLOG:
-        await trans.client.send_message(
-            BOTLOG_CHATID,
-            f"Translated some {source_lan.title()} stuff to {LANGUAGES[TRT_LANG].title()} just now.",
-        )
-
-
 @register(pattern=r"\.lang (trt|tts) (.*)", outgoing=True)
 async def lang(value):
     """ For .lang command, change the default langauge of userbot scrapers. """
@@ -537,7 +505,43 @@ async def lang(value):
             BOTLOG_CHATID, f"`Language for {scraper} changed to {LANG.title()}.`"
         )
 
+@register(outgoing=True, pattern=r"^.trt(?: |$)([\s\S]*)")
+async def translateme(trans):
+    """ For .trt command, translate the given text using Google Translate. """
+    translator = Translator()
+    g = async_google_trans_new.AsyncTranslator()
+    detector = tr()
+    textx = await trans.get_reply_message()
+    message = trans.pattern_match.group(1)
+    if message:
+        pass
+    elif textx:
+        message = textx.text
+    else:
+        await trans.edit("`Give a text or reply to a message to translate!`")
+        return
+    try:
+        reply_text = await g.translate(deEmojify(message),
+                                          TRT_LANG)
+    except ValueError:
+        await trans.edit("Invalid destination language.")
+        return
 
+    try:
+        source_lan = await detector.detect(deEmojify(message))
+        source_lan = LANGUAGES.get(source_lan).title()
+        
+    except:
+        source_lan = "(Google didn't provide this info.)"
+
+    reply_text = f"From: **{source_lan}**\nTo: **{LANGUAGES.get(TRT_LANG).title()}**\n\n{reply_text}"
+
+    await trans.edit(reply_text)
+    if BOTLOG:
+        await trans.client.send_message(
+            BOTLOG_CHATID,
+            f"Translated some {source_lan.title()} stuff to {LANGUAGES[TRT_LANG].title()} just now.",
+        )
 @register(outgoing=True, pattern=r"^\.yt(?: |$)(\d*)? ?(.*)")
 async def yt_search(event):
     """ For .yt command, do a YouTube search from Telegram. """
