@@ -1,6 +1,7 @@
 aiohttp[speedups]
 aria2p
 asyncurban
+async-google-trans-new
 async_generator
 bs4
 cowpy
