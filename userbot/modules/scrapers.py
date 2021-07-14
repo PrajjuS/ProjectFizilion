@@ -535,7 +535,7 @@ async def translateme(trans):
     except:
         source_lan = "(Google didn't provide this info.)"
 
-    reply_text = f"From: **{source_lan}**\nTo: **{LANGUAGES.get(TRT_LANG).title()}**\n\n{reply_text.text}"
+    reply_text = f"From: **{source_lan}**\nTo: **{LANGUAGES.get(TRT_LANG).title()}**\n\n{reply_text}"
 
     await trans.edit(reply_text)
     if BOTLOG:
