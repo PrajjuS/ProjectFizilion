@@ -508,7 +508,6 @@ async def lang(value):
 @register(outgoing=True, pattern=r"^.trt(?: |$)([\s\S]*)")
 async def translateme(trans):
     """ For .trt command, translate the given text using Google Translate. """
-    #translator = google_translator()
     translator = Translator()
     g = async_google_trans_new.AsyncTranslator()
     detector = tr()
