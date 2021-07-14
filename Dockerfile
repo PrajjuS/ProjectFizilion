@@ -14,6 +14,7 @@ RUN git clone https://github.com/PrajjuS/ProjectFizilion -b demon /Fizilion
 COPY ./sample_config.env ./userbot.session* ./config.env* /Fizilion/
 
 # install required pypi modules
+RUN pip3 install async-google-trans-new
 RUN pip3 install -r requirements.txt
 
 # Finalization
