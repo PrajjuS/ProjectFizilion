@@ -103,14 +103,14 @@ async def repeat(rep):
     await rep.edit(replyText)
 
 
-@register(outgoing=True, pattern="^.repo$")
+@register(outgoing=True, pattern="^.repoo$")
 async def repo_is_here(wannasee):
     """ For .repo command, just returns the repo URL. """
     await wannasee.edit(
         "[Click here](https://github.com/PrajjuS/ProjectFizilion) to open Fizilion's GitHub Repo."
     )
 
-@register(outgoing=True, pattern="^.repoo$")
+@register(outgoing=True, pattern="^.repo$")
 async def repo_is_heree(wannaseee):
     """ For .repo command, just returns the repo URL. """
     await wannaseee.edit(
