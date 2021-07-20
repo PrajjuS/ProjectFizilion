@@ -58,7 +58,7 @@ async def _(event):
 
 CMD_HELP.update(
     {
-        "shortlink`": ".short <url>"
+        "shortlink": ".short <url>"
                 "\nUsage: Reply or paste a link to get"
                 "\nshort url using `@ShortUrlBot`"
     }
