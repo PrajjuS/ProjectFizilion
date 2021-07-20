@@ -30,8 +30,7 @@ async def _(e):
         except BaseException:
             pass
     await z.edit("`Done`")
-    
-    
+
 CMD_HELP.update(
     {
         "shift":
@@ -39,4 +38,3 @@ CMD_HELP.update(
         "\nUsage: shifts all chats from one to another channel or group."
     }
 )
-    
