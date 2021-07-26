@@ -10,6 +10,7 @@ import json
 import math
 import multiprocessing
 import os
+from os.path import isfile
 import re
 import time
 from asyncio import create_subprocess_shell as asyncSubprocess
@@ -18,7 +19,7 @@ from urllib.error import HTTPError
 
 from pySmartDL import SmartDL
 
-from userbot import CMD_HELP, LOGS, TEMP_DOWNLOAD_DIRECTORY
+from userbot import CMD_HELP, LOGS, TEMP_DOWNLOAD_DIRECTORY, MEGA_EMAIL, MEGA_PASSWORD
 from userbot.events import register
 from userbot.utils import humanbytes, time_formatter
 
@@ -168,11 +169,32 @@ async def decrypt_file(megadl, file_path, temp_file_path, hex_key, hex_raw_key):
         raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), file_path)
     return
 
+@register(pattern="^.megaput(?: |$)(.*)", outgoing=True)
+async def megaput(event):
+    file = event.pattern_match.group(1)
+    if MEGA_EMAIL and MEGA_PASSWORD:
+        if isfile(file):
+            await event.edit(f"`Uploading file {file} to mega, this may take some time depending on file size`")
+            uploader = os.popen(f"megaput -u {MEGA_EMAIL} -p {MEGA_PASSWORD} {file}")
+            output = uploader.readlines()
+            print(output)
+            try:
+                out = f'{output[-2]}\n{output[-1]}\nto Mega'
+            except IndexError:
+                out = f'{output},\nAn error has occured'
+            await event.edit(out)
+        else:
+            await event.edit(f"Please check if {file} exists in userbot's server")
+    else:
+        await event.edit("`Mega credentials empty, add those to config env`")
+
 
 CMD_HELP.update(
     {
         "mega": ".mega <MEGA.nz link>"
         "\nUsage: Reply to a MEGA.nz link or paste your MEGA.nz link to "
         "download the file into your userbot server."
-    }
+        "\n.megaput <file_path>"
+	"\nUsage: Upload files to your mega.nz drive"
+	}
 )
