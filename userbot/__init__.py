@@ -202,6 +202,10 @@ SFUSER = os.environ.get("SFUSER") or "null"
 SFPASS = os.environ.get("SFPASS") or "null"
 SFDIR = os.environ.get("SFDIR") or "null"
 
+#Mega
+MEGA_EMAIL = os.environ.get("MEGA_EMAIL") or None
+MEGA_PASSWORD = os.environ.get("MEGA_PASSWORD") or None
+
 # Setting Up CloudMail.ru and MEGA.nz extractor binaries,
 # and giving them correct perms to work properly.
 if not os.path.exists("bin"):
