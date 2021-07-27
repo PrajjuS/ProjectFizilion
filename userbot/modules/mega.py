@@ -188,13 +188,25 @@ async def megaput(event):
     else:
         await event.edit("`Mega credentials empty, add those to config env`")
 
+@register(pattern="^.megareg(?: |$)(.*)", outgoing=True)
+async def megareg(event):
+    inp = event.pattern_match.group(1)
+    if ";" in inp:
+        await event.edit("`Registering your account on mega.nz`")
+        email,passwd = inp.split(";", 1)
+        os.system(f"megareg --register --name FiziDrive --email {email} --password {passwd}")
+        await event.edit("`Verification link sent to your email successfully... Please verify your email ID to use your account`")
+    else:
+        await event.edit("Please put email and password in format:\n`.megareg youremail@example.com;password-you-want`")
 
 CMD_HELP.update(
     {
         "mega": ".mega <MEGA.nz link>"
         "\nUsage: Reply to a MEGA.nz link or paste your MEGA.nz link to "
         "download the file into your userbot server."
-        "\n.megaput <file_path>"
+        "\n\n.megaput <file_path>"
 	"\nUsage: Upload files to your mega.nz drive"
+        "\n\n.megareg youremail@example.com;password-you-want"
+        "\nUsage: Register mega account with your userbot, Make sure you make account with this or megareg in terminal to use userbot's megaput function without errors"
 	}
 )
