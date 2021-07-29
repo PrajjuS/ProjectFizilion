@@ -1,170 +1,88 @@
-# Copyright (C) 2020 GengKapak and AnggaR96s.
-#
-# Licensed under the Raphielscape Public License, Version 1.d (the "License");
-# you may not use this file except in compliance with the License.
-#
+# Copyright (C) 2021 arshsisodiya
+#https://github.com/arshsisodiya
+#https://twitter.com/arshsisodiya
 
-import codecs
-import json
-import os
+#Created by arshsisodiya for ProjectHelios
 
-import requests
-from bs4 import BeautifulSoup as bs
-
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+import asyncio
+from asyncio import sleep
+from asyncio.exceptions import TimeoutError
+from telethon import events
+from telethon.errors.rpcerrorlist import YouBlockedUserError
+from userbot import CMD_HELP, bot
 from userbot.events import register
 
 
 @register(outgoing=True, pattern=r"^\.ts(?: |$)(.*)")
-async def torrent(event):
-    await event.edit("**Searching...**")
-    query = event.pattern_match.group(1)
-    response = requests.get(
-        f"https://api.sumanjay.cf/torrent/?query={query}")
-    try:
-        ts = json.loads(response.text)
-    except json.decoder.JSONDecodeError:
-        return await event.edit(
-            "**Error: API is down right now, try again later.**")
-    if ts != response.json():
-        return await event.edit(
-            "**Error: API is down right now, try again later.**")
-    listdata = ""
-    run = 0
-    while True:
-        try:
-            run += 1
-            r1 = ts[run]
-            list1 = "<-----{}----->\nName: {}\nSeeders: {}\nSize: {}\nAge: {}\n<--Magnet Below-->\n{}\n\n\n".format(
-                run, r1["name"], r1["seeder"], r1["size"], r1["age"], r1["magnet"]
-            )
-            listdata = listdata + list1
-        except BaseException:
-            break
-
-    if not listdata:
-        return await event.edit("`Error: No results found`")
-
-    tsfileloc = f"{TEMP_DOWNLOAD_DIRECTORY}/{query}.txt"
-    with open(tsfileloc, "w+", encoding="utf8") as out_file:
-        out_file.write(str(listdata))
-    fd = codecs.open(tsfileloc, "r", encoding="utf-8")
-    data = fd.read()
-    key = (
-        requests.post("https://nekobin.com/api/documents", json={"content": data})
-        .json()
-        .get("result")
-        .get("key")
-    )
-    url = f"https://nekobin.com/raw/{key}"
-    caption = (
-        f"`Here the results for the query: {query}`\n\nPasted to: [Nekobin]({url})"
-    )
-    os.remove(tsfileloc)
-    await event.edit(caption, link_preview=False)
-
-
-def dogbin(magnets):
-    counter = 0
-    urls = []
-    while counter != len(magnets):
-        message = magnets[counter]
-        url = "https://del.dog/documents"
-        r = requests.post(url, data=message.encode("UTF-8")).json()
-        url = f"https://del.dog/raw/{r['key']}"
-        urls.append(url)
-        counter = counter + 1
-    return urls
-
-
-@register(outgoing=True, pattern=r"^.tos(?: |$)(.*)")
-async def tor_search(event):
+async def _(event):
     if event.fwd_from:
         return
-    headers = {
-        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36"
-    }
+    msg_link = await event.get_reply_message()
+    d_link = event.pattern_match.group(1)
 
-    search_str = event.pattern_match.group(1)
-
-    print(search_str)
-    await event.edit("Searching for " + search_str + ".....")
-    if " " in search_str:
-        search_str = search_str.replace(" ", "+")
-        print(search_str)
-        res = requests.get(
-            "https://www.torrentdownloads.me/search/?new=1&s_cat=0&search="
-            + search_str,
-            headers,
-        )
-
-    else:
-        res = requests.get(
-            "https://www.torrentdownloads.me/search/?search=" + search_str, headers
-        )
-
-    source = bs(res.text, "lxml")
-    urls = []
-    magnets = []
-    titles = []
-    counter = 0
-    for div in source.find_all("div", {"class": "grey_bar3 back_none"}):
-        # print("https://www.torrentdownloads.me"+a['href'])
-        try:
-            title = div.p.a["title"]
-            title = title[20:]
-            titles.append(title)
-            urls.append("https://www.torrentdownloads.me" + div.p.a["href"])
-        except KeyError:
-            pass
-        except TypeError:
-            pass
-        except AttributeError:
-            pass
-        if counter == 11:
-            break
-        counter = counter + 1
-    if not urls:
-        await event.edit("Either the Keyword was restricted or not found..")
-        return
-
-    print("Found URLS...")
-    for url in urls:
-        res = requests.get(url, headers)
-        # print("URl: "+url)
-        source = bs(res.text, "lxml")
-        for div in source.find_all("div", {"class": "grey_bar1 back_none"}):
-            try:
-                mg = div.p.a["href"]
-                magnets.append(mg)
-            except Exception:
-                pass
-    print("Found Magnets...")
-    shorted_links = dogbin(magnets)
-    print("Dogged Magnets to del.dog...")
-    msg = ""
+    if msg_link:
+        d_link = msg_link.text
+    chat = "@TorrentHuntBot"
+    await event.edit("Searching....")
     try:
-        search_str = search_str.replace("+", " ")
-    except BaseException:
-        pass
-    msg = "**Torrent Search Query**\n`{}`".format(search_str) + "\n**Results**\n"
-    counter = 0
-    while counter != len(titles):
-        msg = (
-            msg
-            + "⁍ [{}]".format(titles[counter])
-            + "({})".format(shorted_links[counter])
-            + "\n\n"
-        )
-        counter = counter + 1
-    await event.edit(msg, link_preview=False)
+        async with bot.conversation(chat) as conv:
+            try:
+                msg_start = await conv.send_message("/start")
+                response = await conv.get_response()
+                msg = await conv.send_message(d_link)
+                await sleep(3)
+                torrent = await conv.get_response()
+                """- don't spam notif -"""
+                await bot.send_read_acknowledge(conv.chat_id)
+            except YouBlockedUserError:
+                await event.edit("`Unblock `@TorrentHuntBot` and retry`")
+                return
+            await event.client.send_message(event.chat_id, torrent,)
+            await event.client.delete_messages(
+                conv.chat_id, [msg_start.id, response.id, msg.id, torrent.id]
+            )
+            await event.edit("`reply .get <link_id> to get magnet link`")
+            await sleep (4)
+            await event.delete()
+    except TimeoutError:
+        return await event.edit("`Error: @TorrentHuntBot is not responding please try again later")
 
 
-CMD_HELP.update(
-    {
-        "torrent": ".ts Search query.\
-    \nUsage: Search for torrent query and post to dogbin.\
-    \n\n.tos Search query.\
-    \nUsage: Search for torrent magnet from query."
-    }
-)
+@register(outgoing=True, pattern=r"^\.tos(?: |$)(.*)")
+async def _(event):
+    if event.fwd_from:
+        return
+    msg_link = await event.get_reply_message()
+    d_link = event.pattern_match.group(1)
+
+    if msg_link:
+        d_link = msg_link.text
+    chat = "@TorrentHuntBot"
+    await event.edit("Fetching magnet link...")
+    try:
+        async with bot.conversation(chat) as conv:
+            try:
+                msg = await conv.send_message(d_link)
+                await sleep(2)
+                torrent = await conv.get_response()
+                await bot.send_read_acknowledge(conv.chat_id)
+            except YouBlockedUserError:
+                await event.edit("`Unblock `@TorrentHuntBot` and retry`")
+                return
+            await event.client.send_message(event.chat_id, torrent,)
+            await event.client.delete_messages(
+                conv.chat_id, [msg.id, torrent.id]
+            )
+            await event.delete()
+    except TimeoutError:
+        return await event.edit("`Error: @TorrentHuntBot is not responding please try again later")
+
+    CMD_HELP.update(
+        {
+            "torrent": ".ts"
+                        "\nUsage: Search Torrents "
+                        "\n\n.tos"
+                        "\nUsage:reply to getLink<id> to get Magnet Link\n"
+
+        }
+    )
