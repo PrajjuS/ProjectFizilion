@@ -1,4 +1,4 @@
-# Copyright (C) 2021 arshsisodiya
+#Copyright @arshsisodiya
 #https://github.com/arshsisodiya
 #https://twitter.com/arshsisodiya
 
@@ -13,49 +13,42 @@ from userbot.events import register
 
 @register(outgoing=True, pattern=r"^\.pdf(?: |$)(.*)")
 async def _(event):
-    "For English Language"
     if not event.reply_to_msg_id:
-        return await event.edit("Reply to any text message.")
+        return await event.edit("Reply to any text/image.")
     reply_message = await event.get_reply_message()
-    if not reply_message.text:
-        return await event.edit("Reply to text message")
-    chat = "@pdfbot"
-    await event.edit("Converting Your Text into PDF.....`")
+    chat = "@office2pdf_bot"
+    await event.edit("Converting into PDF..")
     try:
         async with bot.conversation(chat) as conv:
             try:
                 msg_start = await conv.send_message("/start")
                 response = await conv.get_response()
-                text = await conv.send_message("/text")
-                response2 = await conv.get_response()
-                await event.edit("`Uploading your Text to server.....`")
                 msg = await conv.send_message(reply_message)
-                await event.edit("`Uploaded to server Successfully`")
-                response3 = await conv.get_response()
-                font = await conv.send_message("Noto Sans")
-                await event.edit("`Getting PDF from Server, Wait just A bit more.....`")
+                convert = await conv.send_message("/ready2conv")
                 cnfrm = await conv.get_response()
+                editfilename = await conv.send_message("Yes")
+                enterfilename = await conv.get_response()
+                filename = await conv.send_message("Project Fizilion")
+                started = await conv.get_response()
                 pdf = await conv.get_response()
                 """- don't spam notif -"""
                 await bot.send_read_acknowledge(conv.chat_id)
             except YouBlockedUserError:
-                await event.edit("`Unblock `@pdfbot` and retry`")
+                await event.edit("`Unblock @office2pdf_bot and retry")
                 return
             await event.client.send_message(event.chat_id, pdf)
             await event.client.delete_messages(
-                conv.chat_id, [msg_start.id, response.id, msg.id, text.id, response2.id, response3.id, cnfrm.id, pdf.id, font.id]
+                conv.chat_id, [msg_start.id, response.id, msg.id, started.id, filename.id, editfilename.id, enterfilename.id, cnfrm.id, pdf.id, convert.id]
             )
             await event.delete()
     except TimeoutError:
         return await event.edit(
-                "`Error: Sorry `@pdfbot` is not responding please try again later` ")
+                "Error: Sorry @office2pdf_bot is not responding please try again later ")
 
 CMD_HELP.update(
     {
-        "text2PDF": ".pdf eng"
-        "\nUsage: Convert Given English Text into PDF file "
-        "\n\n.pdf hi"
-        "\nUsage:Convert Given Hindi Text into PDF file"
-
+        "pdf": ".pdf"
+        "\nUsage: Convert text/image into a PDF file "
     }
 )
+
