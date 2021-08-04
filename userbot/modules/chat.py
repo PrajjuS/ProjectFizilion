@@ -55,9 +55,9 @@ async def chatidgetter(chat):
     await chat.edit("Chat ID: `" + str(chat.chat_id) + "`")
 
 
-@register(outgoing=True, pattern=r"^.log(?: |$)([\s\S]*)")
-async def log(log_text):
-    """ For .log command, forwards a message or the command argument to the bot logs group """
+@register(outgoing=True, pattern=r"^.save(?: |$)([\s\S]*)")
+async def logsave(log_text):
+    """ For .save command, forwards a message or the command argument to the bot logs group """
     if BOTLOG:
         if log_text.reply_to_msg_id:
             reply_msg = await log_text.get_reply_message()
@@ -164,7 +164,7 @@ CMD_HELP.update(
 \nUsage: Fetches the current chat's ID\
 \n\n.userid\
 \nUsage: Fetches the ID of the user in reply, if its a forwarded message, finds the ID for the source.\
-\n\n.log\
+\n\n.save\
 \nUsage: Forwards the message you've replied to in your bot logs group.\
 \n\n.kickme\
 \nUsage: Leave from a targeted group.\
