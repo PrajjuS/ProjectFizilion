@@ -151,7 +151,7 @@ COUNTRY = str(os.environ.get("COUNTRY") or "")
 TZ_NUMBER = os.environ.get("TZ_NUMBER") or 1
 
 # Version of One4uBot
-USERBOT_VERSION = os.environ.get("USERBOT_VERSION") or "production 3.0"
+USERBOT_VERSION = os.environ.get("USERBOT_VERSION") or "production 3.1+"
 
 # User Terminal alias
 USER_TERM_ALIAS = os.environ.get("USER_TERM_ALIAS") or "dem0n"
@@ -206,6 +206,19 @@ SFDIR = os.environ.get("SFDIR") or "null"
 MEGA_EMAIL = os.environ.get("MEGA_EMAIL") or None
 MEGA_PASSWORD = os.environ.get("MEGA_PASSWORD") or None
 
+
+# custom triggers
+TRIGGER = os.environ.get("TRIGGER") or "."
+trgg = TRIGGER
+
+# pm logger
+PMLOG = sb(os.environ.get("PMLOG") or "False")
+PMLOG_CHATID = int(os.environ.get("PMLOG_CHATID") or 0)
+
+# bot token
+BOT_TOKEN = os.environ.get("BOT_TOKEN") or False
+
+
 # Setting Up CloudMail.ru and MEGA.nz extractor binaries,
 # and giving them correct perms to work properly.
 if not os.path.exists("bin"):
@@ -229,6 +242,11 @@ else:
     # pylint: disable=invalid-name
     bot = TelegramClient("userbot", API_KEY, API_HASH)
 
+# tgbott variable
+if BOT_TOKEN:
+    tgbott = TelegramClient("newbott", API_KEY, API_HASH).start(bot_token=BOT_TOKEN)
+else:
+    tgbott = bot
 
 async def check_botlog_chatid():
     if not BOTLOG:
@@ -312,7 +330,7 @@ output = (
 async def start():
     if BOTLOG:
         try:
-            await bot.send_message(
+            await tgbott.send_message(
                 BOTLOG_CHATID, output
                         )
         except BaseException:

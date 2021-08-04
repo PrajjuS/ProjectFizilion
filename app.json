@@ -217,7 +217,23 @@
     "LOGSPAMMER": {
       "description": "Set this to True in case you want the error logs to be stored in the userbot log group, instead of spitting out the file in the current chat, requires a valid BOTLOG_CHATID to be set.",
       "value": "False"
-    }
+    },
+    "PMLOG": {
+      "description": "Incase you want to turn off logging, put this to false",
+      "value": "False"
+    },
+    "BOT_TOKEN": {
+      "description": "Bot token u get from @BotFather",
+      "required": false
+    },
+    "PMLOG_CHATID": {
+      "description": "ChatID of the PM Log group. Set it to '0' if BOTLOG = False and/or if LOGSPAMMER = False.",
+      "value": "0"
+    },
+    "TRIGGER": {
+      "description": "Custom command handler trigger",
+      "required": false
+    },
   },
   "addons": [
     {

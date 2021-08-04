@@ -296,6 +296,22 @@ async def amireallyalivereset(ureset):
     DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
     await ureset.edit("`" "Successfully reset user for alive!" "`")
 
+@register(outgoing=True, pattern="^.changelog$")
+async def chnglogg(event):
+    await event.edit(
+        "In the latest update, these are the changes:\
+        \nAdded pmlog feature from cat\
+        \nnow u can enable pm logging and tags logging\
+        \nthese can be enabled by setting 'PMLOG' to 'True'\
+        \nand setting the 'PMLOG_CHATID' variables.\
+        \n\nAdded tag feature from ultroid\
+        \nsend .help tags to see the available commands\
+        \n\nAdded a bot mode but its still not used in all modules yet,\
+        \nit's used for now in pm log (all messages sent to BOTLOG will be sent by the bot in the future to avoid spam)\
+        \nbut this is optional and u can still use everything normally if u don't set it up\
+        \nHowever if u want to setup the bot, go to @botfather and create a new bot, then set the variable BOT_TOKEN as the token u got.\
+        \n\nAdded custom trigger (custom command handler) but its not fully implemented yet son its not recommended to change.\
+        \n\nThis changelog is valid for the last update to forkzilion (ProjectFizilion fork by AbOuLfOoOoOuF) only.")
 
 CMD_HELP.update(
     {
@@ -325,5 +341,11 @@ CMD_HELP.update(
     \nUsage: Changes the 'user' in alive to the text you want.\
     \n\n.resetalive\
     \nUsage: Resets the user to default."
+    }
+)
+CMD_HELP.update(
+    {
+        "changelog": ".changelog\
+    \nUsage: Check the last changes done to the userbot"
     }
 )

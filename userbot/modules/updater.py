@@ -111,12 +111,12 @@ async def update(event, repo, ups_rem, ac_br):
         repo.git.reset("--hard", "FETCH_HEAD")
     await update_requirements()
     await event.edit(
-        "`Successfully Updated!\n" "Bot is restarting... Wait for a second!`"
+        "`Successfully Updated!\n" "Bot is restarting... Wait for a second!`\nAfter the update is done, send .changelog to know more about this update."
     )
 
     if BOTLOG:
         await event.client.send_message(
-            BOTLOG_CHATID, "#UPDATE \n" "Your Fizilion was successfully updated"
+            BOTLOG_CHATID, "#UPDATE \n" "Your Fizilion was successfully updated, send .changelog to know more about this update."
         )
 
     # Spin a new instance of bot
