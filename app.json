@@ -233,7 +233,7 @@
     "TRIGGER": {
       "description": "Custom command handler trigger",
       "required": false
-    },
+    }
   },
   "addons": [
     {
