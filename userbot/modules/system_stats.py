@@ -300,17 +300,10 @@ async def amireallyalivereset(ureset):
 async def chnglogg(event):
     await event.edit(
         "In the latest update, these are the changes:\
-        \nAdded pmlog feature from cat\
-        \nnow u can enable pm logging and tags logging\
-        \nthese can be enabled by setting 'PMLOG' to 'True'\
-        \nand setting the 'PMLOG_CHATID' variables.\
-        \n\nAdded tag feature from ultroid\
-        \nsend .help tags to see the available commands\
-        \n\nAdded a bot mode but its still not used in all modules yet,\
-        \nit's used for now in pm log (all messages sent to BOTLOG will be sent by the bot in the future to avoid spam)\
-        \nbut this is optional and u can still use everything normally if u don't set it up\
-        \nHowever if u want to setup the bot, go to @botfather and create a new bot, then set the variable BOT_TOKEN as the token u got.\
-        \n\nAdded custom trigger (custom command handler) but its not fully implemented yet son its not recommended to change.\
+        \n\nAdded custom trigger - custom handler for all modules\
+        \nTo set it up go to heroku and set TRIGGER var to whatever trigger u want\
+        \nNot supported triggers are : /!#@\*$  so if u set any of these things may break.\
+        \nYou can also set it up from telegram by sending ` .set var TRIGGER <your trigger> ` in any chat.\
         \n\nThis changelog is valid for the last update to forkzilion (ProjectFizilion fork by AbOuLfOoOoOuF) only.")
 
 CMD_HELP.update(
