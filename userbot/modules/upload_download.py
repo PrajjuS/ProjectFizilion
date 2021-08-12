@@ -22,13 +22,13 @@ from pySmartDL import SmartDL
 from requests import get
 from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
 
-from userbot import CMD_HELP, LOGS, TEMP_DOWNLOAD_DIRECTORY
+from userbot import CMD_HELP, LOGS, TEMP_DOWNLOAD_DIRECTORY, trgg
 from userbot.events import register
 from userbot.utils import humanbytes, progress, run_cmd
 from userbot.utils.FastTelethon import download_file, upload_file
 
 
-@register(pattern=r"\.dl(?: |$)(.*)", outgoing=True)
+@register(pattern="^\{trg}dl(?: |$)(.*)".format(trg=trgg), outgoing=True)
 async def download(target_file):
     """ For .download command, download files to the userbot's server. """
     await target_file.edit("**Processing...**")
@@ -162,7 +162,7 @@ async def get_video_thumb(file, output):
     return None
 
 
-@register(pattern=r"^\.ul (.*)", outgoing=True)
+@register(pattern="^\{trg}ul (.*)".format(trg=trgg), outgoing=True)
 async def upload(event):
     await event.edit("**Processing...**")
     input_str = event.pattern_match.group(1)
@@ -316,7 +316,7 @@ async def upload(event):
     else:
         await event.edit("**Error: File/Folder not found**")
 
-@register(pattern=r".download(?: |$)(.*)", outgoing=True)
+@register(pattern="^\{trg}download(?: |$)(.*)".format(trg=trgg), outgoing=True)
 async def download(target_file):
     """ For .download command, download files to the userbot's server. """
     await target_file.edit("Processing ...")
@@ -393,7 +393,7 @@ async def download(target_file):
         await target_file.edit("Reply to a message to download to my local server.")
 
 
-@register(pattern=r".uploadir (.*)", outgoing=True)
+@register(pattern="^\{trg}uploadir (.*)".format(trg=trgg), outgoing=True)
 async def uploadir(udir_event):
     """ For .uploadir command, allows you to upload everything from a folder in the server"""
     input_str = udir_event.pattern_match.group(1)
@@ -470,7 +470,7 @@ async def uploadir(udir_event):
         await udir_event.edit("404: Directory Not Found")
 
 
-@register(pattern=r".upload (.*)", outgoing=True)
+@register(pattern="^\{trg}upload (.*)".format(trg=trgg), outgoing=True)
 async def upload(u_event):
     """ For .upload command, allows you to upload a file from the userbot's server """
     await u_event.edit("Processing ...")
@@ -520,7 +520,7 @@ def extract_w_h(file):
         return width, height
 
 
-@register(pattern=r".uploadas(stream|vn|all) (.*)", outgoing=True)
+@register(pattern="^\{trg}uploadas(stream|vn|all) (.*)".format(trg=trgg), outgoing=True)
 async def uploadas(uas_event):
     """ For .uploadas command, allows you to specify some arguments for upload. """
     await uas_event.edit("Processing ...")

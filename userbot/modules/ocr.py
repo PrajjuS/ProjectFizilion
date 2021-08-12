@@ -8,7 +8,7 @@ import os
 
 import requests
 
-from userbot import CMD_HELP, OCR_SPACE_API_KEY, TEMP_DOWNLOAD_DIRECTORY, bot
+from userbot import CMD_HELP, OCR_SPACE_API_KEY, TEMP_DOWNLOAD_DIRECTORY, bot, trgg
 from userbot.events import register
 
 
@@ -42,7 +42,7 @@ async def ocr_space_file(
     return r.json()
 
 
-@register(pattern=r".ocr (.*)", outgoing=True)
+@register(pattern="^\{trg}ocr (.*)".format(trg=trgg), outgoing=True)
 async def ocr(event):
     if not OCR_SPACE_API_KEY:
         return await event.edit(

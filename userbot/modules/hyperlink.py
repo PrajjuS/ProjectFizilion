@@ -7,11 +7,11 @@
 # Syntax (.hl <link>)
 
 
-from userbot import CMD_HELP
+from userbot import CMD_HELP, trgg
 from userbot.events import register
 
 
-@register(outgoing=True, pattern=r"^.hl(.*)")
+@register(outgoing=True, pattern="^\{trg}hl(.*)".format(trg=trgg))
 async def _(event):
     if event.fwd_from:
         return

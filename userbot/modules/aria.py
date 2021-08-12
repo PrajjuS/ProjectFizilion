@@ -11,7 +11,7 @@ from telethon.errors.rpcerrorlist import MessageNotModifiedError
 import aria2p
 from requests import get
 
-from userbot import CMD_HELP, LOGS, TEMP_DOWNLOAD_DIRECTORY
+from userbot import CMD_HELP, LOGS, TEMP_DOWNLOAD_DIRECTORY, trgg
 from userbot.events import register
 from userbot.utils import humanbytes
 
@@ -65,7 +65,7 @@ aria2 = aria2p.API(aria2p.Client(host="http://localhost", port=8210,
 aria2.set_global_options({"dir": download_path})
 
 
-@register(outgoing=True, pattern=r"^\.amag(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}amag(?: |$)(.*)".format(trg=trgg))
 async def magnet_download(event):
     magnet_uri = event.pattern_match.group(1)
     # Add Magnet URI Into Queue
@@ -81,7 +81,7 @@ async def magnet_download(event):
     await check_progress_for_dl(gid=new_gid, event=event, previous=None)
 
 
-@register(outgoing=True, pattern=r"^\.ator(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}ator(?: |$)(.*)".format(trg=trgg))
 async def torrent_download(event):
     torrent_file_path = event.pattern_match.group(1)
     # Add Torrent Into Queue
@@ -96,7 +96,7 @@ async def torrent_download(event):
     await check_progress_for_dl(gid=gid, event=event, previous=None)
 
 
-@register(outgoing=True, pattern=r"^\.aurl(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}aurl(?: |$)(.*)".format(trg=trgg))
 async def aurl_download(event):
     uri = [event.pattern_match.group(1)]
     try:  # Add URL Into Queue
@@ -112,7 +112,7 @@ async def aurl_download(event):
         await check_progress_for_dl(gid=new_gid, event=event, previous=None)
 
 
-@register(outgoing=True, pattern=r"^\.aclear(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}aclear(?: |$)(.*)".format(trg=trgg))
 async def remove_all(event):
     try:
         removed = aria2.remove_all(force=True)
@@ -127,7 +127,7 @@ async def remove_all(event):
     await sleep(2.5)
 
 
-@register(outgoing=True, pattern=r"^\.apause(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}apause(?: |$)(.*)".format(trg=trgg))
 async def pause_all(event):
     # Pause ALL Currently Running Downloads.
     await event.edit("`Pausing downloads...`")
@@ -137,7 +137,7 @@ async def pause_all(event):
     await sleep(2.5)
 
 
-@register(outgoing=True, pattern=r"^\.aresume(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}aresume(?: |$)(.*)".format(trg=trgg))
 async def resume_all(event):
     await event.edit("`Resuming downloads...`")
     aria2.resume_all()
@@ -147,7 +147,7 @@ async def resume_all(event):
     await event.delete()
 
 
-@register(outgoing=True, pattern=r"^\.ashow(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}ashow(?: |$)(.*)".format(trg=trgg))
 async def show_all(event):
     downloads = aria2.get_downloads()
     msg = ""

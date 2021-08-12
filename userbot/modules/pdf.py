@@ -8,10 +8,10 @@ import asyncio
 from asyncio.exceptions import TimeoutError
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from userbot import CMD_HELP, bot
+from userbot import CMD_HELP, bot, trgg
 from userbot.events import register
 
-@register(outgoing=True, pattern=r"^\.pdf(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}pdf(?: |$)(.*)".format(trg=trgg))
 async def _(event):
     if not event.reply_to_msg_id:
         return await event.edit("Reply to any text/image.")

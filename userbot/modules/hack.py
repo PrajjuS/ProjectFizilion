@@ -1,12 +1,12 @@
 ##ported from userge by @PrajjuS
 from userbot.events import register
-from userbot import CMD_HELP
+from userbot import CMD_HELP, trgg
 import time
 from asyncio import sleep 
 from telethon import events , client , TelegramClient
 from userbot.modules.admin import get_user_from_event
 
-@register(outgoing=True, pattern="^.hack$")
+@register(outgoing=True, pattern="^\{trg}hack$".format(trg=trgg))
 async def hack_func(event):
     animation_chars = [
         "Connecting To Private Server \\",

@@ -14,11 +14,11 @@ from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 from telethon.utils import get_input_location
 
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, trgg
 from userbot.events import register
 
 
-@register(pattern=".whois(?: |$)(.*)", outgoing=True)
+@register(pattern="^\{trg}whois(?: |$)(.*)".format(trg=trgg), outgoing=True)
 async def who(event):
 
     await event.edit(

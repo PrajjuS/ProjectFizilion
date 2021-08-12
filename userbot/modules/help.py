@@ -5,10 +5,10 @@
 #
 """ Userbot help command """
 
-from userbot import CMD_HELP, TIMEOUT
+from userbot import CMD_HELP, TIMEOUT, trgg
 from userbot.events import register
 from asyncio import sleep
-@register(outgoing=True, pattern=r"^\.help(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}help(?: |$)(.*)".format(trg=trgg))
 async def help(event):
     """ For .help command,"""
     args = event.pattern_match.group(1).lower()

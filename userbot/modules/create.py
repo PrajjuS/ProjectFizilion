@@ -8,11 +8,11 @@
 
 from telethon.tl import functions
 
-from userbot import CMD_HELP
+from userbot import CMD_HELP, trgg
 from userbot.events import register
 
 
-@register(outgoing=True, pattern="^.create (b|g|c)(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}create (b|g|c)(?: |$)(.*)".format(trg=trgg))
 async def telegraphs(grop):
     """ For .create command, Creating New Group & Channel """
     if not grop.text[0].isalpha() and grop.text[0] not in ("/", "#", "@", "!"):

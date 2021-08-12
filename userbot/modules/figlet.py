@@ -7,11 +7,11 @@
 
 import pyfiglet
 
-from userbot import CMD_HELP
+from userbot import CMD_HELP, trgg
 from userbot.events import register
 
 
-@register(outgoing=True, pattern=r"^\.figlet(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}figlet(?: |$)(.*)".format(trg=trgg))
 async def figlet(fg):
     if fg.fwd_from:
         return

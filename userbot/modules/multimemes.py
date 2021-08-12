@@ -20,7 +20,7 @@ from PIL import Image, ImageDraw, ImageFont
 from telethon import events, functions, types
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
+from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot, trgg
 from userbot.events import register
 from userbot.utils import check_media, progress
 
@@ -43,7 +43,7 @@ EMOJI_PATTERN = re.compile(
 )
 
 
-@register(outgoing=True, pattern=r"^\.glitch(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}glitch(?: |$)(.*)".format(trg=trgg))
 async def glitch(event):
     if not event.reply_to_msg_id:
         await event.edit("`I Wont Glitch A Ghost!`")
@@ -118,7 +118,7 @@ async def glitch(event):
     os.remove(glitch_file)
 
 
-@register(outgoing=True, pattern=r"^\.q")
+@register(outgoing=True, pattern="^\{trg}q".format(trg=trgg))
 async def quotess(qotli):
     if qotli.fwd_from:
         return
@@ -157,7 +157,7 @@ async def quotess(qotli):
         await qotli.edit()
 
 
-@register(outgoing=True, pattern=r"^.hz(:? |$)(.*)?")
+@register(outgoing=True, pattern=r"^\{trg}hz(:? |$)(.*)?".format(trg=trgg))
 async def hazz(hazmat):
     await hazmat.edit("`Sending information...`")
     level = hazmat.pattern_match.group(2)
@@ -224,7 +224,7 @@ async def hazz(hazmat):
     return os.remove(downloaded_file_name)
 
 
-@register(outgoing=True, pattern=r"^.df(:? |$)([1-8])?")
+@register(outgoing=True, pattern=r"^\{trg}df(:? |$)([1-8])?".format(trg=trgg))
 async def fryerrr(fry):
     await fry.edit("`Sending information...`")
     level = fry.pattern_match.group(2)
@@ -282,7 +282,7 @@ async def fryerrr(fry):
     return os.remove(downloaded_file_name)
 
 
-@register(outgoing=True, pattern="^.sg(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}sg(?: |$)(.*)".format(trg=trgg))
 async def lastname(steal):
     if steal.fwd_from:
         return
@@ -319,7 +319,7 @@ async def lastname(steal):
         )
 
 
-@register(outgoing=True, pattern="^.waifu(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}waifu(?: |$)(.*)".format(trg=trgg))
 async def waifu(animu):
     text = animu.pattern_match.group(1)
     if not text:

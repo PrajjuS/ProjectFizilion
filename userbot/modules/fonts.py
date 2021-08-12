@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 # This module is maked by Project TESLA
 
-from userbot import CMD_HELP
+from userbot import CMD_HELP, trgg
 from userbot.events import register
 
 normiefont = [
@@ -121,7 +121,7 @@ oldengfont = [
 ]
 
 
-@register(outgoing=True, pattern="^.weebify(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}weebify(?: |$)(.*)".format(trg=trgg))
 async def weebify(event):
 
     args = event.pattern_match.group(1)
@@ -139,7 +139,7 @@ async def weebify(event):
     await event.edit(string)
 
 
-@register(outgoing=True, pattern="^.circlify(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}circlify(?: |$)(.*)".format(trg=trgg))
 async def circly(event):
 
     args = event.pattern_match.group(1)
@@ -157,7 +157,7 @@ async def circly(event):
     await event.edit(string)
 
 
-@register(outgoing=True, pattern="^.oldeng(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}oldeng(?: |$)(.*)".format(trg=trgg))
 async def oldy(event):
 
     args = event.pattern_match.group(1)

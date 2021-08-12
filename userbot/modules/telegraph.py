@@ -11,7 +11,7 @@ from datetime import datetime
 from PIL import Image
 from telegraph import Telegraph, exceptions, upload_file
 
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot
+from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, bot, trgg
 from userbot.events import register
 
 telegraph = Telegraph()
@@ -19,7 +19,7 @@ r = telegraph.create_account(short_name="telegraph")
 auth_url = r["auth_url"]
 
 
-@register(outgoing=True, pattern="^.tg (m|t)$")
+@register(outgoing=True, pattern="^\{trg}tg (m|t)$".format(trg=trgg))
 async def telegraphs(graph):
     """For .telegraph command, upload media & text to telegraph site."""
     await graph.edit("`Processing...`")

@@ -14,7 +14,7 @@ from pytz import country_timezones as c_tz
 from pytz import timezone as tz
 from requests import get
 
-from userbot import CMD_HELP
+from userbot import CMD_HELP, trgg
 from userbot import OPEN_WEATHER_MAP_APPID as OWM_API
 from userbot import WEATHER_DEFCITY, WEATHER_DEFLANG
 from userbot.events import register
@@ -45,7 +45,7 @@ async def get_tz(con):
         return
 
 
-@register(outgoing=True, pattern="^.weather(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}weather(?: |$)(.*)".format(trg=trgg))
 async def get_weather(weather):
     """ For .weather command, gets the current weather of a city. """
 
@@ -143,7 +143,7 @@ async def get_weather(weather):
     )
 
 
-@register(outgoing=True, pattern="^.wtr(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}wtr(?: |$)(.*)".format(trg=trgg))
 async def get_wtr(wtr):
     """ For .wtr command, gets the current weather of a city. """
 

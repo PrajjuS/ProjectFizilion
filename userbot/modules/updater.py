@@ -24,6 +24,7 @@ from userbot import (
     UPDATER_ALIAS,
     UPSTREAM_REPO_BRANCH,
     UPSTREAM_REPO_URL,
+    trgg,
 )
 from userbot.events import register
 
@@ -125,7 +126,7 @@ async def update(event, repo, ups_rem, ac_br):
     return
 
 
-@register(outgoing=True, pattern=r"^.ota(?: |$)(now|deploy)?")
+@register(outgoing=True, pattern="^\{trg}ota(?: |$)(now|deploy)?".format(trg=trgg))
 async def upstream(event):
     "For .update command, check if the bot is up to date, update if specified"
     await event.edit("`Checking for updates, please wait....`")

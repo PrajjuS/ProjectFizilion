@@ -19,11 +19,11 @@ from telethon.tl.functions.messages import GetFullChatRequest, GetHistoryRequest
 from telethon.tl.types import ChannelParticipantsAdmins, MessageActionChannelMigrateFrom
 from telethon.utils import get_input_location
 
-from userbot import CMD_HELP
+from userbot import CMD_HELP, trgg
 from userbot.events import register
 
 
-@register(pattern=".chatinfo(?: |$)(.*)", outgoing=True)
+@register(pattern="^\{trg}chatinfo(?: |$)(.*)".format(trg=trgg), outgoing=True)
 async def info(event):
     await event.edit("`Analysing the chat...`")
     chat = await get_chatinfo(event)

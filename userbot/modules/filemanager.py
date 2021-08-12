@@ -10,14 +10,14 @@ import os.path
 import time
 from os.path import exists, isdir
 
-from userbot import CMD_HELP
+from userbot import CMD_HELP, trgg
 from userbot.events import register
 from userbot.utils import humanbytes
 
 MAX_MESSAGE_SIZE_LIMIT = 4095
 
 
-@register(outgoing=True, pattern=r"^\.ls ?(.*)")
+@register(outgoing=True, pattern="^\{trg}ls ?(.*)".format(trg=trgg))
 async def lst(event):
     if event.fwd_from:
         return

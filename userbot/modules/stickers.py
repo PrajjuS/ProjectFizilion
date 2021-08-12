@@ -23,7 +23,7 @@ from telethon.tl.types import (
     MessageMediaPhoto,
 )
 
-from userbot import CMD_HELP, bot
+from userbot import CMD_HELP, bot, trgg
 from userbot.events import register
 
 KANGING_STR = [
@@ -40,7 +40,7 @@ KANGING_STR = [
 ]
 
 
-@register(outgoing=True, pattern=r"^\.kang")
+@register(outgoing=True, pattern="^\{trg}kang".format(trg=trgg))
 async def kang(args):
     """ For .kang command, kangs stickers or creates new ones. """
     user = await bot.get_me()
@@ -281,7 +281,7 @@ async def resize_photo(photo):
     return image
 
 
-@register(outgoing=True, pattern=r"^\.k$")
+@register(outgoing=True, pattern="^\{trg}k$".format(trg=trgg))
 async def k(args):
     """ For .kang command, kangs stickers or creates new ones silently. """
     user = await bot.get_me()
@@ -479,7 +479,7 @@ async def resize_photo(photo):
 
 
 
-@register(outgoing=True, pattern=r"^\.stkrinfo$")
+@register(outgoing=True, pattern="^\{trg}stkrinfo$".format(trg=trgg))
 async def get_pack_info(event):
     if not event.is_reply:
         return await event.edit("**I can't fetch info from nothing, can I?**")
@@ -522,7 +522,7 @@ async def get_pack_info(event):
     await event.edit(OUTPUT)
 
 
-@register(outgoing=True, pattern=r"^\.getsticker$")
+@register(outgoing=True, pattern="^\{trg}getsticker$".format(trg=trgg))
 async def sticker_to_png(sticker):
     if not sticker.is_reply:
         await sticker.edit("**Reply to a sticker!**")
@@ -551,7 +551,7 @@ async def sticker_to_png(sticker):
     return
 
 
-@register(outgoing=True, pattern=r"^\.findsticker (.*)")
+@register(outgoing=True, pattern="^\{trg}findsticker (.*)".format(trg=trgg))
 async def cb_sticker(event):
     query = event.pattern_match.group(1)
     if not query:

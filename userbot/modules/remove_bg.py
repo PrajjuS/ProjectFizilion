@@ -13,11 +13,11 @@ import os
 import requests
 from telethon.tl.types import MessageMediaPhoto
 
-from userbot import CMD_HELP, REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY
+from userbot import CMD_HELP, REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY, trgg
 from userbot.events import register
 
 
-@register(outgoing=True, pattern="^.rbg(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}rbg(?: |$)(.*)".format(trg=trgg))
 async def kbg(remob):
     """ For .rbg command, Remove Image Background. """
     if REM_BG_API_KEY is None:
