@@ -30,14 +30,13 @@ async def fban(event):
     if event.is_reply:
         reply_msg = await event.get_reply_message()
         fban_id = reply_msg.sender_id
-
-        if event.pattern_match.group(1) == "d":
-            await reply_msg.delete()
-
         reason = match
     else:
         pattern = match.split()
-        fban_id = pattern[0]
+        try:
+            fban_id = pattern[0]
+        except IndexError:
+            return await event.edit("What are you doing?")    
         reason = " ".join(pattern[1:])
 
     try:
@@ -46,9 +45,7 @@ async def fban(event):
         pass
 
     if event.sender_id == fban_id:
-        return await event.edit(
-            "**Error: This action has been prevented by KensurBot self preservation protocols.**"
-        )
+        return await event.edit("**Umm, are you sure about that?**")
 
     fed_list = get_flist()
     if len(fed_list) == 0:
@@ -63,9 +60,15 @@ async def fban(event):
     for i in fed_list:
         total += 1
         chat = int(i.chat_id)
-        try:
+        reply_msg = await event.get_reply_message()
+        if reply_msg:
+            try:
+                await event.client.forward_messages(chat, reply_msg)
+            except Exception:
+                pass
+        try:         
             async with bot.conversation(chat) as conv:
-                await conv.send_message(f"/fban {user_link} {reason}")
+                await conv.send_message("/fban {user_link} {reason}")
                 reply = await conv.get_response()
                 await bot.send_read_acknowledge(
                     conv.chat_id, message=reply, clear_mentions=True
@@ -76,8 +79,11 @@ async def fban(event):
         except Exception:
             failed.append(i.fed_name)
 
-    reason = reason if reason else "Not specified."
+    if event.is_reply:
+        if event.pattern_match.group(1) == "d":
+            await reply_msg.delete()
 
+    reason = reason if reason else "Not specified."
     if failed:
         status = f"Failed to fban in {len(failed)}/{total} feds.\n"
         for i in failed:
