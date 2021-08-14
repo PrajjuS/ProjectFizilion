@@ -10,14 +10,14 @@ from telethon.tl.types import InputMessagesFilterDocument
 
 from userbot.events import register
 from userbot.utils import edit_or_reply
-from userbot import CMD_HELP 
+from userbot import CMD_HELP, trgg
 
 def deEmojify(inputString: str) -> str:
     """Remove emojis and other non-safe characters from string"""
     return get_emoji_regexp().sub("", inputString)
 
 
-@register(outgoing=True, pattern="^.stk(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}stk(?: |$)(.*)".format(trg=trgg))
 async def sticklet(event):
     await event.edit("`Processing....`")
     R = random.randint(0, 256)
@@ -62,7 +62,7 @@ async def sticklet(event):
     await event.client.send_file(
         event.chat_id,
         image_stream,
-        caption="Fizilion's Sticklet",
+        caption="Sticklet",
         reply_to=event.message.reply_to_msg_id,
     )
     # cleanup

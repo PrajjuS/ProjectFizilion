@@ -4,11 +4,11 @@
 import io
 import os
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from userbot import CMD_HELP
+from userbot import CMD_HELP, trgg
 from userbot.events import register
 
 
-@register(outgoing=True, pattern=r"^\.shazam(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}shazam(?: |$)(.*)".format(trg=trgg))
 async def _(event):
     "To reverse search music by bot."
     if not event.reply_to_msg_id:

@@ -16,7 +16,7 @@ import requests
 from bs4 import BeautifulSoup
 from PIL import Image
 
-from userbot import CMD_HELP, bot
+from userbot import CMD_HELP, bot, trgg
 from userbot.events import register
 
 opener = urllib.request.build_opener()
@@ -24,7 +24,7 @@ useragent = "Mozilla/5.0 (Linux; Android 9; SM-G960F Build/PPR1.180610.011; wv) 
 opener.addheaders = [("User-agent", useragent)]
 
 
-@register(outgoing=True, pattern=r"^.reverse(?: |$)(\d*)")
+@register(outgoing=True, pattern="^\{trg}reverse(?: |$)(\d*)".format(trg=trgg))
 async def okgoogle(img):
     """ For .reverse command, Google search images and stickers. """
     if os.path.isfile("okgoogle.png"):

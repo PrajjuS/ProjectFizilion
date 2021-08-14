@@ -11,7 +11,7 @@ from random import choice, randint
 from telethon.events import StopPropagation
 
 from userbot import (AFKREASON, BOTLOG, BOTLOG_CHATID, CMD_HELP, COUNT_MSG,
-                     ISAFK, PM_AUTO_BAN, USERS)
+                     ISAFK, PM_AUTO_BAN, USERS, trgg)
 from userbot.events import register
 
 # ========================= CONSTANTS ============================
@@ -117,7 +117,7 @@ async def afk_on_pm(sender):
             COUNT_MSG = COUNT_MSG + 1
 
 
-@register(outgoing=True, pattern=r"^\.afk(?: |$)(.*)", disable_errors=True)
+@register(outgoing=True, pattern="^\{trg}afk(?: |$)(.*)".format(trg=trgg), disable_errors=True)
 async def set_afk(afk_e):
     """ For .afk command, allows you to inform people that you are afk when they message you """
     afk_e.text

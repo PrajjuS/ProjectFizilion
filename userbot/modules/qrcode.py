@@ -15,11 +15,11 @@ import qrcode
 from barcode.writer import ImageWriter
 from bs4 import BeautifulSoup
 
-from userbot import CMD_HELP, LOGS
+from userbot import CMD_HELP, LOGS, trgg
 from userbot.events import register
 
 
-@register(pattern=r"^.decode$", outgoing=True)
+@register(pattern="^\{trg}decode$".format(trg=trgg), outgoing=True)
 async def parseqr(qr_e):
     """ For .decode command, get QR Code/BarCode content from the replied photo. """
     downloaded_file_name = await qr_e.client.download_media(
@@ -54,7 +54,7 @@ async def parseqr(qr_e):
     await qr_e.edit(qr_contents)
 
 
-@register(pattern=r".barcode(?: |$)([\s\S]*)", outgoing=True)
+@register(pattern="^\{trg}barcode(?: |$)([\s\S]*)".format(trg=trgg), outgoing=True)
 async def bq(event):
     """ For .barcode command, genrate a barcode containing the given content. """
     await event.edit("`Processing..`")
@@ -91,7 +91,7 @@ async def bq(event):
     await event.delete()
 
 
-@register(pattern=r".makeqr(?: |$)([\s\S]*)", outgoing=True)
+@register(pattern="^\{trg}makeqr(?: |$)([\s\S]*)".format(trg=trgg), outgoing=True)
 async def make_qr(makeqr):
     """ For .makeqr command, make a QR Code containing the given content. """
     input_str = makeqr.pattern_match.group(1)

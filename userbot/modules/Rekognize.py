@@ -4,10 +4,10 @@ import asyncio
 from asyncio.exceptions import TimeoutError
 from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
-from userbot import CMD_HELP
+from userbot import CMD_HELP, trgg
 from userbot.events import register
 
-@register(outgoing=True, pattern=r"^\.r(eco|ecognize)(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}r(eco|ecognize)(?: |$)(.*)".format(trg=trgg))
 async def _(event):
     "To recognize a image."
     if not event.reply_to_msg_id:

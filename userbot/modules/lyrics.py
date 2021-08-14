@@ -9,14 +9,14 @@ import os
 import lyricsgenius
 from pylast import User
 
-from userbot import CMD_HELP, GENIUS, LASTFM_USERNAME, lastfm
+from userbot import CMD_HELP, GENIUS, LASTFM_USERNAME, lastfm, trgg
 from userbot.events import register
 
 if GENIUS is not None:
     genius = lyricsgenius.Genius(GENIUS)
 
 
-@register(outgoing=True, pattern="^.lyrics (?:(now)|(.*) - (.*))")
+@register(outgoing=True, pattern="^\{trg}lyrics (?:(now)|(.*) - (.*))".format(trg=trgg))
 async def lyrics(lyric):
     await lyric.edit("`Getting information...`")
     if GENIUS is None:

@@ -15,12 +15,12 @@ from os import execl
 from random import randint
 from time import sleep
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
+from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot, trgg
 from userbot.events import register
 from userbot.utils import time_formatter
 
 
-@register(outgoing=True, pattern="^.random")
+@register(outgoing=True, pattern="^\{trg}random".format(trg=trgg))
 async def randomise(items):
     """ For .random command, get a random item from the list of items. """
     itemo = (items.text[8:]).split()
@@ -35,7 +35,7 @@ async def randomise(items):
     )
 
 
-@register(outgoing=True, pattern="^.sleep ([0-9]+)$")
+@register(outgoing=True, pattern="^\{trg}sleep ([0-9]+)$".format(trg=trgg))
 async def sleepybot(time):
     """ For .sleep command, let the userbot snooze for a few second. """
     counter = int(time.pattern_match.group(1))
@@ -50,7 +50,7 @@ async def sleepybot(time):
     await time.edit("`OK, I'm awake now.`")
 
 
-@register(outgoing=True, pattern="^.shutdown$")
+@register(outgoing=True, pattern="^\{trg}shutdown$".format(trg=trgg))
 async def killbot(shut):
     """For .shutdown command, shut the bot down."""
     await shut.edit("`Shutting The Power Off`")
@@ -59,7 +59,7 @@ async def killbot(shut):
     await bot.disconnect()
 
 
-@register(outgoing=True, pattern="^.restart$")
+@register(outgoing=True, pattern="^\{trg}restart$".format(trg=trgg))
 async def killdabot(reboot):
     await reboot.edit("`Restarting`")
     if BOTLOG:
@@ -71,7 +71,7 @@ async def killdabot(reboot):
     exit()
 
 
-@register(outgoing=True, pattern="^.readme$")
+@register(outgoing=True, pattern="^\{trg}readme$".format(trg=trgg))
 async def reedme(event):
     await event.edit(
         "Here's something for you to read:\n"
@@ -79,7 +79,7 @@ async def reedme(event):
 )
 
 
-@register(outgoing=True, pattern="^.guide$")
+@register(outgoing=True, pattern="^\{trg}guide$".format(trg=trgg))
 async def guidee(event):
     await event.edit(
         "*Guide on Deploying Fizilion*\n"
@@ -89,7 +89,7 @@ async def guidee(event):
 
 
 # Copyright (c) Gegham Zakaryan | 2019
-@register(outgoing=True, pattern="^.repeat (.*)")
+@register(outgoing=True, pattern="^\{trg}repeat (.*)".format(trg=trgg))
 async def repeat(rep):
     cnt, txt = rep.pattern_match.group(1).split(" ", 1)
     replyCount = int(cnt)
@@ -103,25 +103,32 @@ async def repeat(rep):
     await rep.edit(replyText)
 
 
-@register(outgoing=True, pattern="^.repo$")
+@register(outgoing=True, pattern="^\{trg}repoo$".format(trg=trgg))
 async def repo_is_here(wannasee):
     """ For .repo command, just returns the repo URL. """
     await wannasee.edit(
         "[Click here](https://github.com/PrajjuS/ProjectFizilion) to open Fizilion's GitHub Repo."
     )
 
-@register(outgoing=True, pattern="^.deploy$")
+@register(outgoing=True, pattern="^\{trg}repo$".format(trg=trgg))
+async def repo_is_heree(wannaseee):
+    """ For .repo command, just returns the repo URL. """
+    await wannaseee.edit(
+        "[Click here](https://github.com/AbOuLfOoOoOuF/ProjectFizilion) to open my fork of Fizilion's GitHub Repo."
+    )
+
+@register(outgoing=True, pattern="^\{trg}deploy$".format(trg=trgg))
 async def repo_is_here(wannasee):
     """ For .deploy command, just returns the heroku deploying URL. """
     await wannasee.edit(
-        "[Click here](https://heroku.com/deploy?template=https://github.com/PrajjuS/ProjectFizilion/tree/demon) to deploy Fizilion Userbot on Heroku."
+        "[Click here](https://heroku.com/deploy?template=https://github.com/AbOuLfOoOoOuF/ProjectFizilion/tree/pruh) to deploy Fizilion Userbot on Heroku."
     )
 
-@register(outgoing=True, pattern="^.support$")
+@register(outgoing=True, pattern="^\{trg}support$".format(trg=trgg))
 async def grup(sapot):
     await sapot.edit("**Channel:** @TheProjectFizilion\n**Support Group:** @ProjectFizilionChat")
     
-@register(outgoing=True, pattern="^.raw$")
+@register(outgoing=True, pattern="^\{trg}raw$".format(trg=trgg))
 async def raw(rawtext):
     the_real_message = None
     reply_to_id = None

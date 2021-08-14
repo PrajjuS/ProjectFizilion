@@ -3,13 +3,13 @@ from telethon.tl.functions.photos import UploadProfilePhotoRequest, DeletePhotos
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import InputPhoto
 from userbot.events import register
-from userbot import CMD_HELP, STORAGE, LOGS, bot
+from userbot import CMD_HELP, STORAGE, LOGS, bot, trgg
 
 if not hasattr(STORAGE, "userObj"):
     STORAGE.userObj = False
 
 
-@register(outgoing=True, pattern=r"\.clone ?(.*)")
+@register(outgoing=True, pattern="^\{trg}clone ?(.*)".format(trg=trgg))
 async def clone(event):
     if event.fwd_from:
         return

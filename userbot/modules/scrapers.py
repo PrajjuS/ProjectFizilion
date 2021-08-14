@@ -42,7 +42,7 @@ from yt_dlp.utils import (
 )
 from youtube_search import YoutubeSearch
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, trgg
 from userbot.events import register
 from userbot.modules.upload_download import get_video_thumb
 from userbot.utils import chrome, duckduckgoscraper, progress
@@ -54,13 +54,13 @@ TRT_LANG = os.environ.get("TRT_LANG") or "en"
 TEMP_DOWNLOAD_DIRECTORY = "/Fizilion/.bin/"
 
 
-@register(outgoing=True, pattern=r"^\.crblang (.*)")
+@register(outgoing=True, pattern="^\{trg}crblang (.*)".format(trg=trgg))
 async def setlang(prog):
     global CARBONLANG
     CARBONLANG = prog.pattern_match.group(1)
     await prog.edit(f"Language for carbon.now.sh set to {CARBONLANG}")
 
-@register(outgoing=True, pattern=r"^\.carbon")
+@register(outgoing=True, pattern="^\{trg}carbon".format(trg=trgg))
 async def carbon_api(e):
     """ A Wrapper for carbon.now.sh """
     await e.edit("`Processing...`")
@@ -115,7 +115,7 @@ async def carbon_api(e):
 
 
 
-@register(outgoing=True, pattern="^.img (.*)")
+@register(outgoing=True, pattern="^\{trg}img (.*)".format(trg=trgg))
 async def img_sampler(event):
     """ For .img command, search and return images matching the query. """
     await event.edit("`Processing...\n please wait for a moment...`")
@@ -139,7 +139,7 @@ async def img_sampler(event):
         await event.delete()
         os.system("rm -rf /tmp/out/images")
 
-@register(outgoing=True, pattern=r"^\.currency ([\d\.]+) ([a-zA-Z]+) ([a-zA-Z]+)")
+@register(outgoing=True, pattern="^\{trg}currency ([\d\.]+) ([a-zA-Z]+) ([a-zA-Z]+)".format(trg=trgg))
 async def moni(event):
     c_from_val = float(event.pattern_match.group(1))
     c_from = (event.pattern_match.group(2)).upper()
@@ -160,7 +160,7 @@ async def moni(event):
     c_to_val = round(c_from_val * response["rates"][c_to], 2)
     await event.edit(f"`{c_from_val} {c_from} = {c_to_val} {c_to}`")
 
-@register(outgoing=True, pattern=r"^.google(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}google(?: |$)(.*)".format(trg=trgg))
 async def gsearch(q_event):
     """For .google command, do a Google search."""
     textx = await q_event.get_reply_message()
@@ -207,7 +207,7 @@ async def gsearch(q_event):
             "Google Search query `" + query + "` was executed successfully",
         )
 
-@register(outgoing=True, pattern=r"^\.wiki(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}wiki(?: |$)(.*)".format(trg=trgg))
 async def wiki(wiki_q):
     """ For .wiki command, fetch content from Wikipedia. """
 
@@ -247,7 +247,7 @@ async def wiki(wiki_q):
             BOTLOG_CHATID, f"Wiki query `{match}` was executed successfully"
         )
 
-@register(outgoing=True, pattern=r"^\.ipinfo(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}ipinfo(?: |$)(.*)".format(trg=trgg))
 async def ipinfo(event):
     #Thanks to https://ipinfo.io for this api
     ip = event.pattern_match.group(1)
@@ -279,7 +279,7 @@ async def ipinfo(event):
     else:
         await event.edit("Invalid Information Provided")
         
-@register(outgoing=True, pattern=r"^\.ud(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}ud(?: |$)(.*)".format(trg=trgg))
 async def urban_dict(event):
     """Output the definition of a word from Urban Dictionary"""
 
@@ -329,7 +329,7 @@ async def urban_dict(event):
         return await event.edit(result)
 
 
-@register(outgoing=True, pattern=r"^\.tts(?: |$)([\s\S]*)")
+@register(outgoing=True, pattern="^\{trg}tts(?: |$)([\s\S]*)".format(trg=trgg))
 async def text_to_speech(query):
     """ For .tts command, a wrapper for Google Text-to-Speech. """
 
@@ -376,7 +376,7 @@ async def text_to_speech(query):
 
 
 # kanged from Blank-x ;---;
-@register(outgoing=True, pattern=r"^\.imdb (.*)")
+@register(outgoing=True, pattern="^\{trg}imdb (.*)".format(trg=trgg))
 async def imdb(e):
     try:
         movie_name = e.pattern_match.group(1)
@@ -473,7 +473,7 @@ async def imdb(e):
 
 
         
-@register(pattern=r"\.lang (trt|tts) (.*)", outgoing=True)
+@register(pattern="^\{trg}lang (trt|tts) (.*)".format(trg=trgg), outgoing=True)
 async def lang(value):
     """ For .lang command, change the default langauge of userbot scrapers. """
     util = value.pattern_match.group(1).lower()
@@ -505,7 +505,7 @@ async def lang(value):
             BOTLOG_CHATID, f"`Language for {scraper} changed to {LANG.title()}.`"
         )
 
-@register(outgoing=True, pattern=r"^.trt(?: |$)([\s\S]*)")
+@register(outgoing=True, pattern="^\{trg}trt(?: |$)([\s\S]*)".format(trg=trgg))
 async def translateme(trans):
     """ For .trt command, translate the given text using Google Translate. """
     translator = Translator()
@@ -542,7 +542,7 @@ async def translateme(trans):
             BOTLOG_CHATID,
             f"Translated some {source_lan.title()} stuff to {LANGUAGES[TRT_LANG].title()} just now.",
         )
-@register(outgoing=True, pattern=r"^\.yt(?: |$)(\d*)? ?(.*)")
+@register(outgoing=True, pattern="^\{trg}yt(?: |$)(\d*)? ?(.*)".format(trg=trgg))
 async def yt_search(event):
     """ For .yt command, do a YouTube search from Telegram. """
 
@@ -593,7 +593,7 @@ async def yt_search(event):
 
 
 
-@register(outgoing=True, pattern=r"^\.r(a|v)(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}r(a|v)(?: |$)(.*)".format(trg=trgg))
 async def download_video(v_url):
     """For media downloader command, download media from YouTube and many other sites."""
 

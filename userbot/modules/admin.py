@@ -41,7 +41,7 @@ from telethon.tl.types import (
     MessageMediaPhoto,
 )
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot
+from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, bot, trgg
 from userbot.events import register
 
 # =================== CONSTANT ===================
@@ -88,7 +88,7 @@ UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 # ================================================
 
 
-@register(outgoing=True, pattern="^.setgpic$")
+@register(outgoing=True, pattern="^\{trg}setgpic$".format(trg=trgg))
 async def set_group_photo(gpic):
     """ For .setgpic command, changes the picture of a group """
     await gpic.edit("`Processing...`")
@@ -127,9 +127,9 @@ async def set_group_photo(gpic):
             await gpic.edit(PP_ERROR)
 
 
-@register(outgoing=True, pattern="^.promote(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}promote(?: |$)(.*)".format(trg=trgg))
 async def promote(promt):
-    """ For .promote command, promotes the replied/tagged person """
+    """ For .promote command, promotes the replied/tagged person with semi full perms"""
     # Get targeted chat
     chat = await promt.get_chat()
     # Grab admin status or creator in a chat
@@ -145,6 +145,58 @@ async def promote(promt):
         add_admins=False,
         invite_users=True,
         change_info=False,
+        ban_users=True,
+        delete_messages=True,
+        pin_messages=True,
+    )
+
+    await promt.edit("`Promoting...`")
+    user, rank = await get_user_from_event(promt)
+    if not rank:
+        rank = "Admin"  # Just in case.
+    if user:
+        pass
+    else:
+        return
+
+    # Try to promote if current user is admin or creator
+    try:
+        await promt.client(EditAdminRequest(promt.chat_id, user.id, new_rights, rank))
+        await promt.edit("`Promoted Successfully!`")
+
+    # If Telethon spit BadRequestError, assume
+    # we don't have Promote permission
+    except BadRequestError:
+        await promt.edit(NO_PERM)
+        return
+
+    # Announce to the logging group if we have promoted successfully
+    if BOTLOG:
+        await promt.client.send_message(
+            BOTLOG_CHATID,
+            "#PROMOTE\n"
+            f"USER: [{user.first_name}](tg://user?id={user.id})\n"
+            f"CHAT: {promt.chat.title}(`{promt.chat_id}`)",
+        )
+
+@register(outgoing=True, pattern="^\{trg}fpromote(?: |$)(.*)".format(trg=trgg))
+async def fpromote(promt):
+    """ For .fpromote command, promotes the replied/tagged person with full perms"""
+    # Get targeted chat
+    chat = await promt.get_chat()
+    # Grab admin status or creator in a chat
+    admin = chat.admin_rights
+    creator = chat.creator
+
+    # If not admin and not creator, also return
+    if not admin and not creator:
+        await promt.edit(NO_ADMIN)
+        return
+
+    new_rights = ChatAdminRights(
+        add_admins=True,
+        invite_users=True,
+        change_info=True,
         ban_users=True,
         delete_messages=True,
         pin_messages=True,
@@ -180,7 +232,62 @@ async def promote(promt):
         )
 
 
-@register(outgoing=True, pattern="^.demote(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}xpromote(?: |$)(.*)".format(trg=trgg))
+async def xpromote(promt):
+    """ For .xpromote command, promotes the replied/tagged person with none perms """
+    # Get targeted chat
+    chat = await promt.get_chat()
+    # Grab admin status or creator in a chat
+    admin = chat.admin_rights
+    creator = chat.creator
+
+    # If not admin and not creator, also return
+    if not admin and not creator:
+        await promt.edit(NO_ADMIN)
+        return
+
+    new_rights = ChatAdminRights(
+        add_admins=False,
+        invite_users=False,
+        change_info=False,
+        ban_users=False,
+        delete_messages=False,
+        pin_messages=False,
+    )
+
+    await promt.edit("`Promoting...`")
+    user, rank = await get_user_from_event(promt)
+    if not rank:
+        rank = "Administrator"  # Just in case.
+    if user:
+        pass
+    else:
+        return
+
+    # Try to promote if current user is admin or creator
+    try:
+        await promt.client(EditAdminRequest(promt.chat_id, user.id, new_rights, rank))
+        await promt.edit("`Promoted Successfully!`")
+
+    # If Telethon spit BadRequestError, assume
+    # we don't have Promote permission
+    except BadRequestError:
+        await promt.edit(NO_PERM)
+        return
+
+    # Announce to the logging group if we have promoted successfully
+    if BOTLOG:
+        await promt.client.send_message(
+            BOTLOG_CHATID,
+            "#PROMOTE\n"
+            f"USER: [{user.first_name}](tg://user?id={user.id})\n"
+            f"CHAT: {promt.chat.title}(`{promt.chat_id}`)",
+        )
+
+
+
+
+@register(outgoing=True, pattern="^\{trg}demote(?: |$)(.*)".format(trg=trgg))
 async def demote(dmod):
     """ For .demote command, demotes the replied/tagged person """
     # Admin right check
@@ -232,7 +339,7 @@ async def demote(dmod):
         )
 
 
-@register(outgoing=True, pattern="^.ban(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}ban(?: |$)(.*)".format(trg=trgg))
 async def ban(bon):
     """ For .ban command, bans the replied/tagged person """
     # Here laying the sanity check
@@ -292,7 +399,7 @@ async def ban(bon):
         )
 
 
-@register(outgoing=True, pattern="^.unban(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}unban(?: |$)(.*)".format(trg=trgg))
 async def nothanos(unbon):
     """ For .unban command, unbans the replied/tagged person """
     # Here laying the sanity check
@@ -330,7 +437,7 @@ async def nothanos(unbon):
         await unbon.edit("`Uh oh my unban logic broke!`")
 
 
-@register(outgoing=True, pattern="^.mute(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}mute(?: |$)(.*)".format(trg=trgg))
 async def spider(spdr):
     """
     This function is basically muting peeps
@@ -390,7 +497,7 @@ async def spider(spdr):
             return await spdr.edit("`Uh oh my mute logic broke!`")
 
 
-@register(outgoing=True, pattern="^.unmute(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}unmute(?: |$)(.*)".format(trg=trgg))
 async def unmoot(unmot):
     """ For .unmute command, unmute the replied/tagged person """
     # Admin or creator check
@@ -440,7 +547,7 @@ async def unmoot(unmot):
             )
 
 
-@register(outgoing=True, pattern="^.zombies(?: |$)(.*)", groups_only=False)
+@register(outgoing=True, pattern="^\{trg}zombies(?: |$)(.*)".format(trg=trgg), groups_only=False)
 async def rm_deletedacc(show):
     """ For .zombies command, list all the ghost/deleted/zombie accounts in a chat. """
 
@@ -510,7 +617,7 @@ async def rm_deletedacc(show):
         )
 
 
-@register(outgoing=True, pattern="^.all$")
+@register(outgoing=True, pattern="^\{trg}all$".format(trg=trgg))
 async def _(event):
     if event.fwd_from:
         return
@@ -522,7 +629,7 @@ async def _(event):
     await event.delete()
 
 
-@register(outgoing=True, pattern="^.admins(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}admins(?: |$)(.*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -576,7 +683,7 @@ async def _(event):
         await event.edit(mentions)
 
 
-@register(outgoing=True, pattern="^.pin(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}pin(?: |$)(.*)".format(trg=trgg))
 async def pin(msg):
     """ For .pin command, pins the replied/tagged message on the top the chat. """
     # Admin or creator check
@@ -622,7 +729,7 @@ async def pin(msg):
         )
 
 
-@register(outgoing=True, pattern="^.kick(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}kick(?: |$)(.*)".format(trg=trgg))
 async def kick(usr):
     """ For .kick command, kicks the replied/tagged person from the group. """
     # Admin or creator check
@@ -664,8 +771,50 @@ async def kick(usr):
             f"CHAT: {usr.chat.title}(`{usr.chat_id}`)\n",
         )
 
+@register(outgoing=True, pattern="^\{trg}punch(?: |$)(.*)".format(trg=trgg))
+async def kick(usr):
+    """ For .punch command, kicks the replied/tagged person from the group. """
+    # Admin or creator check
+    chat = await usr.get_chat()
+    admin = chat.admin_rights
+    creator = chat.creator
 
-@register(outgoing=True, pattern="^.users ?(.*)")
+    # If not admin and not creator, return
+    if not admin and not creator:
+        await usr.edit(NO_ADMIN)
+        return
+
+    user, reason = await get_user_from_event(usr)
+    if not user:
+        await usr.edit("`Couldn't fetch user.`")
+        return
+
+    await usr.edit("`Kicking...`")
+
+    try:
+        await usr.client.kick_participant(usr.chat_id, user.id)
+        await sleep(1)
+    except Exception as e:
+        await usr.edit(NO_PERM + f"\n{str(e)}")
+        return
+
+    if reason:
+        await usr.edit(
+            f"`Kicked` [{user.first_name}](tg://user?id={user.id})`!`\nReason: {reason}"
+        )
+    else:
+        await usr.edit(f"`Kicked` [{user.first_name}](tg://user?id={user.id})`!`")
+
+    if BOTLOG:
+        await usr.client.send_message(
+            BOTLOG_CHATID,
+            "#KICK\n"
+            f"USER: [{user.first_name}](tg://user?id={user.id})\n"
+            f"CHAT: {usr.chat.title}(`{usr.chat_id}`)\n",
+        )
+
+
+@register(outgoing=True, pattern="^\{trg}users ?(.*)".format(trg=trgg))
 async def get_users(show):
     """ For .users command, list all of the users in a chat. """
     info = await show.client.get_entity(show.chat_id)
@@ -758,7 +907,7 @@ async def get_user_from_id(user, event):
     return user_obj
 
 
-@register(outgoing=True, pattern="^.usersdel ?(.*)")
+@register(outgoing=True, pattern="^\{trg}usersdel ?(.*)".format(trg=trgg))
 async def get_usersdel(show):
     """ For .usersdel command, list all of the deleted users in a chat. """
     info = await show.client.get_entity(show.chat_id)
@@ -853,7 +1002,7 @@ async def get_userdel_from_id(user, event):
     return user_obj
 
 
-@register(outgoing=True, pattern="^.bots(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}bots(?: |$)(.*)".format(trg=trgg))
 async def _(event):
     """ For .listbot command, list all of the bots of the chat. """
     if event.fwd_from:
@@ -891,6 +1040,10 @@ CMD_HELP.update(
     {
         "admin": ".promote <username/reply> <custom rank (optional)>\
 \nUsage: Provides admin rights to the person in the chat.\
+\n\n.fpromote <username/reply>\
+\nUsage: Provides full admin rights to the person in the chat.\
+\n\n.xpromote <username/reply>\
+\nUsage: Provides few admin rights to the person in the chat.\
 \n\n.demote <username/reply>\
 \nUsage: Revokes the person's admin permissions in the chat.\
 \n\n.ban <username/reply> <reason (optional)>\

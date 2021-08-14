@@ -11,7 +11,7 @@ from typing import Optional, Tuple
 
 from PIL import Image, ImageDraw, ImageFont
 import PIL.ImageOps
-from userbot import CMD_HELP, LOGS, TEMP_DOWNLOAD_DIRECTORY, SUDO_USERS
+from userbot import CMD_HELP, LOGS, TEMP_DOWNLOAD_DIRECTORY, SUDO_USERS, trgg
 from userbot.events import register
 from colour import Color as asciiColor
 
@@ -201,7 +201,7 @@ async def flip_image(imagefile, endname):
 ############################################################################
 
 ##############################  ASCII Media ###############################
-@register(outgoing=True, pattern=r"^\.ascii (.*)")   
+@register(outgoing=True, pattern="^\{trg}ascii (.*)".format(trg=trgg))   
 async def memes(asci):
     if asci.fwd_from:
         return
@@ -243,7 +243,7 @@ async def memes(asci):
 ########################################################################           
             
 ##############################  Flip Media  ############################
-@register(outgoing=True, pattern="^.flip$")    
+@register(outgoing=True, pattern="^\{trg}flip$".format(trg=trgg))    
 async def memes(fp):
     if fp.fwd_from:
         return
@@ -285,7 +285,7 @@ async def mirror_file(imagefile, endname):
     inverted_image = PIL.ImageOps.mirror(image)
     inverted_image.save(endname)
     
-@register(outgoing=True, pattern="^.mirror$")
+@register(outgoing=True, pattern="^\{trg}mirror$".format(trg=trgg))
 async def memes(mr):
     if mr.fwd_from:
         return
@@ -322,7 +322,7 @@ async def memes(mr):
 #############################################################################
 
 ##########################  Write on Media  #################################         
-@register(outgoing=True, pattern=r"^\.mmf (.*)")
+@register(outgoing=True, pattern="^\{trg}mmf (.*)".format(trg=trgg))
 async def memify(event):
     reply_msg = await event.get_reply_message()
     input_str = event.pattern_match.group(1)

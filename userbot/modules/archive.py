@@ -11,13 +11,13 @@ import patoolib
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from telethon.tl.types import DocumentAttributeVideo
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, trgg
 from userbot.utils import progress, edit_or_reply
 from userbot.events import register
 
 thumb_image_path = os.path.join(TEMP_DOWNLOAD_DIRECTORY, "thumb_image.jpg")
 
-@register(outgoing=True, pattern=r"^\.zip(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}zip(?: |$)(.*)".format(trg=trgg))
 async def _(event):
     if event.fwd_from:
         return
@@ -60,7 +60,7 @@ async def _(event):
         await mone.edit("Local file compressed to `{}`".format(input_str + ".zip"))
 
 
-@register(outgoing=True, pattern=r"^\.unzip(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}unzip(?: |$)(.*)".format(trg=trgg))
 async def _(event):
     if event.fwd_from:
         return
@@ -132,7 +132,7 @@ def zipdir(dirName):
     return filePaths
 
 
-@register(outgoing=True, pattern=r"^\.rar(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}rar(?: |$)(.*)".format(trg=trgg))
 async def _(event):
     if event.fwd_from:
         return
@@ -179,7 +179,7 @@ async def _(event):
         await mone.edit("Local file compressed to `{}`".format(directory_name + ".rar"))
 
 
-@register(outgoing=True, pattern=r"^\.tar(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}tar(?: |$)(.*)".format(trg=trgg))
 async def _(event):
     if event.fwd_from:
         return
@@ -258,7 +258,7 @@ async def create_archive(input_directory):
     return return_name
 
 
-@register(outgoing=True, pattern=r"^\.unrar(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}unrar(?: |$)(.*)".format(trg=trgg))
 async def _(event):
     if event.fwd_from:
         return
@@ -346,7 +346,7 @@ async def _(event):
         await mone.delete()
 
 
-@register(outgoing=True, pattern=r"^\.untar(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}untar(?: |$)(.*)".format(trg=trgg))
 async def _(event):
     if event.fwd_from:
         return

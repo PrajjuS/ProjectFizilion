@@ -2,11 +2,11 @@
 
 #ported by arshsisodiya
 
-from userbot import CMD_HELP
+from userbot import CMD_HELP, trgg
 from userbot.events import register
 
-@register(outgoing=True, pattern=r"^\.d(p|isplaypic)(?: |$)(.*)")
-@register(outgoing=True, pattern=r"^\.p(p|profilepic)(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}d(p|isplaypic)(?: |$)(.*)".format(trg=trgg))
+@register(outgoing=True, pattern="^\{trg}p(p|profilepic)(?: |$)(.*)".format(trg=trgg))
 async def _(event):
     "To get user or group profile pic"
     uid = "".join(event.raw_text.split(maxsplit=1)[1:])

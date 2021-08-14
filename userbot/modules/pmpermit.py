@@ -18,6 +18,7 @@ from userbot import (
     LASTMSG,
     LOGS,
     PM_AUTO_BAN,
+    trgg,
 )
 from userbot.events import register
 
@@ -83,7 +84,7 @@ async def permitpm(event):
             else:
                 COUNT_PM[event.chat_id] = COUNT_PM[event.chat_id] + 1
 
-            if COUNT_PM[event.chat_id] > 4:
+            if COUNT_PM[event.chat_id] > 3:
                 await event.respond(
                     "`You were spamming my PM, which I didn't like.`\n"
                     "`I Wouldn't let you to chat me again until further notice`\n"
@@ -169,7 +170,7 @@ async def auto_accept(event):
                     )
 
 
-@register(outgoing=True, pattern=r"^.notifoff$")
+@register(outgoing=True, pattern="^\{trg}notifoff$".format(trg=trgg))
 async def notifoff(noff_event):
     """ For .notifoff command, stop getting notifications from unapproved PMs. """
     try:
@@ -181,7 +182,7 @@ async def notifoff(noff_event):
     await noff_event.edit("`Notifications from unapproved PM's are silenced!`")
 
 
-@register(outgoing=True, pattern=r"^.notifon$")
+@register(outgoing=True, pattern="^\{trg}notifon$".format(trg=trgg))
 async def notifon(non_event):
     """ For .notifoff command, get notifications from unapproved PMs. """
     try:
@@ -192,7 +193,7 @@ async def notifon(non_event):
     delgvar("NOTIF_OFF")
     await non_event.edit("`Notifications from unapproved PM's unmuted!`")
 
-@register(outgoing=True, pattern=r"^.(approve|a)$")
+@register(outgoing=True, pattern="^\{trg}(approve|a)$".format(trg=trgg))
 async def approvepm(apprvpm):
     """ For .approve command, give someone the permissions to PM you. """
     try:
@@ -240,7 +241,7 @@ async def approvepm(apprvpm):
             "#APPROVED\n" + "User: " + f"[{name0}](tg://user?id={uid})",
         )
 
-@register(outgoing=True, pattern=r"^.(disapprove|da)$")
+@register(outgoing=True, pattern="^\{trg}(disapprove|da)$".format(trg=trgg))
 async def disapprovepm(disapprvpm):
     try:
         from userbot.modules.sql_helper.pm_permit_sql import dissprove
@@ -271,7 +272,7 @@ async def disapprovepm(disapprvpm):
         )
 
 
-@register(outgoing=True, pattern=r"^.block$")
+@register(outgoing=True, pattern="^\{trg}block$".format(trg=trgg))
 async def blockpm(block):
     """ For .block command, block people from PMing you! """
     if block.reply_to_msg_id:
@@ -303,7 +304,7 @@ async def blockpm(block):
         )
 
 
-@register(outgoing=True, pattern=r"^.unblock$")
+@register(outgoing=True, pattern="^\{trg}unblock$".format(trg=trgg))
 async def unblockpm(unblock):
     """ For .unblock command, let people PMing you again! """
     if unblock.reply_to_msg_id:
@@ -320,7 +321,7 @@ async def unblockpm(unblock):
         )
 
 
-@register(outgoing=True, pattern=r"^.(set|get|reset) pm_msg(?: |$)(\w*)")
+@register(outgoing=True, pattern="^\{trg}(set|get|reset) pm_msg(?: |$)(\w*)".format(trg=trgg))
 async def add_pmsg(cust_msg):
     """ Set your own Unapproved message. """
     if not PM_AUTO_BAN:

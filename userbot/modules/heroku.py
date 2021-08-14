@@ -17,7 +17,7 @@ import aiohttp
 import heroku3
 import requests
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, HEROKU_API_KEY, HEROKU_APP_NAME
+from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, HEROKU_API_KEY, HEROKU_APP_NAME, trgg
 from userbot.events import register
 
 heroku_api = "https://api.heroku.com"
@@ -34,7 +34,7 @@ else:
 """
 
 
-@register(outgoing=True, pattern=r"^.(get|del) var(?: |$)(\w*)")
+@register(outgoing=True, pattern="^\{trg}(get|del) var(?: |$)(\w*)".format(trg=trgg))
 async def variable(var):
     exe = var.pattern_match.group(1)
     if app is None:
@@ -93,7 +93,7 @@ async def variable(var):
             return True
 
 
-@register(outgoing=True, pattern=r"^.set var (\w*) ([\s\S]*)")
+@register(outgoing=True, pattern="^\{trg}set var (\w*) ([\s\S]*)".format(trg=trgg))
 async def set_var(var):
     await var.edit("`Setting information...`")
     variable = var.pattern_match.group(1)
@@ -122,7 +122,8 @@ async def set_var(var):
 """
 
 
-@register(outgoing=True, pattern=r"^.usage(?: |$)")
+@register(outgoing=True, pattern="^\{trg}dyno(?: |$)".format(trg=trgg))
+@register(outgoing=True, pattern="^\{trg}usage(?: |$)".format(trg=trgg))
 async def dyno_usage(dyno):
     """
     Get your account Dyno Usage
@@ -185,7 +186,7 @@ async def dyno_usage(dyno):
             )
             return True
 
-@register(outgoing=True, pattern=r"^\.logs")
+@register(outgoing=True, pattern="^\{trg}logs".format(trg=trgg))
 async def _(dyno):
     if app is None:
         return await dyno.edit(

@@ -4,11 +4,11 @@
 
 import os
 import subprocess
-from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY
+from userbot import CMD_HELP, TEMP_DOWNLOAD_DIRECTORY, trgg
 from userbot.events import register
 from userbot.utils import media_type
 
-@register(outgoing=True, pattern=r"^.getc(?: |$)([\s\S]*)")
+@register(outgoing=True, pattern=r"^\{trg}getc(?: |$)([\s\S]*)".format(trg=trgg))
 async def get_media(event):
     chname = event.pattern_match.group(1)
     limit = int(chname.split(" ")[0])
@@ -40,7 +40,7 @@ async def get_media(event):
     )
 
 
-@register(outgoing=True, pattern=r"^.geta(?: |$)([\s\S]*)")
+@register(outgoing=True, pattern=r"^\{trg}geta(?: |$)([\s\S]*)".format(trg=trgg))
 async def get_media(event):
     channel_username = event.pattern_match.group(1)
     tempdir = os.path.join(TEMP_DOWNLOAD_DIRECTORY, channel_username)

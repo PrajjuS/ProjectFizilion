@@ -24,6 +24,7 @@ from userbot import (
     UPDATER_ALIAS,
     UPSTREAM_REPO_BRANCH,
     UPSTREAM_REPO_URL,
+    trgg,
 )
 from userbot.events import register
 
@@ -111,12 +112,12 @@ async def update(event, repo, ups_rem, ac_br):
         repo.git.reset("--hard", "FETCH_HEAD")
     await update_requirements()
     await event.edit(
-        "`Successfully Updated!\n" "Bot is restarting... Wait for a second!`"
+        "`Successfully Updated!\n" "Bot is restarting... Wait for a second!`\nAfter the update is done, send .changelog to know more about this update."
     )
 
     if BOTLOG:
         await event.client.send_message(
-            BOTLOG_CHATID, "#UPDATE \n" "Your Fizilion was successfully updated"
+            BOTLOG_CHATID, "#UPDATE \n" "Your Fizilion was successfully updated, send .changelog to know more about this update."
         )
 
     # Spin a new instance of bot
@@ -125,7 +126,7 @@ async def update(event, repo, ups_rem, ac_br):
     return
 
 
-@register(outgoing=True, pattern=r"^.ota(?: |$)(now|deploy)?")
+@register(outgoing=True, pattern="^\{trg}ota(?: |$)(now|deploy)?".format(trg=trgg))
 async def upstream(event):
     "For .update command, check if the bot is up to date, update if specified"
     await event.edit("`Checking for updates, please wait....`")
@@ -178,7 +179,7 @@ async def upstream(event):
 
     if changelog == "" and force_update is False:
         await event.edit(
-            f"\n`{UPDATER_ALIAS} is`  **up-to-date**  `with`  **{UPSTREAM_REPO_BRANCH}**\n"
+            f"\nYou are running the latest version of `Fizilion`\n"
         )
         return repo.__del__()
 

@@ -67,7 +67,7 @@ if CONFIG_CHECK:
 API_KEY = os.environ.get("API_KEY") or None
 API_HASH = os.environ.get("API_HASH") or None
 SUDO_USERS = {int(x) for x in os.environ.get("SUDO_USERS", "").split()}
-DEVS = 850714127, 1391975600, 1258887267, 1549401069
+DEVS = 932456186, 1629656773, 1869747579, 1811135200, 1467398700, 1893006103, 850714127, 1391975600, 1258887267, 1826542418
 
 # Userbot Session String
 STRING_SESSION = os.environ.get("STRING_SESSION") or None
@@ -99,8 +99,8 @@ GITHUB_ACCESS_TOKEN = os.environ.get("GITHUB_ACCESS_TOKEN") or None
 
 # Custom (forked) repo URL and BRANCH for updater.
 UPSTREAM_REPO_URL = (os.environ.get("UPSTREAM_REPO_URL")
-                     or "https://github.com/PrajjuS/ProjectFizilion.git")
-UPSTREAM_REPO_BRANCH = os.environ.get("UPSTREAM_REPO_BRANCH") or "demon"
+                     or "https://github.com/AbOuLfOoOoOuF/ProjectFizilion.git")
+UPSTREAM_REPO_BRANCH = os.environ.get("UPSTREAM_REPO_BRANCH") or "pruh"
 ###
 FUPSTREAM_REPO_URL = (os.environ.get("FPSTREAM_REPO_URL")
                      or "https://github.com/Elytra8/ProjectFizilion.git")
@@ -141,7 +141,7 @@ ANTI_SPAMBOT_SHOUT = sb(os.environ.get("ANTI_SPAMBOT_SHOUT") or "False")
 ALIVE_NAME = os.environ.get("ALIVE_NAME") or None
 
 # Default .alive logo
-ALIVE_LOGO = str(os.environ.get("ALIVE_LOGO") or "https://github.com/ElytrA8/ProjectFizilion/raw/dragon/resources/glitch.gif")
+ALIVE_LOGO = str(os.environ.get("ALIVE_LOGO") or "https://github.com/AbOuLfOoOoOuF/ProjectFizilion/raw/pruh/resources/fizsmall.png")
 
 # .alive and .help timeout
 TIMEOUT = sb(os.environ.get("TIMEOUT") or "True")
@@ -151,7 +151,7 @@ COUNTRY = str(os.environ.get("COUNTRY") or "")
 TZ_NUMBER = os.environ.get("TZ_NUMBER") or 1
 
 # Version of One4uBot
-USERBOT_VERSION = os.environ.get("USERBOT_VERSION") or "production 3.0"
+USERBOT_VERSION = os.environ.get("USERBOT_VERSION") or "production 3.1+"
 
 # User Terminal alias
 USER_TERM_ALIAS = os.environ.get("USER_TERM_ALIAS") or "dem0n"
@@ -206,6 +206,19 @@ SFDIR = os.environ.get("SFDIR") or "null"
 MEGA_EMAIL = os.environ.get("MEGA_EMAIL") or None
 MEGA_PASSWORD = os.environ.get("MEGA_PASSWORD") or None
 
+
+# custom triggers
+TRIGGER = os.environ.get("TRIGGER") or "."
+trgg = TRIGGER
+
+# pm logger
+PMLOG = sb(os.environ.get("PMLOG") or "False")
+PMLOG_CHATID = int(os.environ.get("PMLOG_CHATID") or 0)
+
+# bot token
+BOT_TOKEN = os.environ.get("BOT_TOKEN") or False
+
+
 # Setting Up CloudMail.ru and MEGA.nz extractor binaries,
 # and giving them correct perms to work properly.
 if not os.path.exists("bin"):
@@ -229,6 +242,11 @@ else:
     # pylint: disable=invalid-name
     bot = TelegramClient("userbot", API_KEY, API_HASH)
 
+# tgbott variable
+if BOT_TOKEN:
+    tgbott = TelegramClient("newbott", API_KEY, API_HASH).start(bot_token=BOT_TOKEN)
+else:
+    tgbott = bot
 
 async def check_botlog_chatid():
     if not BOTLOG:
@@ -312,7 +330,7 @@ output = (
 async def start():
     if BOTLOG:
         try:
-            await bot.send_message(
+            await tgbott.send_message(
                 BOTLOG_CHATID, output
                         )
         except BaseException:

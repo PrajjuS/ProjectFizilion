@@ -10,12 +10,12 @@ import io
 from asyncio import sleep
 from re import match
 
-from userbot import CMD_HELP
+from userbot import CMD_HELP, trgg
 from userbot.events import register
 from userbot.utils import chrome, options
 
 
-@register(pattern="^.ss (.*)", outgoing=True)
+@register(pattern="^\{trg}ss (.*)".format(trg=trgg), outgoing=True)
 async def capture(url):
     """ For .ss command, capture a website's screenshot and send the photo. """
     await url.edit("`Processing...`")

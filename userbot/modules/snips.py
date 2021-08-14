@@ -6,7 +6,7 @@
 
 from sqlalchemy.orm.exc import UnmappedInstanceError
 
-from userbot import BOTLOG_CHATID, CMD_HELP
+from userbot import BOTLOG_CHATID, CMD_HELP, trgg
 from userbot.events import register
 
 
@@ -43,7 +43,7 @@ async def on_snip(event):
             await event.delete()
 
 
-@register(outgoing=True, pattern=r"^\.snip (\w*)")
+@register(outgoing=True, pattern="^\{trg}snip (\w*)".format(trg=trgg))
 async def on_snip_save(event):
     """ For .snip command, saves snips for future use. """
     try:
@@ -86,7 +86,7 @@ async def on_snip_save(event):
             f"**Error: Snip** `{keyword}` **already exists.**")
 
 
-@register(outgoing=True, pattern=r"^\.snips$")
+@register(outgoing=True, pattern="^\{trg}snips$".format(trg=trgg))
 async def on_snip_list(event):
     """ For .snips command, lists snips saved by you. """
     try:
@@ -103,7 +103,7 @@ async def on_snip_list(event):
     await event.edit(message)
 
 
-@register(outgoing=True, pattern=r"^\.remsnip (\w*)")
+@register(outgoing=True, pattern="^\{trg}remsnip (\w*)".format(trg=trgg))
 async def on_snip_delete(event):
     """ For .remsnip command, deletes a snip. """
     try:

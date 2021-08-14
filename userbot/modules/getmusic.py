@@ -21,7 +21,7 @@ from telethon import events
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.types import DocumentAttributeVideo
 
-from userbot import CMD_HELP, LASTFM_USERNAME, bot, lastfm
+from userbot import CMD_HELP, LASTFM_USERNAME, bot, lastfm, trgg
 from userbot.events import register
 from userbot.utils import progress
 
@@ -47,7 +47,7 @@ def getmusicvideo(cat):
     os.system(command)
 
 
-@register(outgoing=True, pattern=r"^\.songn (?:(now)|(.*) - (.*))")
+@register(outgoing=True, pattern="^\{trg}songn (?:(now)|(.*) - (.*))".format(trg=trgg))
 async def _(event):
     if event.fwd_from:
         return
@@ -88,7 +88,7 @@ async def _(event):
         return await event.edit("`Error: `@WooMaiBot` is not responding!.`")
 
 
-@register(outgoing=True, pattern=r"^\.songl(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}songl(?: |$)(.*)".format(trg=trgg))
 async def _(event):
     if event.fwd_from:
         return
@@ -120,7 +120,7 @@ async def _(event):
         return await event.edit("`Error: `@MusicsHunterBot` is not responding!.`")
 
 
-@register(outgoing=True, pattern=r"^\.songf (?:(now)|(.*) - (.*))")
+@register(outgoing=True, pattern="^\{trg}songf (?:(now)|(.*) - (.*))".format(trg=trgg))
 async def _(event):
     if event.fwd_from:
         return
@@ -164,7 +164,7 @@ async def _(event):
         )
 
 
-@register(outgoing=True, pattern=r"^\.vsong(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}vsong(?: |$)(.*)".format(trg=trgg))
 async def _(event):
     reply_to_id = event.message.id
     if event.reply_to_msg_id:

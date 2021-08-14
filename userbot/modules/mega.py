@@ -19,7 +19,7 @@ from urllib.error import HTTPError
 
 from pySmartDL import SmartDL
 
-from userbot import CMD_HELP, LOGS, TEMP_DOWNLOAD_DIRECTORY, MEGA_EMAIL, MEGA_PASSWORD
+from userbot import CMD_HELP, LOGS, TEMP_DOWNLOAD_DIRECTORY, MEGA_EMAIL, MEGA_PASSWORD, trgg
 from userbot.events import register
 from userbot.utils import humanbytes, time_formatter
 
@@ -39,7 +39,7 @@ async def subprocess_run(megadl, cmd):
     return stdout.decode().strip(), stderr.decode().strip(), exitCode
 
 
-@register(outgoing=True, pattern=r"^.mega(?: |$)(.*)")
+@register(outgoing=True, pattern="^\{trg}mega(?: |$)(.*)".format(trg=trgg))
 async def mega_downloader(megadl):
     await megadl.edit("`Collecting information...`")
     if not os.path.isdir(TEMP_DOWNLOAD_DIRECTORY):
@@ -169,7 +169,7 @@ async def decrypt_file(megadl, file_path, temp_file_path, hex_key, hex_raw_key):
         raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT), file_path)
     return
 
-@register(pattern="^.megaput(?: |$)(.*)", outgoing=True)
+@register(pattern="^\{trg}megaput(?: |$)(.*)".format(trg=trgg), outgoing=True)
 async def megaput(event):
     file = event.pattern_match.group(1)
     if MEGA_EMAIL and MEGA_PASSWORD:
@@ -188,7 +188,7 @@ async def megaput(event):
     else:
         await event.edit("`Mega credentials empty, add those to config env`")
 
-@register(pattern="^.megareg(?: |$)(.*)", outgoing=True)
+@register(pattern="^\{trg}megareg(?: |$)(.*)".format(trg=trgg), outgoing=True)
 async def megareg(event):
     inp = event.pattern_match.group(1)
     if ";" in inp:

@@ -10,11 +10,11 @@ import requests
 from bs4 import BeautifulSoup
 from humanize import naturalsize
 
-from userbot import CMD_HELP
+from userbot import CMD_HELP, trgg
 from userbot.events import register
 
 
-@register(outgoing=True, pattern=r"^.direct(?: |$)([\s\S]*)")
+@register(outgoing=True, pattern=r"^\{trg}direct(?: |$)([\s\S]*)".format(trg=trgg))
 async def direct_link_generator(request):
     """direct links generator"""
     await request.edit("`Processing...`")

@@ -11,12 +11,12 @@ import asyncio
 
 import random
 
-from userbot import CMD_HELP
+from userbot import CMD_HELP, trgg
 
 from userbot.events import register
 
 
-@register(pattern="^.belo(?: |$)(.*)")
+@register(pattern="^\{trg}belo(?: |$)(.*)".format(trg=trgg))
 async def _(event):
 
     if event.fwd_from:
@@ -418,7 +418,7 @@ async def _(event):
         await event.edit("`\"If we put solar panels above parking lots, then our cars wouldn't get hot and we would have a lot of clean energy.\"`")
 
 
-@register(pattern="^.tip(?: |$)(.*)")
+@register(pattern="^\{trg}tip(?: |$)(.*)".format(trg=trgg))
 async def _(event):
 
     if event.fwd_from:
@@ -784,7 +784,7 @@ async def _(event):
         await event.edit("`\"Go for that run, no one is looking at you, don't overthink it, do it!\"`")
 
 
-@register(pattern="^.thought(?: |$)(.*)")
+@register(pattern="^\{trg}thought(?: |$)(.*)".format(trg=trgg))
 async def _(event):
 
     if event.fwd_from:

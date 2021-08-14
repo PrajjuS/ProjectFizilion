@@ -27,7 +27,7 @@ from telethon.tl.types import (
 )
 from telethon.utils import is_image, is_video
 
-from userbot import CMD_HELP
+from userbot import CMD_HELP, trgg
 from userbot.events import register
 
 jikan = Jikan()
@@ -186,7 +186,7 @@ def replace_text(text):
     return text.replace('"', "").replace("\\r", "").replace("\\n", "").replace("\\", "")
 
 
-@register(outgoing=True, pattern=r"^\.anime ?(.*)")
+@register(outgoing=True, pattern="^\{trg}anime ?(.*)".format(trg=trgg))
 async def anime(event):
     query = event.pattern_match.group(1)
     reply = await event.get_reply_message()
@@ -262,7 +262,7 @@ async def anime(event):
     await event.edit(rep, parse_mode="HTML", link_preview=False)
 
 
-@register(outgoing=True, pattern=r"^\.manga ?(.*)")
+@register(outgoing=True, pattern="^\{trg}manga ?(.*)".format(trg=trgg))
 async def manga(event):
     query = event.pattern_match.group(1)
     await event.edit("`Searching Manga...`")
@@ -310,7 +310,7 @@ async def manga(event):
         await event.edit(rep, parse_mode="HTML", link_preview=False)
 
 
-@register(outgoing=True, pattern=r"^\.a(kaizoku|kayo) ?(.*)")
+@register(outgoing=True, pattern="^\{trg}a(kaizoku|kayo) ?(.*)".format(trg=trgg))
 async def site_search(event):
     message = await event.get_reply_message()
     search_query = event.pattern_match.group(2)
@@ -359,7 +359,7 @@ async def site_search(event):
             await event.edit(result, parse_mode="HTML")
 
 
-@register(outgoing=True, pattern=r"^\.char ?(.*)")
+@register(outgoing=True, pattern="^\{trg}char ?(.*)".format(trg=trgg))
 async def character(event):
     message = await event.get_reply_message()
     search_query = event.pattern_match.group(1)
@@ -408,7 +408,7 @@ async def character(event):
     )
 
 
-@register(outgoing=True, pattern=r"^\.upcoming ?(.*)")
+@register(outgoing=True, pattern="^\{trg}upcoming ?(.*)".format(trg=trgg))
 async def upcoming(message):
     rep = "<b>Upcoming anime</b>\n"
     later = jikan.season_later()
@@ -422,7 +422,7 @@ async def upcoming(message):
         await message.edit(rep, parse_mode="html")
 
 
-@register(outgoing=True, pattern=r"^\.scanime ?(.*)")
+@register(outgoing=True, pattern="^\{trg}scanime ?(.*)".format(trg=trgg))
 async def get_anime(message):
     try:
         query = message.pattern_match.group(1)
@@ -527,7 +527,7 @@ async def get_anime(message):
     await message.client.send_file(message.chat_id, file=main_poster, caption=captions)
 
 
-@register(outgoing=True, pattern=r"^\.smanga ?(.*)")
+@register(outgoing=True, pattern="^\{trg}smanga ?(.*)".format(trg=trgg))
 async def manga(message):
     search_query = message.pattern_match.group(1)
     await message.get_reply_message()
@@ -542,7 +542,7 @@ async def manga(message):
     )
 
 
-@register(outgoing=True, pattern=r"^\.sanime ?(.*)")
+@register(outgoing=True, pattern="^\{trg}sanime ?(.*)".format(trg=trgg))
 async def anime(message):
     search_query = message.pattern_match.group(1)
     await message.get_reply_message()
@@ -563,7 +563,7 @@ async def anime(message):
         )
 
 
-@register(outgoing=True, pattern=r"^\.whatanime")
+@register(outgoing=True, pattern="^\{trg}whatanime".format(trg=trgg))
 async def whatanime(e):
     media = e.media
     if not media:

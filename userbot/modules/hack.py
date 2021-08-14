@@ -1,12 +1,12 @@
 ##ported from userge by @PrajjuS
 from userbot.events import register
-from userbot import CMD_HELP
+from userbot import CMD_HELP, trgg
 import time
 from asyncio import sleep 
 from telethon import events , client , TelegramClient
 from userbot.modules.admin import get_user_from_event
 
-@register(outgoing=True, pattern="^.hack$")
+@register(outgoing=True, pattern="^\{trg}hack$".format(trg=trgg))
 async def hack_func(event):
     animation_chars = [
         "Connecting To Private Server \\",
@@ -41,10 +41,10 @@ async def hack_func(event):
         "**User Data Upload Completed:** Target's User Data Stored "
         "at `downloads/victim/telegram-authuser.data.sql`",
     ]
-    hecked = (f"**Targeted Account Hacked**\n\nPay 69$ To hackerman\nTo Remove This Hack")
+    hecked = (f"**Targeted Account Hacked**\n\nPay 69$ To `ME`\nTo Remove This Hack")
     max_ani = len(animation_chars)
     for i in range(max_ani):
-        await sleep(2)
+        await sleep(1)
         await event.edit(animation_chars[i % max_ani])
     await event.edit(hecked)
 
