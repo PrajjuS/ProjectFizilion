@@ -36,7 +36,7 @@ async def fban(event):
         try:
             fban_id = pattern[0]
         except IndexError:
-            return await event.edit("What are you doing?")    
+            return await event.edit("**What are you doing?**")    
         reason = " ".join(pattern[1:])
 
     try:
