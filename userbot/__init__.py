@@ -296,7 +296,7 @@ output = (
     "` =============================== `\n"
     f"`Fizilion is Up [Premium Edition] `\n"
     f"`=============================== `\n"
-    f"•`Telethon       : v{version.__version__} `\n"
+    f"•`TelethoĞ      : v{version.__version__} `\n"
     f"•`Python         : v{python_version()} `\n"
     f"•`User           : {DEFAULTUSER} `\n"
     f"•`Running on     : {repo.active_branch.name} `\n"
