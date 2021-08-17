@@ -34,6 +34,7 @@ from userbot import (
     G_DRIVE_CLIENT_SECRET,
     G_DRIVE_DATA,
     G_DRIVE_FOLDER_ID,
+    G_DRIVE_INDEX_URL,
     LOGS,
     TEMP_DOWNLOAD_DIRECTORY,
     CMD_HELP,
@@ -297,14 +298,23 @@ async def download(event, gdrive, service, uri=None):
                 )
                 return reply
             else:
-                end = datetime.now()
+        	end = datetime.now()
                 ms = (end - start).seconds
-                reply += (
-                    f"**File Uploaded in **`{ms} seconds`\n\n"
-                    f"**Size : **`{humanbytes(result[0])}`\n"
-                    f"**Link :** [{file_name}]({result[1]})\n"
-                )
-                return reply
+                if G_DRIVE_INDEX_URL:
+                    gurl = requests.utils.requote_uri(f'{GDRIVE_INDEX_URL}{file_name}')
+                    reply += (
+                        f"**File Uploaded in **`{ms} seconds`\n\n"
+                        f"**Size : **`{humanbytes(result[0])}`\n"
+                        f"**Link :** [{file_name}]({result[1]})\n"
+                        f"**Index  :** [{file_name}]({gurl})\n"
+                        )
+                else:
+                    reply += (
+                        f"**File Uploaded in **`{ms} seconds`\n\n"
+                        f"**Size : **`{humanbytes(result[0])}`\n"
+                        f"**Link :** [{file_name}]({result[1]})\n"
+                        )
+		return reply
         else:
             status = status.replace("[FILE", "[FOLDER")
             global parent_Id
@@ -1412,12 +1422,22 @@ async def google_drive(gdrive):
     end = datetime.now()
     ms = (end - start).seconds
     if result:
-        await gdrive.edit(
-            f"**File Uploaded in **`{ms} seconds`\n\n"
-            f"**Size : **`{humanbytes(result[0])}`\n"
-            f"**Link :** [{file_name}]({result[1]})\n",
-            link_preview=False,
-        )
+            if G_DRIVE_INDEX_URL:
+                gurl = requests.utils.requote_uri(f'{GDRIVE_INDEX_URL}{file_name}')
+                gdrive.respond(
+                    f"**File Uploaded in **`{ms} seconds`\n"
+                    f"**Size : **`{humanbytes(result[0])}`\n"
+                    f"**Link :** [{file_name}]({result[1]})\n"
+                    f"**Index  :** [{file_name}]({gurl})\n",
+                    link_preview=False,
+	            )
+            else:
+                gdrive.respond(
+                    f"**File Uploaded in **`{ms} seconds`\n\n"
+                    f"**Size : **`{humanbytes(result[0])}`\n"
+                    f"**Link :** [{file_name}]({result[1]})\n",
+		    link_preview=False,
+                    )
     return
 
 @register(pattern="^.(gdfset|gdfclear)(?: |$)(.*)", outgoing=True)

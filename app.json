@@ -136,12 +136,24 @@
       "description": "When a new person joins, the old welcome message is deleted.",
       "value": "True"
     },
+    "G_DRIVE_DATA": {
+      "description": "Enter the Google Drive authentication data, as a JSON structure.",
+      "required": false
+    },
     "G_DRIVE_CLIENT_ID": {
       "description": "Enter Your Client ID for Google Drive.",
       "required": false
     },
-    "G_DRIVE_DATA": {
-      "description": "Enter the Google Drive authentication data, as a JSON structure.",
+    "G_DRIVE_CLIENT_SECRET": {
+      "description": "Enter Your Client Secret for Google Drive.",
+      "required": false
+    },
+    "G_DRIVE_FOLDER_ID": {
+      "description": "Enter the Google Drive Folder id where you want to upload your files.",
+      "required": false
+    },
+    "GDRIVE_INDEX_URL": {
+      "description": "If you have a cloudflare worker for your google drive, put it here. Example: https://tdrive.derpsakura.workers.dev/0:/",
       "required": false
     },
     "LASTFM_API": {
@@ -162,7 +174,7 @@
     },
     "BIO_PREFIX": {
       "description": "Prefix for Last.FM Module Bio.",
-      "required": false 
+      "required": false
     },
     "DEFAULT_BIO": {
       "description": "Default profile bio.",
@@ -180,14 +192,6 @@
     "TIMEOUT": {
       "description": "Timeout settings for alive and help modules. Setting it to True will delete help and alive msgs after 30secs whenever the command it used.",
       "value": "True"
-    },
-    "G_DRIVE_CLIENT_SECRET": {
-      "description": "Enter Your Client Secret for Google Drive.",
-      "required": false
-    },
-    "G_DRIVE_FOLDER_ID": {
-      "description": "Enter the Google Drive Folder id where you want to upload your files.",
-      "required": false
     },
     "WEATHER_DEFCITY": {
       "description": "Set the default city for the userbot's weather module.",
