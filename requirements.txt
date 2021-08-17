@@ -65,3 +65,4 @@ validators
 aiofiles
 git+https://github.com/code-rgb/search-engine-parser
 patool
+async-google-trans-new

@@ -2,7 +2,7 @@
 #
 # Licensed under the Raphielscape Public License, Version 1.c (the "License");
 # you may not use this file except in compliance with the License.
-#
+# Modified by Senpai-sama-afk/@SenpaiAF
 """ Userbot module containing various scrapers. """
 
 import asyncio
@@ -14,11 +14,13 @@ import shutil
 import time
 from asyncio import sleep
 from urllib.parse import quote_plus
-
+import async_google_trans_new  
 import asyncurban
 from bs4 import BeautifulSoup
 from emoji import get_emoji_regexp
 from google_trans_new import LANGUAGES, google_translator
+from googletrans import Translator
+from gpytranslate import Translator as tr
 from gtts import gTTS
 from gtts.lang import tts_langs
 from requests import get
@@ -190,7 +192,7 @@ async def gsearch(q_event):
             except IndexError:
                 break
         await q_event.edit(
-            "**Search Query:**\n`" + query + "`\n\n**Results:**\n" + msg,
+            "`Search Query:`\n`" + query + "`\n\n`Results:`\n" + msg,
             link_preview=False,
         )
     except NoResultsOrTrafficError as error:
@@ -239,7 +241,7 @@ async def wiki(wiki_q):
         )
         if os.path.exists("output.txt"):
             return os.remove("output.txt")
-    await wiki_q.edit("**Search:**\n`" + match + "`\n\n**Result:**\n" + result)
+    await wiki_q.edit("`Search:`\n`" + match + "`\n\n`Result:`\n" + result)
     if BOTLOG:
         await wiki_q.client.send_message(
             BOTLOG_CHATID, f"Wiki query `{match}` was executed successfully"
@@ -297,7 +299,7 @@ async def urban_dict(event):
     try:
         definition = await ud.get_word(query)
     except asyncurban.UrbanException as e:
-        return await event.edit("**Error:** {e}.")
+        return await event.edit("`Error:` {e}.")
 
     result = template.format(
         definition.word,
@@ -466,44 +468,11 @@ async def imdb(e):
             parse_mode="HTML",
         )
     except IndexError:
-        await e.edit("Plox enter **Valid movie name** kthx")
+        await e.edit("Plox enter `Valid movie name` kthx")
 
 
-@register(outgoing=True, pattern=r"^.trt(?: |$)([\s\S]*)")
-async def translateme(trans):
-    """ For .trt command, translate the given text using Google Translate. """
-    translator = google_translator()
-    textx = await trans.get_reply_message()
-    message = trans.pattern_match.group(1)
-    if message:
-        pass
-    elif textx:
-        message = textx.text
-    else:
-        await trans.edit("`Give a text or reply to a message to translate!`")
-        return
-    try:
-        reply_text = translator.translate(deEmojify(message),
-                                          lang_tgt=TRT_LANG)
-    except ValueError:
-        await trans.edit("Invalid destination language.")
-        return
 
-    try:
-        source_lan = translator.detect(deEmojify(message))[1].title()
-    except:
-        source_lan = "(Google didn't provide this info.)"
-
-    reply_text = f"From: **{source_lan}**\nTo: **{LANGUAGES.get(TRT_LANG).title()}**\n\n{reply_text}"
-
-    await trans.edit(reply_text)
-    if BOTLOG:
-        await trans.client.send_message(
-            BOTLOG_CHATID,
-            f"Translated some {source_lan.title()} stuff to {LANGUAGES[TRT_LANG].title()} just now.",
-        )
-
-
+        
 @register(pattern=r"\.lang (trt|tts) (.*)", outgoing=True)
 async def lang(value):
     """ For .lang command, change the default langauge of userbot scrapers. """
@@ -536,7 +505,43 @@ async def lang(value):
             BOTLOG_CHATID, f"`Language for {scraper} changed to {LANG.title()}.`"
         )
 
+@register(outgoing=True, pattern=r"^.trt(?: |$)([\s\S]*)")
+async def translateme(trans):
+    """ For .trt command, translate the given text using Google Translate. """
+    translator = Translator()
+    g = async_google_trans_new.AsyncTranslator()
+    detector = tr()
+    textx = await trans.get_reply_message()
+    message = trans.pattern_match.group(1)
+    if message:
+        pass
+    elif textx:
+        message = textx.text
+    else:
+        await trans.edit("`Give a text or reply to a message to translate!`")
+        return
+    try:
+        reply_text = await g.translate(deEmojify(message),
+                                          TRT_LANG)
+    except ValueError:
+        await trans.edit("Invalid destination language.")
+        return
 
+    try:
+        source_lan = await detector.detect(deEmojify(message))
+        source_lan = LANGUAGES.get(source_lan).title()
+        
+    except:
+        source_lan = "(Google didn't provide this info.)"
+
+    reply_text = f"From: `{source_lan}`\nTo: `{LANGUAGES.get(TRT_LANG).title()}`\n\n{reply_text}"
+
+    await trans.edit(reply_text)
+    if BOTLOG:
+        await trans.client.send_message(
+            BOTLOG_CHATID,
+            f"Translated some {source_lan.title()} stuff to {LANGUAGES[TRT_LANG].title()} just now.",
+        )
 @register(outgoing=True, pattern=r"^\.yt(?: |$)(\d*)? ?(.*)")
 async def yt_search(event):
     """ For .yt command, do a YouTube search from Telegram. """
@@ -571,7 +576,7 @@ async def yt_search(event):
             "`Youtube Search gone retard.\nCan't search this query!`"
         )
 
-    output = f"**Search Query:**\n`{query}`\n\n**Results:**\n"
+    output = f"`Search Query:`\n`{query}`\n\n`Results:`\n"
 
     for i in results["videos"]:
         try:
@@ -599,10 +604,10 @@ async def download_video(v_url):
         url = str(v_url.pattern_match.group(2))
 
     if not url:
-        return await v_url.edit("**Reply to a message with a URL or pass a URL!**")
+        return await v_url.edit("`Reply to a message with a URL or pass a URL!`")
 
     type = v_url.pattern_match.group(1).lower()
-    await v_url.edit("**Preparing to download...**")
+    await v_url.edit("`Preparing to download...`")
 
     if type == "a":
         opts = {
@@ -646,33 +651,33 @@ async def download_video(v_url):
         video = True
 
     try:
-        await v_url.edit("**Fetching data, please wait..**")
+        await v_url.edit("`Fetching data, please wait..`")
         with YoutubeDL(opts) as rip:
             rip_data = rip.extract_info(url)
     except DownloadError as DE:
         return await v_url.edit(f"`{str(DE)}`")
     except ContentTooShortError:
-        return await v_url.edit("**The download content was too short.**")
+        return await v_url.edit("`The download content was too short.")
     except GeoRestrictedError:
         return await v_url.edit(
-            "**Video is not available from your geographic location "
-            "due to geographic restrictions imposed by a website.**"
+            "`Video is not available from your geographic location "
+            "due to geographic restrictions imposed by a website.`"
         )
     except MaxDownloadsReached:
-        return await v_url.edit("**Max-downloads limit has been reached.**")
+        return await v_url.edit("`Max-downloads limit has been reached.`")
     except PostProcessingError:
-        return await v_url.edit("**There was an error during post processing.**")
+        return await v_url.edit("`There was an error during post processing.`")
     except UnavailableVideoError:
-        return await v_url.edit("**Media is not available in the requested format.**")
+        return await v_url.edit("`Media is not available in the requested format.`")
     except XAttrMetadataError as XAME:
         return await v_url.edit(f"`{XAME.code}: {XAME.msg}\n{XAME.reason}`")
     except ExtractorError:
-        return await v_url.edit("**There was an error during info extraction.**")
+        return await v_url.edit("`There was an error during info extraction.`")
     except Exception as e:
         return await v_url.edit(f"{str(type(e)): {str(e)}}")
     c_time = time.time()
     if song:
-        await v_url.edit(f"**Preparing to upload song:**\n**{rip_data['title']}**")
+        await v_url.edit(f"`Preparing to upload song:`\n`{rip_data['title']}`")
         with open(rip_data["id"] + ".mp3", "rb") as f:
             result = await upload_file(
                 client=v_url.client,
@@ -713,7 +718,7 @@ async def download_video(v_url):
         os.remove(f"{rip_data['id']}.mp3")
         await v_url.delete()
     elif video:
-        await v_url.edit(f"**Preparing to upload video:**\n**{rip_data['title']}**")
+        await v_url.edit(f"`Preparing to upload video:`\n`{rip_data['title']}`")
         thumb_image = await get_video_thumb(rip_data["id"] + ".mp4", "thumb.png")
         with open(rip_data["id"] + ".mp4", "rb") as f:
             result = await upload_file(
