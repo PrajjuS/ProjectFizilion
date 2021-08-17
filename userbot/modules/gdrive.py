@@ -297,9 +297,9 @@ async def download(event, gdrive, service, uri=None):
                     "**Status : **`OK - received signal cancelled.`"
                 )
                 return reply
+	    end = datetime.now()
+            ms = (end - start).seconds
             else:
-        	end = datetime.now()
-                ms = (end - start).seconds
                 if G_DRIVE_INDEX_URL:
                     gurl = requests.utils.requote_uri(f'{GDRIVE_INDEX_URL}{file_name}')
                     reply += (
