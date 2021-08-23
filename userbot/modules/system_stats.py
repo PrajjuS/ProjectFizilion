@@ -305,7 +305,7 @@ async def chnglogg(event):
         \nIt can be accessed by .oldkang.\
         \nIt's basically the same command just using the old naming of the sticker packs.\
         \nSo it will use username's kang pack vol x.\
-        \n\nfixed .k (silent kang), not it should take args\
+        \n\nfixed .k (silent kang), now it should take args\
         \n\nFixed some random non working stuff like .pero\
         \n\nFixed formatting for updater.\
         \n\n.on/.alive distro naming changed.\
