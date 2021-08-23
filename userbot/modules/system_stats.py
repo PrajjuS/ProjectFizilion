@@ -239,21 +239,22 @@ async def amireallyalive(alive):
         f"**Hello  {DEFAULTUSER} **\n"
         f"`=================================== `\n"
         f"**[OS Info]:**\n"
-        f"•`Platform Type    : {os.name}`\n"
-        f"•`Distro           : {distro.name(pretty=False)} {distro.version(pretty=False, best=False)}`\n"
+        f"• `Platform Type   :  {os.name}`\n"
+        f"• `Distro          :  {distro.name(pretty=False)}`\n"
+        f"• `Distro ver      :  {distro.major_version(best=True)}`\n"
         f"`===================================`\n"
         f"**[PYPI Module Versions]:**\n"
-        f"•`Python          : v{python_version()} `\n"   
-        f"•`Telethon        : v{version.__version__} `\n"
-        f"•`PIP             : v{pip.__version__} `\n"
+        f"• `Python          :  {python_version()} `\n"   
+        f"• `Telethon        :  {version.__version__} `\n"
+        f"• `PIP             :  {pip.__version__} `\n"
         f"`===================================`\n"
         f"**[MISC Info]:**\n"
-        f"•`User            : {DEFAULTUSER} `\n"
-        f"•`Branch          : {repo.active_branch.name} `\n"
-        f"•`Fork status     : Connected `\n"
-        f"•`Loaded modules  : {len(modules)} `\n"
-        f"•`Release         : {USERBOT_VERSION} `\n"
-        f"•`Bot Uptime      : {uptime} `\n"
+        f"• `User            :  {DEFAULTUSER} `\n"
+        f"• `Branch          :  {repo.active_branch.name} `\n"
+        f"• `Fork status     :  Connected `\n"
+        f"• `Loaded modules  :  {len(modules)} `\n"
+        f"• `Release         :  {USERBOT_VERSION} `\n"
+        f"• `Bot Uptime      :  {uptime} `\n"
         f"`===================================`\n"
 
     )
@@ -300,10 +301,14 @@ async def amireallyalivereset(ureset):
 async def chnglogg(event):
     await event.edit(
         "In the latest update, these are the changes:\
-        \n\nAdded custom trigger - custom handler for all modules\
-        \nTo set it up go to heroku and set TRIGGER var to whatever trigger u want\
-        \nNot supported triggers are : /!#@\*$  so if u set any of these things may break.\
-        \nYou can also set it up from telegram by sending ` .set var TRIGGER <your trigger> ` in any chat.\
+        \n\nAdded back the old kang command.\
+        \nIt can be accessed by .oldkang.\
+        \nIt's basically the same command just using the old naming of the sticker packs.\
+        \nSo it will use username's kang pack vol x.\
+        \n\nfixed .k (silent kang), not it should take args\
+        \n\nFixed some random non working stuff like .pero\
+        \n\nFixed formatting for updater.\
+        \n\n.on/.alive distro naming changed.\
         \n\nThis changelog is valid for the last update to forkzilion (ProjectFizilion fork by AbOuLfOoOoOuF) only.")
 
 CMD_HELP.update(
