@@ -34,8 +34,6 @@ async def monito_p_m_s(event):  # sourcery no-metrics
         return
     if gvarstatus("PMLOG") and gvarstatus("PMLOG") == "False":
         return
-    if PMLOG != "True":
-        return
     sender = await event.get_sender()
     if not sender.bot:
         chat = await event.get_chat()
@@ -76,8 +74,6 @@ async def log_tagged_messages(event):
 
     if gvarstatus("PMLOG") and gvarstatus("PMLOG") == "False":
         return
-    if PMLOG != "True":
-        return
     if (
         (pm_permit_sql.is_approved(hmm.id))
         or (PMLOG_CHATID == -100)
@@ -115,9 +111,6 @@ async def log_tagged_messages(event):
 
 )
 async def set_no_log_p_m(setnologpmm):
-    if PMLOG != "True":
-        await setnologpmm.edit("PMLOG is disabled")
-        return
     "To turn on logging of messages from that chat."
     if PMLOG_CHATID != -100:
         chat = await setnologpmm.get_chat()
@@ -137,9 +130,6 @@ async def set_no_log_p_m(setnologpmm):
     outgoing=True, pattern="^\{trg}nolog$".format(trg=trgg),
 )
 async def set_no_log_p_m(setlogpmm):
-    if PMLOG != "True":
-        await setlogpmm.edit("PMLOG is disabled")
-        return
     "To turn off logging of messages from that chat."
     if PMLOG_CHATID != -100:
         chat = await setlogpmm.get_chat()
@@ -164,11 +154,11 @@ async def set_pmlog(event):
         h_type = False
     elif input_str == "on":
         h_type = True
-    if gvarstatus("PMLOG") and gvarstatus("PMLOG") != "True" and PMLOG != "True":
-        PMLOGG = False
+    if gvarstatus("PMLOG") and gvarstatus("PMLOG") != "True":
+        PMLOG = False
     else:
-        PMLOGG = True
-    if PMLOGG:
+        PMLOG = True
+    if PMLOG:
         if h_type:
             await event.edit("`Pm logging is already enabled`")
         else:
@@ -203,11 +193,11 @@ async def set_grplog(event):
         h_type = False
     elif input_str == "on":
         h_type = True
-    if gvarstatus("PMLOG") and gvarstatus("PMLOG") != "True" and PMLOG != "True":
-        GRPLOGG = False
+    if gvarstatus("PMLOG") and gvarstatus("PMLOG") != "True":
+        GRPLOG = False
     else:
-        GRPLOGG = True
-    if GRPLOGG:
+        GRPLOG = True
+    if GRPLOG:
         if h_type:
             await event.edit("`Group logging is already enabled`")
         else:
@@ -219,7 +209,7 @@ async def set_grplog(event):
                     "#PMLOG\n" + "Disabled group logging.",
                 )
     elif h_type:
-        addgvar("GRPLOGG", h_type)
+        addgvar("GRPLOG", h_type)
         await event.edit("`Group logging is enabled`")
         if BOTLOG:
             await event.client.send_message(
@@ -245,7 +235,7 @@ CMD_HELP.update(
 \nUsage: To turn on or turn off logging of Private messages in pmlogger group.\
 \n\n.save\
 \nUsage: To log the replied message to bot log group so you can check later.\
-\n\n.grplog (on/off)\
+\n\n.grplog\
 \nUsage: To turn on or turn off group tags logging in pmlogger group."
     }
 )
