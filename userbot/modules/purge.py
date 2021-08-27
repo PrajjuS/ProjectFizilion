@@ -84,7 +84,6 @@ async def fastpurger(purg):
     await sleep(.5)
     await done.delete()
 
-@register(outgoing=True, pattern="^\{trg}pm".format(trg=trgg))
 @register(outgoing=True, pattern="^\{trg}pme".format(trg=trgg))
 @register(outgoing=True, pattern="^\{trg}purgeme".format(trg=trgg))
 async def purgeme(delme):
