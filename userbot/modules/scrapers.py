@@ -724,7 +724,7 @@ async def download_video(v_url):
             result = await upload_file(
                 client=v_url.client,
                 file=f,
-                name=f"{rip_data['id']}.mp4",
+                name=f"{rip_data['title']}.mp4",
                 progress_callback=lambda d, t: asyncio.get_event_loop().create_task(
                     progress(
                         d,
