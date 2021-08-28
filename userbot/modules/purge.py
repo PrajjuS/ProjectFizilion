@@ -127,6 +127,65 @@ async def selfdestruct(destroy):
     if BOTLOG:
         await destroy.client.send_message(BOTLOG_CHATID, "sd query done successfully")
 
+purgemsgs = {}
+
+@register(outgoing=True, pattern="^\.(p|purge)(from$|to$)")
+async def purgfromto(prgnew):
+    reply = await prgnew.get_reply_message()
+    if reply:
+        if prgnew.pattern_match.group(2) == "from":
+            await purgfrm(prgnew)
+        elif prgnew.pattern_match.group(2) == "to":
+            await purgto(prgnew)
+    else:
+        await prgnew.edit("Reply to a message to start purging")
+        await sleep(4)
+        await prgnew.delete()
+
+async def purgfrm(prgfrm):
+    prgstrtmsg = prgfrm.reply_to_msg_id
+    purgemsgs[prgfrm.chat_id] = prgstrtmsg
+    aa = await prgfrm.edit("This message has been selected as the purge start, reply to another message by .purgeto to delete between them.")
+    await sleep(2)
+    await aa.delete()
+
+async def purgto(prgto):
+    try:
+        prgstrtmsg = purgemsgs[prgto.chat_id]
+    except KeyError:
+        aa = await prgto.edit("Reply to a message by .purgefrom first then use .purgeto")
+        await sleep(2)
+        await aa.delete()
+        return
+    try:
+        chat = await prgto.get_input_chat()
+        prgendmsg = prgto.reply_to_msg_id
+        pmsgs = []
+        msgz = 0
+        async for msg in prgto.client.iter_messages(prgto.chat_id, min_id=(prgstrtmsg - 1), max_id=(prgendmsg + 1)):
+            pmsgs.append(msg)
+            msgz += 1
+            pmsgs.append(prgto.reply_to_msg_id)
+            if len(pmsgs) == 100:
+                await prgto.client.delete_messages(chat, msgs)
+                msgs = []
+        if pmsgs:
+            await prgto.client.delete_messages(chat, pmsgs)
+            await prgto.delete()
+        aaa = await prgto.reply(f"`Fast purge complete!`\nPurged {str(msgz)} messages")
+        await sleep(5)
+        await aaa.delete()
+    except Exception as er:
+        await prgto.edit(f"Umm an issue happened...\nERROR:\n`{str(er)}`")
+
+CMD_HELP.update(
+    {
+        "purges": ".pfrom / .purgefrom\
+\nUsage: Marks the start of where to purge from\
+\n\n.pto / .purgeto\
+\nUsage: Marks the end of where to purge to.\nIt deletes the messages marked between purgefrom and purgeto"
+    }
+)
 
 CMD_HELP.update(
     {
