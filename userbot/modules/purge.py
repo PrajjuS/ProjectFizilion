@@ -181,50 +181,65 @@ async def selfdestruct(destroy):
     if BOTLOG:
         await destroy.client.send_message(BOTLOG_CHATID, "sd query done successfully")
 
-# purge from and to
-
 purgemsgs = {}
 
-@register(outgoing=True, pattern="^\{trg}(p|purge)(from$|to$)".format(trg=trgg), disable_errors=True)# disable errors for now till i complete it
+@register(outgoing=True, pattern="^\{trg}(p|purge)(from$|to$)".format(trg=trgg))
 async def purgfromto(prgnew):
-    # todo: checks
-    if prgnew.pattern_match.group(2) == "from":
-        await purgfrm(prgnew)
-    elif prgnew.pattern_match.group(2) == "to":
-        await purgto(prgnew)
-    
+    reply = await prgnew.get_reply_message()
+    if reply:
+        if prgnew.pattern_match.group(2) == "from":
+            await purgfrm(prgnew)
+        elif prgnew.pattern_match.group(2) == "to":
+            await purgto(prgnew)
+    else:
+        await prgnew.edit("Reply to a message to start purging")
+        await sleep(2)
+        await prgnew.delete()
 
 async def purgfrm(prgfrm):
-    # todo: check if replied
     prgstrtmsg = prgfrm.reply_to_msg_id
     purgemsgs[prgfrm.chat_id] = prgstrtmsg
-    aa = await prgfrm.edit("purge from here")
+    aa = await prgfrm.edit("This message has been selected as the purge start, reply to another message by .purgeto to delete between them.")
     await sleep(2)
     await aa.delete()
 
 async def purgto(prgto):
-    # todo: check if purge from and reply
-    chat = await prgto.get_input_chat()
-    prgstrtmsg = purgemsgs[prgto.chat_id]
-    prgendmsg = prgto.reply_to_msg_id
-    pmsgs = []
-    msgz = 0
-    async for msg in prgto.client.iter_messages(
-        prgto.chat_id, min_id=(prgstrtmsg - 1), max_id=(prgendmsg + 1)
-    ):
-        pmsgs.append(msg)
-        msgz += 1
-        pmsgs.append(prgto.reply_to_msg_id)
-        if len(pmsgs) == 100:
-            await prgto.client.delete_messages(chat, msgs)
-            msgs = []
-    if pmsgs:
-        await prgto.client.delete_messages(chat, pmsgs)
-        await prgto.delete()
-    aaa = await prgto.reply("purged " + str(msgz))
-    await sleep(5)
-    await aaa.delete()
+    try:
+        prgstrtmsg = purgemsgs[prgto.chat_id]
+    except KeyError:
+        aa = await prgto.edit("Reply to a message by .purgefrom first then use .purgeto")
+        await sleep(2)
+        await aa.delete()
+        return
+    try:
+        chat = await prgto.get_input_chat()
+        prgendmsg = prgto.reply_to_msg_id
+        pmsgs = []
+        msgz = 0
+        async for msg in prgto.client.iter_messages(prgto.chat_id, min_id=(prgstrtmsg - 1), max_id=(prgendmsg + 1)):
+            pmsgs.append(msg)
+            msgz += 1
+            pmsgs.append(prgto.reply_to_msg_id)
+            if len(pmsgs) == 100:
+                await prgto.client.delete_messages(chat, msgs)
+                msgs = []
+        if pmsgs:
+            await prgto.client.delete_messages(chat, pmsgs)
+            await prgto.delete()
+        aaa = await prgto.reply(f"`Fast purge complete!`\nPurged {str(msgz)} messages")
+        await sleep(5)
+        await aaa.delete()
+    except Exception as er:
+        await prgto.edit(f"Umm an issue happened...\nERROR:\n`{str(er)}`")
 
+CMD_HELP.update(
+    {
+        "purges": ".pfrom / .purgefrom\
+\nUsage: Marks the start of where to purge from\
+\n\n.pto / .purgeto\
+\nUsage: Marks the end of where to purge to.\nIt deletes the messages marked between purgefrom and purgeto"
+    }
+)
 
 CMD_HELP.update(
     {
@@ -259,13 +274,5 @@ CMD_HELP.update(
         "sd": ".sd <x> <message>\
 \nUsage: Creates a message that selfdestructs in x seconds.\
 \nKeep the seconds under 100 since it puts your bot to sleep."
-    }
-)
-
-CMD_HELP.update(
-    {
-        "s": "s/*  sed deleter\
-\nUsage: deletes the sed message\
-\nwhen u use the s/*/* the bots auto deletes it"
     }
 )
