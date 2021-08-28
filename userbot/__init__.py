@@ -219,6 +219,7 @@ PMLOG_CHATID = int(os.environ.get("PMLOG_CHATID") or 0)
 BOT_TOKEN = os.environ.get("BOT_TOKEN") or False
 
 
+AFK_CHATID = int(os.environ.get("AFK_CHATID") or 0)
 # Setting Up CloudMail.ru and MEGA.nz extractor binaries,
 # and giving them correct perms to work properly.
 if not os.path.exists("bin"):
@@ -307,6 +308,8 @@ ZALG_LIST = {}
 ISAFK = False
 AFKREASON = None
 DELMSG = False
+
+BOTAFK = False
 
 ##Constants
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node

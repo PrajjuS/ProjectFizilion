@@ -11,7 +11,7 @@ from random import choice, randint
 from telethon.events import StopPropagation
 
 from userbot import (AFKREASON, BOTLOG, BOTLOG_CHATID, CMD_HELP, COUNT_MSG,
-                     ISAFK, PM_AUTO_BAN, USERS, trgg)
+                     ISAFK, PM_AUTO_BAN, USERS, trgg, tgbott, BOTAFK, AFK_CHATID, bot)
 from userbot.events import register
 
 # ========================= CONSTANTS ============================
@@ -117,27 +117,48 @@ async def afk_on_pm(sender):
             COUNT_MSG = COUNT_MSG + 1
 
 
-@register(outgoing=True, pattern="^\{trg}afk(?: |$)(.*)".format(trg=trgg), disable_errors=True)
+@register(outgoing=True, pattern=r"^\{trg}afk( |$|-b)(.*)".format(trg=trgg))#, disable_errors=True)
 async def set_afk(afk_e):
     """ For .afk command, allows you to inform people that you are afk when they message you """
     afk_e.text
-    string = afk_e.pattern_match.group(1)
-    global ISAFK
-    global AFKREASON
-    if string:
-        AFKREASON = string
-        await afk_e.edit("Going AFK!" f"\nReason: `{string}`")
+    string = afk_e.pattern_match.group(2).lstrip()
+    afkmsg = "#AFK\nYou went afk"
+    if afk_e.pattern_match.group(1) == "-b":
+        if AFK_CHATID:
+            global BOTAFK
+            afkmsg += " on bots"
+            if string:
+                afkmsg += f"\n**Reason:**\n{string}"
+                aa = await bot.send_message(AFK_CHATID, f"/afk {string}")
+            else:
+                aa = await bot.send_message(AFK_CHATID, "/afk")
+            BOTAFK = True
+            await tgbott.send_message(BOTLOG_CHATID, afkmsg)
+            await sleep(1)
+            await aa.delete()
+            raise StopPropagation
+        else:
+            await tgbott.send_message(BOTLOG_CHATID, "#AFK\nYou haven't set the AFK_CHATID variable!\nIgnoring the -b flag.")
     else:
-        await afk_e.edit("Going AFK!")
-    if BOTLOG:
-        await afk_e.client.send_message(BOTLOG_CHATID, "#AFK\nYou went AFK!")
-    ISAFK = True
-    raise StopPropagation
+        global ISAFK
+        global AFKREASON
+        if string:
+            AFKREASON = string
+            await afk_e.edit("Going AFK!" f"\nReason: `{string}`")
+            afkmsg += f"\n**Reason:**\n{string}"
+        else:
+            await afk_e.edit("Going AFK!")
+        if BOTLOG:
+            BOTAFK = True
+            ISAFK = True
+            await tgbott.send_message(BOTLOG_CHATID, afkmsg)
+        raise StopPropagation
 
 
 @register(outgoing=True)
 async def type_afk_is_not_true(notafk):
     """ This sets your status as not afk automatically when you write something while being afk """
+    global BOTAFK
     global ISAFK
     global COUNT_MSG
     global USERS
@@ -174,7 +195,16 @@ async def type_afk_is_not_true(notafk):
         COUNT_MSG = 0
         USERS = {}
         AFKREASON = None
-
+    if BOTAFK:
+        aa = await bot.send_message(AFK_CHATID, "no longer afk")
+        BOTAFK = False
+        msg = await notafk.respond("I'm no longer AFK.")
+        await sleep(2)
+        await msg.delete()
+        await aa.delete()
+        if BOTLOG:
+            '#no longer afk'
+        AFKREASON = None
 
 CMD_HELP.update(
     {
