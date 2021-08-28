@@ -301,14 +301,10 @@ async def amireallyalivereset(ureset):
 async def chnglogg(event):
     await event.edit(
         "In the latest update, these are the changes:\
-        \n\nAdded back the old kang command.\
-        \nIt can be accessed by .oldkang.\
-        \nIt's basically the same command just using the old naming of the sticker packs.\
-        \nSo it will use username's kang pack vol x.\
-        \n\nfixed .k (silent kang), now it should take args\
-        \n\nFixed some random non working stuff like .pero\
-        \n\nFixed formatting for updater.\
-        \n\n.on/.alive distro naming changed.\
+        \n\nAdded silent old kang\
+        \nuse it by replying to a sticker and sending .ok\
+        \n\nAdded afk by bot, to setup u need to make a group and add bots to it then add its id as AFK_CHATID.\nTo go afk by bots send .afk-b. it takes a reason too like the normal afk and removes afk when u send any message.\
+        \n\nAdded purge from and to but its not complete yet so not recommended to use.\
         \n\nThis changelog is valid for the last update to forkzilion (ProjectFizilion fork by AbOuLfOoOoOuF) only.")
 
 CMD_HELP.update(
