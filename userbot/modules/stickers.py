@@ -489,7 +489,6 @@ async def oldkang(args):
             photo = io.BytesIO()
             photo = await bot.download_media(message.photo, photo)
         elif "image" in message.media.document.mime_type.split("/"):
-            await args.edit(f"**{random.choice(KANGING_STR)}**")
             photo = io.BytesIO()
             await bot.download_file(message.media.document, photo)
             if (
@@ -500,7 +499,6 @@ async def oldkang(args):
                 if emoji != "":
                     emojibypass = True
         elif "tgsticker" in message.media.document.mime_type:
-            await args.edit(f"**{random.choice(KANGING_STR)}**")
             await bot.download_file(message.media.document, "AnimatedSticker.tgs")
 
             attributes = message.media.document.attributes
@@ -621,6 +619,9 @@ async def oldkang(args):
                             "\nThis pack is newly created."
                             f"\nYour pack can be found [here](t.me/addstickers/{packname})"
                         )
+                        time.sleep(1)
+                        await args.delete()
+                        return
                 if is_anim:
                     await conv.send_file("AnimatedSticker.tgs")
                     remove("AnimatedSticker.tgs")
@@ -632,6 +633,9 @@ async def oldkang(args):
                     return await args.edit(
                         "**Failed to add sticker, use** @Stickers **bot to add the sticker manually.**"
                     )
+                    time.sleep(1)
+                    await args.delete()
+                    return
                 await conv.send_message(emoji)
                 # Ensure user doesn't get spamming notifications
                 await bot.send_read_acknowledge(conv.chat_id)
@@ -641,7 +645,6 @@ async def oldkang(args):
                 # Ensure user doesn't get spamming notifications
                 await bot.send_read_acknowledge(conv.chat_id)
         else:
-            await args.edit("**Brewing a new pack...**")
             async with bot.conversation("Stickers") as conv:
                 await conv.send_message(cmd)
                 await conv.get_response()
@@ -684,11 +687,6 @@ async def oldkang(args):
                 # Ensure user doesn't get spamming notifications
                 await bot.send_read_acknowledge(conv.chat_id)
 
-        await args.edit(
-            "**Sticker kanged successfully!**"
-            f"\nPack can be found [here](t.me/addstickers/{packname})",
-            parse_mode="md",
-        )
 
 async def resize_photo(photo):
     """ Resize the given photo to 512x512 """
@@ -887,7 +885,48 @@ async def k(args):
                 await conv.get_response()
                 # Ensure user doesn't get spamming notifications
                 await bot.send_read_acknowledge(conv.chat_id)
-
+        else:
+            async with bot.conversation("Stickers") as conv:
+                await conv.send_message(cmd)
+                await conv.get_response()
+                # Ensure user doesn't get spamming notifications
+                await bot.send_read_acknowledge(conv.chat_id)
+                await conv.send_message(packnick)
+                await conv.get_response()
+                # Ensure user doesn't get spamming notifications
+                await bot.send_read_acknowledge(conv.chat_id)
+                if is_anim:
+                    await conv.send_file("AnimatedSticker.tgs")
+                    remove("AnimatedSticker.tgs")
+                else:
+                    file.seek(0)
+                    await conv.send_file(file, force_document=True)
+                rsp = await conv.get_response()
+                if "Sorry, the file type is invalid." in rsp.text:
+                    return await args.edit(
+                        "**Failed to add sticker, use** @Stickers **bot to add the sticker manually.**"
+                    )
+                await conv.send_message(emoji)
+                # Ensure user doesn't get spamming notifications
+                await bot.send_read_acknowledge(conv.chat_id)
+                await conv.get_response()
+                await conv.send_message("/publish")
+                if is_anim:
+                    await conv.get_response()
+                    await conv.send_message(f"<{packnick}>")
+                # Ensure user doesn't get spamming notifications
+                await conv.get_response()
+                await bot.send_read_acknowledge(conv.chat_id)
+                await conv.send_message("/skip")
+                # Ensure user doesn't get spamming notifications
+                await bot.send_read_acknowledge(conv.chat_id)
+                await conv.get_response()
+                await conv.send_message(packname)
+                # Ensure user doesn't get spamming notifications
+                await bot.send_read_acknowledge(conv.chat_id)
+                await conv.get_response()
+                # Ensure user doesn't get spamming notifications
+                await bot.send_read_acknowledge(conv.chat_id)
 
 async def resize_photo(photo):
     """ Resize the given photo to 512x512 """
