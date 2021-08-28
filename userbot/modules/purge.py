@@ -200,7 +200,7 @@ async def purgfrm(prgfrm):
     prgstrtmsg = prgfrm.reply_to_msg_id
     purgemsgs[prgfrm.chat_id] = prgstrtmsg
     aa = await prgfrm.edit("This message has been selected as the purge start, reply to another message by .purgeto to delete between them.")
-    await sleep(2)
+    await sleep(4)
     await aa.delete()
 
 async def purgto(prgto):
@@ -208,7 +208,7 @@ async def purgto(prgto):
         prgstrtmsg = purgemsgs[prgto.chat_id]
     except KeyError:
         aa = await prgto.edit("Reply to a message by .purgefrom first then use .purgeto")
-        await sleep(2)
+        await sleep(4)
         await aa.delete()
         return
     try:
