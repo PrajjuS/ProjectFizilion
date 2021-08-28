@@ -181,6 +181,49 @@ async def selfdestruct(destroy):
     if BOTLOG:
         await destroy.client.send_message(BOTLOG_CHATID, "sd query done successfully")
 
+# purge from and to
+
+purgemsgs = {}
+
+@register(outgoing=True, pattern="^\{trg}(p|purge)(from$|to$)".format(trg=trgg), disable_errors=True)# disable errors for now till i complete it
+async def purgfromto(prgnew):
+    # todo: checks
+    if prgnew.pattern_match.group(2) == "from":
+        await purgfrm(prgnew)
+    elif prgnew.pattern_match.group(2) == "to":
+        await purgto(prgnew)
+    
+
+async def purgfrm(prgfrm):
+    # todo: check if replied
+    prgstrtmsg = prgfrm.reply_to_msg_id
+    purgemsgs[prgfrm.chat_id] = prgstrtmsg
+    aa = await prgfrm.edit("purge from here")
+    await sleep(2)
+    await aa.delete()
+
+async def purgto(prgto):
+    # todo: check if purge from and reply
+    chat = await prgto.get_input_chat()
+    prgstrtmsg = purgemsgs[prgto.chat_id]
+    prgendmsg = prgto.reply_to_msg_id
+    pmsgs = []
+    msgz = 0
+    async for msg in prgto.client.iter_messages(
+        prgto.chat_id, min_id=(prgstrtmsg - 1), max_id=(prgendmsg + 1)
+    ):
+        pmsgs.append(msg)
+        msgz += 1
+        pmsgs.append(prgto.reply_to_msg_id)
+        if len(pmsgs) == 100:
+            await prgto.client.delete_messages(chat, msgs)
+            msgs = []
+    if pmsgs:
+        await prgto.client.delete_messages(chat, pmsgs)
+        await prgto.delete()
+    aaa = await prgto.reply("purged " + str(msgz))
+    await sleep(5)
+    await aaa.delete()
 
 
 CMD_HELP.update(

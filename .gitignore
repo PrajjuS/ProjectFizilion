@@ -11,3 +11,6 @@ userbot/modules/sql_helper/__pycache__/*
 bin/*
 newbott.session
 *.pyc
+newbott.session-journal
+start.sh
+stop.sh
