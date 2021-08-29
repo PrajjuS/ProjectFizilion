@@ -180,45 +180,20 @@ async def purgto(prgto):
 
 CMD_HELP.update(
     {
-        "purges": ".pfrom / .purgefrom\
-\nUsage: Marks the start of where to purge from\
-\n\n.pto / .purgeto\
-\nUsage: Marks the end of where to purge to.\nIt deletes the messages marked between purgefrom and purgeto"
-    }
-)
-
-CMD_HELP.update(
-    {
         "purge": ".purge\
-        \nUsage: Purges all messages starting from the reply."
-    }
-)
-
-CMD_HELP.update(
-    {
-        "purgeme": ".purgeme <x>\
-        \nUsage: Deletes x amount of your latest messages."
-    }
-)
-
-CMD_HELP.update(
-    {
-        "del": ".del\
-\nUsage: Deletes the message you replied to."
-    }
-)
-
-CMD_HELP.update(
-    {
-        "edit": ".edit <newmessage>\
-\nUsage: Replace your last message with <newmessage>."
-    }
-)
-
-CMD_HELP.update(
-    {
-        "sd": ".sd <x> <message>\
-\nUsage: Creates a message that selfdestructs in x seconds.\
-\nKeep the seconds under 100 since it puts your bot to sleep."
+        \nUsage: Purges all messages starting from the reply.\
+        \n\n.pfrom / .purgefrom\
+        \nUsage: Marks the start of where to purge from\
+        \n\n.pto / .purgeto\
+        \nUsage: Marks the end of where to purge to.\nIt deletes the messages marked between purgefrom and purgeto\
+        \n\m.purgeme <x>\
+        \nUsage: Deletes x amount of your latest messages.\
+        \n\n.del\
+        \nUsage: Deletes the message you replied to.\
+        \n\n.edit <newmessage>\
+        \nUsage: Replace your last message with <newmessage>.\
+        \n\n.sd <x> <message>\
+        \nUsage: Creates a message that selfdestructs in x seconds.\
+        \nKeep the seconds under 100 since it puts your bot to sleep."
     }
 )
