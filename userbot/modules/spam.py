@@ -58,14 +58,14 @@ async def spammer(spamm):
         await spamm.delete()
         await asyncio.wait([spamm.respond(spam_message) for i in range(counter)])
         if BOTLOG:
-            await tgbott.send_message(
+            await spamm.client.send_message(
                 BOTLOG_CHATID, "#SPAM\n" "Spam was executed successfully"
             )
     elif (textx and textx.text):
         await spamm.delete()
         await asyncio.wait([spamm.respond(textx) for i in range(counter)])
         if BOTLOG:
-            await tgbott.send_message(
+            await spamm.client.send_message(
                 BOTLOG_CHATID, "#SPAM\n" "Spam was executed successfully"
             )
 
@@ -86,7 +86,7 @@ async def tiny_pic_spam(pspam):
     for _ in range(1, counter):
         await pspam.client.send_file(pspam.chat_id, link)
     if BOTLOG:
-        await tgbott.send_message(
+        await pspam.client.send_message(
             BOTLOG_CHATID, "#PICSPAM\n" "PicSpam was executed successfully"
         )
 
@@ -107,7 +107,7 @@ async def dspammer(dspam):
         await dspam.respond(spam_message)
         await sleep(spamDelay)
     if BOTLOG:
-        await tgbott.send_message(
+        await dspam.client.send_message(
             BOTLOG_CHATID, "#DelaySPAM\n" "DelaySpam was executed successfully"
         )
 
