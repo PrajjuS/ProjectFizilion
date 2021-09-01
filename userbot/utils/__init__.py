@@ -7,7 +7,7 @@
 from .chrome import chrome, options
 from .progress import progress, CancelProcess
 from .google_images_download import googleimagesdownload
-
+from . import format as _format
 from .tools import (
     humanbytes,
     time_formatter,
