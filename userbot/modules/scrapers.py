@@ -719,7 +719,7 @@ async def download_video(v_url):
         await v_url.delete()
     elif video:
         await v_url.edit(f"**Preparing to upload video:**\n**{rip_data['title']}**")
-        thumb_image = await get_video_thumb(rip_data["id"] + ".mp4", "thumb.png")
+        thumb_image = await get_video_thumb(rip_data["id"] + ".mp4", rip_data["id"] + "_" + "thumb.png")
         with open(rip_data["id"] + ".mp4", "rb") as f:
             result = await upload_file(
                 client=v_url.client,
