@@ -32,6 +32,7 @@ humanize
 jikanpy
 lxml
 lyricsgenius
+markdown
 oauth2client
 pendulum
 Pillow
@@ -47,6 +48,7 @@ python-dotenv
 https://github.com/yt-dlp/yt-dlp/archive/master.zip
 pytz
 pymongo[srv]
+prettytable
 qrcode
 redis
 requests
