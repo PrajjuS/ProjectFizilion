@@ -1,14 +1,13 @@
 # inherit prebuilt image
-FROM prajwals3/projectfizilion:latest
+FROM frost2k5/dragonheart:latest
 
 # env setup
 RUN mkdir /Fizilion && chmod 777 /Fizilion
 ENV PATH="/Fizilion/bin:$PATH"
 WORKDIR /Fizilion
-RUN apk add megatools
 
 # clone repo
-RUN git clone https://github.com/PrajjuS/ProjectFizilion -b demon /Fizilion
+RUN git clone https://github.com/FrosT2k5/ProjectFizilion -b demon /Fizilion
 #RUN git clone https://github.com/Senpai-sama-afk/ProjectFizilion -b dragon /Fizilion
 
 # Copies session and config(if it exists)
