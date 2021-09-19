@@ -14,7 +14,7 @@ RUN git clone https://github.com/FrosT2k5/ProjectFizilion -b demon /Fizilion
 COPY ./sample_config.env ./userbot.session* ./config.env* /Fizilion/
 
 # install required pypi modules
-RUN pip3 install -r requirements.txt
+RUN pip3 install --use-deprecated=legacy-resolver --use-feature 2020-resolver -r requirements.txt
 
 # Finalization
 CMD ["python3","-m","userbot"]
