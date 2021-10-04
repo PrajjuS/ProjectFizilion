@@ -1,3 +1,5 @@
+# Repo has been shifted [here](https://github.com/FrosT2k5/ProjectFizilion) cuz me ded with school, Kthnx bye.
+
 <p align="center">
    <a href="https://github.com/FrosT2k5/ProjectFizilion"><img src="https://github.com/PrajjuS/ProjectFizilion/raw/dragon/resources/IMG_20201109_130207_262.jpg" alt="Fizi Logo" width=600px></a>
    <br>
